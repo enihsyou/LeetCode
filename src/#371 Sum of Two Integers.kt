@@ -2,13 +2,13 @@ import io.kotlintest.matchers.shouldBe
 import io.kotlintest.properties.forAll
 import io.kotlintest.specs.StringSpec
 
-class Solution {
+class Solution371 {
     fun getSum(a: Int, b: Int): Int = a.plus(b)
 }
 
-class SolutionTest : StringSpec() {
+class Solution371Test : StringSpec() {
     init {
-        Solution().run {
+        Solution371().run {
             "1 + 1 = 2"{
                 getSum(1, 1) shouldBe 2
             }
