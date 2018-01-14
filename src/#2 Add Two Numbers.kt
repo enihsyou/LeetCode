@@ -2,9 +2,7 @@ import io.kotlintest.matchers.shouldBe
 import io.kotlintest.properties.forAll
 import io.kotlintest.specs.StringSpec
 
-class ListNode(var `val`: Int = 0) {
-    var next: ListNode? = null
-}
+
 
 /**
  * Definition for singly-linked list.
@@ -14,6 +12,9 @@ class ListNode(var `val`: Int = 0) {
  */
 class Solution2 {
 
+    class ListNode(var `val`: Int = 0) {
+        var next: ListNode? = null
+    }
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
         var carry = false
         val sum = ListNode(0)
@@ -37,26 +38,28 @@ class Solution2 {
         return sum.next
     }
 
-}
+    val Boolean.int
+        get() = if (this) 1 else 0
 
-val Boolean.int
-    get() = if (this) 1 else 0
-/*缺陷 不能把输入当做一定长度的整数，应该是个很长的序列*/
-fun Int.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
-fun Long.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
-fun IntArray.toListNode() = fold(null) { acc: ListNode?, i: Int ->
-    ListNode(i).also { it.next = acc }
-}
+    /*缺陷 不能把输入当做一定长度的整数，应该是个很长的序列*/
+    fun Int.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
 
-fun ListNode.collect(): Long {
-    val array = StringBuilder()
-    var p: ListNode? = this
-    while (p != null) {
-        array.append(p.`val`)
-        p = p.next
+    fun Long.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
+    fun IntArray.toListNode() = fold(null) { acc: ListNode?, i: Int ->
+        ListNode(i).also { it.next = acc }
     }
-    return array.toString().reversed().toLong()
+
+    fun ListNode.collect(): Long {
+        val array = StringBuilder()
+        var p: ListNode? = this
+        while (p != null) {
+            array.append(p.`val`)
+            p = p.next
+        }
+        return array.toString().reversed().toLong()
+    }
 }
+
 
 
 /*TEST PART*/

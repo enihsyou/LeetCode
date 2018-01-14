@@ -1,7 +1,8 @@
 import io.kotlintest.matchers.shouldBe
 
-operator fun Regex.contains(text: CharSequence): Boolean = this.matches(text)
 class Solution65 {
+    operator fun Regex.contains(text: CharSequence): Boolean = this.matches(text)
+
     fun isNumber(s: String): Boolean {
         val trim = s.trim()
         val split = trim.split("[eE]".toRegex())
