@@ -2,6 +2,7 @@ import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.Spec
 import io.kotlintest.TestCase
 import org.junit.runner.RunWith
+import java.util.*
 
 /**使用字符串做测试名，并把它当做参数传给测试用例*/
 @RunWith(KTestJUnitRunner::class) // required to let IntelliJ discover tests
@@ -12,7 +13,7 @@ abstract class MySpec(body: MySpec.() -> Unit = {}) : Spec() {
     }
 
     /**让测试名称作为参数*/
-    operator fun String.invoke(test: (params: String) -> Unit): TestCase {
+    protected operator fun String.invoke(test: (params: String) -> Unit): TestCase {
         val curried = test.curried(this)
         val tc = TestCase(suite = rootTestSuite, name = this, test = curried, config = defaultTestCaseConfig)
         rootTestSuite.addTestCase(tc)
@@ -37,6 +38,49 @@ abstract class MySpec(body: MySpec.() -> Unit = {}) : Spec() {
         param1: T1, param2: T2, param3: T3, test: (param1: T1, param2: T2, param3: T3) -> Unit): TestCase {
         val curried = test.curried(param1, param2, param3)
         val tc = TestCase(suite = rootTestSuite, name = this, test = curried, config = defaultTestCaseConfig)
+        rootTestSuite.addTestCase(tc)
+        return tc
+    }
+
+    fun add(test: () -> Unit): TestCase {
+        val tc = TestCase(
+            suite = rootTestSuite, name = "${test::class.simpleName}", test = test, config = defaultTestCaseConfig)
+        rootTestSuite.addTestCase(tc)
+        return tc
+    }
+
+    fun add(
+        param1: IntArray, param2: IntArray, test: (param1: IntArray, param2: IntArray) -> Unit): TestCase {
+        val curried = test.curried(param1, param2)
+        val tc = TestCase(
+            suite = rootTestSuite, name = "${Arrays.toString(param1)}, ${Arrays.toString(param2)}", test = curried,
+            config = defaultTestCaseConfig)
+        rootTestSuite.addTestCase(tc)
+        return tc
+    }
+
+    fun <T> add(
+        param1: Array<T>, param2: Array<T>, test: (param1: Array<T>, param2: Array<T>) -> Unit): TestCase {
+        val curried = test.curried(param1, param2)
+        val tc = TestCase(
+            suite = rootTestSuite, name = "${Arrays.toString(param1)}, ${Arrays.toString(param2)}", test = curried,
+            config = defaultTestCaseConfig)
+        rootTestSuite.addTestCase(tc)
+        return tc
+    }
+
+    fun <T> add(param: T, test: (params: T) -> Unit): TestCase {
+        val curried = test.curried(param)
+        val tc = TestCase(suite = rootTestSuite, name = "$param", test = curried, config = defaultTestCaseConfig)
+        rootTestSuite.addTestCase(tc)
+        return tc
+    }
+
+    fun <T> add(param1: T, param2: T, test: (param1: T, param2: T) -> Unit): TestCase {
+        val curried = test.curried(param1, param2)
+        val tc = TestCase(
+            suite = rootTestSuite, name = "${param1.toString()}, ${param2.toString()}", test = curried,
+            config = defaultTestCaseConfig)
         rootTestSuite.addTestCase(tc)
         return tc
     }
