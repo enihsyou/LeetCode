@@ -70,4 +70,3 @@ class RandomizedCollection {
         return nums.get(random.nextInt(nums.size()));
     }
 }
-
