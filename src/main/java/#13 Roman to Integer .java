@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /** 13. Roman to Integer */
-class Q13_Roman_to_Integer {
+class Q13 {
 
     static Map<Character, Integer> map = new HashMap<>();
 

@@ -1,9 +1,3 @@
-import io.kotlintest.matchers.shouldBe
-import io.kotlintest.properties.forAll
-import io.kotlintest.properties.headers
-import io.kotlintest.properties.row
-import io.kotlintest.properties.table
-
 class Solution5 {
     fun longestPalindrome(s: String): String {
         val T = preProcess(s)
@@ -38,23 +32,4 @@ class Solution5 {
 
     private fun preProcess(s: String) =
         s.toCharArray().joinToString(separator = "#", prefix = "^#", postfix = "#$")
-}
-
-class Solution5Test : MySpec() {
-    init {
-        Solution5().run {
-            "should" {
-                val table = table(
-                    headers("input", "output"),
-                    row("babad", "bab"),
-                    row("cbbd", "bb"),
-                    row("", ""),
-                    row("a", "a")
-                )
-                forAll(table) { input, output ->
-                    longestPalindrome(input).also { println(it) } shouldBe output
-                }
-            }
-        }
-    }
 }

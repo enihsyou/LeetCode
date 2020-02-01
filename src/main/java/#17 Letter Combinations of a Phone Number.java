@@ -1,14 +1,8 @@
-import kotlin.collections.EmptyList;
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class Q17_Letter_Combinations_of_a_Phone_Number {
+class Q17 {
 
     private List<String> result;
 
@@ -58,20 +52,4 @@ class Q17_Letter_Combinations_of_a_Phone_Number {
         }
     }
 
-    public static class SolutionTest {
-
-        @Rule
-        public final JUnitSoftAssertions soft = new JUnitSoftAssertions();
-
-        private final Q17_Letter_Combinations_of_a_Phone_Number solution =
-            new Q17_Letter_Combinations_of_a_Phone_Number();
-
-        @Test
-        public void test() {
-            soft.assertThat(solution.letterCombinations(""))
-                .hasSameElementsAs(Collections.emptyList());
-            soft.assertThat(solution.letterCombinations("23"))
-                .hasSameElementsAs(Arrays.asList("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"));
-        }
-    }
 }

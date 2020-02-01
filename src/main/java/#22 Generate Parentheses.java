@@ -1,8 +1,5 @@
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 class Q22_Generate_Parentheses {
 
@@ -45,18 +42,4 @@ class Q22_Generate_Parentheses {
         }
     }
 
-    public static class SolutionTest {
-
-        @Rule
-        public final JUnitSoftAssertions soft = new JUnitSoftAssertions();
-
-        private final Q22_Generate_Parentheses solution = new Q22_Generate_Parentheses();
-
-        @Test
-        public void test() {
-            soft.assertThat(solution.generateParenthesis(3))
-                .hasSize(5)
-                .hasSameElementsAs(Arrays.asList("((()))", "(()())", "(())()", "()(())", "()()()"));
-        }
-    }
 }

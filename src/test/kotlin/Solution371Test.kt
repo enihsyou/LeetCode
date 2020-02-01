@@ -1,10 +1,6 @@
-import io.kotlintest.matchers.shouldBe
 import io.kotlintest.properties.forAll
+import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
-
-class Solution371 {
-    fun getSum(a: Int, b: Int): Int = a.plus(b)
-}
 
 class Solution371Test : StringSpec() {
     init {
@@ -24,4 +20,3 @@ class Solution371Test : StringSpec() {
         }
     }
 }
-

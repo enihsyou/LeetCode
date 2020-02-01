@@ -1,8 +1,4 @@
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-
-class Solution {
+class Q20 {
 
     private static char[] open = new char[]{'(', '{', '['};
 
@@ -55,23 +51,5 @@ class Solution {
         return -1;
     }
 
-    public static class SolutionTest {
-
-        @Rule
-        public final JUnitSoftAssertions soft = new JUnitSoftAssertions();
-
-        private final Solution solution = new Solution();
-
-        @Test
-        public void test() {
-            soft.assertThat(solution.isValid("")).isTrue();
-            soft.assertThat(solution.isValid("()")).isTrue();
-            soft.assertThat(solution.isValid("()[]{}")).isTrue();
-            soft.assertThat(solution.isValid("(]")).isFalse();
-            soft.assertThat(solution.isValid("(((((")).isFalse();
-            soft.assertThat(solution.isValid("([)]")).isFalse();
-            soft.assertThat(solution.isValid("{[]}")).isTrue();
-        }
-    }
 }
 

@@ -1,8 +1,7 @@
-import org.assertj.core.api.JUnitSoftAssertions;
-import org.junit.Rule;
-import org.junit.Test;
-
-class Q53_Maximum_Subarray {
+/**
+ * #53 Maximum Subarray
+ */
+class Q53 {
 
     public int maxSubArray(int[] nums) {
         if (nums.length == 0) throw new IllegalArgumentException();
@@ -12,7 +11,7 @@ class Q53_Maximum_Subarray {
         /*num[i] = 末尾在这里的序列和 最大值*/
         for (int i = 1; i < nums.length; i++) {
             nums[i] = Math.max(nums[i], nums[i - 1] + nums[i]);
-            max = Math.max(max, nums[i]);
+            max     = Math.max(max, nums[i]);
         }
         return max;
     }
@@ -42,18 +41,4 @@ class Q53_Maximum_Subarray {
         return max;
     }
 
-    public static class SolutionTest {
-
-        @Rule
-        public final JUnitSoftAssertions soft = new JUnitSoftAssertions();
-
-        private final Q53_Maximum_Subarray solution = new Q53_Maximum_Subarray();
-
-        @Test
-        public void test() {
-            soft.assertThat(solution.maxSubArray(new int[]{-2, 1})).isEqualTo(1);
-            soft.assertThat(solution.maxSubArray(new int[]{-2, -1})).isEqualTo(-1);
-            soft.assertThat(solution.maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4})).isEqualTo(6);
-        }
-    }
 }

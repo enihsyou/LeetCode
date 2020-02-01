@@ -1,8 +1,8 @@
 /** 12. Integer to Roman */
-class Q12_Integer_to_Roman {
+class Q12 {
 
     public static void main(String[] args) {
-        System.out.println(new Q12_Integer_to_Roman().intToRoman(1994));
+        System.out.println(new Q12().intToRoman(1994));
     }
 
     public String intToRoman(int num) {

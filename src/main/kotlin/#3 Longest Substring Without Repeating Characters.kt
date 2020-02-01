@@ -1,6 +1,3 @@
-import io.kotlintest.matchers.shouldBe
-import io.kotlintest.specs.WordSpec
-
 class Solution3 {
     fun lengthOfLongestSubstring(s: String): Int {
         val n = s.length
@@ -35,17 +32,5 @@ class Solution3 {
         }
 
         return max
-    }
-}
-
-class Solution3Test : WordSpec() {
-    init {
-        Solution3().run {
-            "abcabcbb"{ lengthOfLongestSubstring("abcabcbb") shouldBe 3 }
-            "bbbbb"{ lengthOfLongestSubstring("bbbbb") shouldBe 1 }
-            "pwwkew"{ lengthOfLongestSubstring("pwwkew") shouldBe 3 }
-            "dfaergsbcsbfrehsddf"{ lengthOfLongestSubstring("dfaergsbcsbfrehsddf") shouldBe 9 }
-            "tmmzuxt"{ lengthOfLongestSubstring("tmmzuxt") shouldBe 5 }
-        }
     }
 }
