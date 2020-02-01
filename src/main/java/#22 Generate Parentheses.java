@@ -1,7 +1,11 @@
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-class Q22_Generate_Parentheses {
+class Q22 {
 
     private List<String> result;
 
@@ -42,4 +46,19 @@ class Q22_Generate_Parentheses {
         }
     }
 
+}
+
+class Q22Test {
+
+    private final Q22 solution = new Q22();
+
+    @Test
+    void test() {
+        SoftAssertions.assertSoftly(soft -> {
+
+            soft.assertThat(solution.generateParenthesis(3))
+                .hasSize(5)
+                .hasSameElementsAs(Arrays.asList("((()))", "(()())", "(())()", "()(())", "()()()"));
+        });
+    }
 }

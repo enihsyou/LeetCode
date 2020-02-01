@@ -9,6 +9,12 @@ sourceSets {
             srcDir("src/main/shell")
         }
     }
+    test {
+        java {
+            srcDir("src/main/java")
+            srcDir("src/main/kotlin")
+        }
+    }
 }
 
 repositories {
@@ -18,7 +24,8 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    // TODO: 2020/2/1 migrate to testImplementation
+    runtimeOnly("org.junit.platform:junit-platform-launcher:1.6.0")
+    runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
     implementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")
     implementation("org.assertj:assertj-core:3.15.0")
 

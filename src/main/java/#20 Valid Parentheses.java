@@ -1,3 +1,6 @@
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Test;
+
 class Q20 {
 
     private static char[] open = new char[]{'(', '{', '['};
@@ -53,3 +56,20 @@ class Q20 {
 
 }
 
+class Q20Test {
+
+    private final Q20 solution = new Q20();
+
+    @Test
+    void test() {
+        SoftAssertions.assertSoftly(soft -> {
+            soft.assertThat(solution.isValid("")).isTrue();
+            soft.assertThat(solution.isValid("()")).isTrue();
+            soft.assertThat(solution.isValid("()[]{}")).isTrue();
+            soft.assertThat(solution.isValid("(]")).isFalse();
+            soft.assertThat(solution.isValid("(((((")).isFalse();
+            soft.assertThat(solution.isValid("([)]")).isFalse();
+            soft.assertThat(solution.isValid("{[]}")).isTrue();
+        });
+    }
+}

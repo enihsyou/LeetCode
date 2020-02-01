@@ -1,3 +1,6 @@
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Test;
+
 /**
  * #53 Maximum Subarray
  */
@@ -41,4 +44,18 @@ class Q53 {
         return max;
     }
 
+}
+
+class Q53Test {
+
+    private final Q53 solution = new Q53();
+
+    @Test
+    void test() {
+        SoftAssertions.assertSoftly(soft -> {
+            soft.assertThat(solution.maxSubArray(new int[]{-2, 1})).isEqualTo(1);
+            soft.assertThat(solution.maxSubArray(new int[]{-2, -1})).isEqualTo(-1);
+            soft.assertThat(solution.maxSubArray(new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4})).isEqualTo(6);
+        });
+    }
 }

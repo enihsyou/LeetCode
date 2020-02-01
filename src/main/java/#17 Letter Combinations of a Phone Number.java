@@ -1,4 +1,8 @@
+import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,4 +56,19 @@ class Q17 {
         }
     }
 
+}
+
+class Q17Test {
+
+    private final Q17 solution = new Q17();
+
+    @Test
+    void test() {
+        SoftAssertions.assertSoftly(soft -> {
+            soft.assertThat(solution.letterCombinations(""))
+                .hasSameElementsAs(Collections.emptyList());
+            soft.assertThat(solution.letterCombinations("23"))
+                .hasSameElementsAs(Arrays.asList("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"));
+        });
+    }
 }

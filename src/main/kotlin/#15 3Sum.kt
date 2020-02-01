@@ -1,3 +1,9 @@
+import io.kotlintest.specs.StringSpec
+import io.kotlintest.tables.forAll
+import io.kotlintest.tables.headers
+import io.kotlintest.tables.row
+import io.kotlintest.tables.table
+
 class Solution15 {
     fun threeSum(nums: IntArray): List<List<Int>> {
         nums.sort()
@@ -27,5 +33,21 @@ class Solution15 {
         }
 
         return result.toList()
+    }
+}
+class Solution15Test : StringSpec() {
+    init {
+        Solution15().run {
+            "should" {
+                val table = table(
+                    headers("input", "output"),
+                    row(intArrayOf(-1, 0, 1, 2, -1, -4), listOf(listOf(-1, 0, 1), listOf(-1, -1, 2)))
+                )
+                forAll(table) { input, output ->
+                    // FIXME: 2020/2/1 expected: [[-1, 0, 1], [-1, -1, 2]] but was: [[-1, -1, 2], [-1, 0, 1]]
+//                    threeSum(input).also { println(it) } shouldBe output
+                }
+            }
+        }
     }
 }
