@@ -5,6 +5,7 @@ import io.kotlintest.specs.StringSpec
 class Solution371 {
     fun getSum(a: Int, b: Int): Int = a.plus(b)
 }
+
 class Solution371Test : StringSpec() {
     init {
         Solution371().run {

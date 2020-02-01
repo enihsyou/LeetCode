@@ -35,6 +35,7 @@ class Solution15 {
         return result.toList()
     }
 }
+
 class Solution15Test : StringSpec() {
     init {
         Solution15().run {

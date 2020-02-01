@@ -1,4 +1,10 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 class RandomizedCollection {
 
@@ -29,7 +35,7 @@ class RandomizedCollection {
 
     /** Inserts a value to the collection. Returns true if the collection did not already contain the specified element. */
     public boolean insert(int val) {
-        final int num_index = nums.size();
+        int num_index = nums.size();
         nums.add(val);
 
         boolean contain = map.containsKey(val);
@@ -42,15 +48,15 @@ class RandomizedCollection {
     public boolean remove(int val) {
         if (!map.containsKey(val)) return false;
 
-        final Set<Integer> positions = map.get(val);
+        Set<Integer> positions = map.get(val);
         /*当前val 在数组里的一个位置*/
-        final Integer current_position = positions.iterator().next();
+        Integer current_position = positions.iterator().next();
         /*移除map中 要删除元素的位置记录*/
         positions.remove(current_position);
         /*数组中最后一个元素的位置*/
-        final int last_number_position = nums.size() - 1;
+        int last_number_position = nums.size() - 1;
         /*数组中的最后一个元素*/
-        final Integer last_number = nums.get(last_number_position);
+        Integer last_number = nums.get(last_number_position);
         /*将最后一个元素 放到要删除的位置上*/
         nums.set(current_position, last_number);
         /*为最后一个元素，修改位置记录*/

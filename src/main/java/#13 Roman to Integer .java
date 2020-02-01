@@ -20,10 +20,13 @@ class Q13 {
         int count = 0;
         int last = 0;
         for (int i = s.length() - 1; i >= 0; i--) {
-            final char c = s.charAt(i);
+            char c = s.charAt(i);
             int translate = map.get(c);
-            if (last > translate) count -= translate;
-            else count += translate;
+            if (last > translate) {
+                count -= translate;
+            } else {
+                count += translate;
+            }
 
             last = translate;
         }

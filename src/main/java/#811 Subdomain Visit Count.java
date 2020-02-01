@@ -14,18 +14,17 @@ class Q811_Subdomain_Visit_Count {
     public List<String> subdomainVisits(String[] cpdomains) {
         Map<String, Integer> map = new HashMap<>();
 
-        for (final String cpdomain : cpdomains) {
-            final String[] split = cpdomain.split(" ");
-            final int count = Integer.parseInt(split[0]);
-            final String[] subdomains = split[1].split("\\.");
+        for (String cpdomain : cpdomains) {
+            String[] split = cpdomain.split(" ");
+            int count = Integer.parseInt(split[0]);
+            String[] subdomains = split[1].split("\\.");
 
             StringBuilder current = new StringBuilder(64);
             for (int i = subdomains.length - 1; i >= 0; --i) {
-                if (i == subdomains.length - 1)
-                    current.append(subdomains[i]);
-                else
+                if (i == subdomains.length - 1) { current.append(subdomains[i]); } else {
                     current.insert(0, '.').insert(0, subdomains[i]);
-                final String key = current.toString();
+                }
+                String key = current.toString();
                 map.put(key, map.getOrDefault(key, 0) + count);
             }
         }

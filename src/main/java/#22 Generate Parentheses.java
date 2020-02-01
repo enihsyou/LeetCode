@@ -23,14 +23,14 @@ class Q22 {
      * @param lefts   多少未闭合的左括号在builder里
      * @param remains 还需要添加多少左括号
      */
-    private void addParentheses(final StringBuilder builder, final int lefts, final int remains) {
-        if (lefts == 0 && remains == 0){
+    private void addParentheses(StringBuilder builder, int lefts, int remains) {
+        if (lefts == 0 && remains == 0) {
             result.add(builder.toString());
             return;
         }
 
         /*当前循环字符的添加位置*/
-        final int position = builder.length();
+        int position = builder.length();
 
         /*如果左边有未闭合的左括号*/
         if (lefts > 0) {

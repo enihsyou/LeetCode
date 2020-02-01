@@ -27,7 +27,7 @@ class Q12 {
         return builder.toString();
     }
 
-    static private int add(StringBuilder builder, int size, int num, String append) {
+    private static int add(StringBuilder builder, int size, int num, String append) {
         int temp = num;
         while (temp / size > 0) {
             builder.append(append);

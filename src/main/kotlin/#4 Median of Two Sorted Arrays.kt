@@ -33,6 +33,7 @@ class Solution4 {
         }
     }
 }
+
 class Solution4Test : StringSpec() {
     init {
         Solution4().run {
@@ -44,6 +45,7 @@ class Solution4Test : StringSpec() {
                     intArrayOf(1, 3, 4, 2, 5, 8, 3, 6), intArrayOf()
                 ) shouldBe 3.5
             }
+            // FIXME: 2020/2/1 fix the error
 //            add(intArrayOf(1, 2, 3), intArrayOf(2)) { a, b -> findMedianSortedArrays(a, b) shouldBe 2.0 }
         }
     }

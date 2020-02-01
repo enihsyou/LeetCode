@@ -33,7 +33,7 @@ class Q39 {
      * @param remain 还需要多少数字
      * @param start  接下来从哪个candidate开始选
      */
-    private void helper(final int remain, final int start) {
+    private void helper(int remain, int start) {
         if (remain == 0) {
             result.add(new ArrayList<>(stack));
             return;
@@ -41,7 +41,7 @@ class Q39 {
 
         for (int i = start; i >= 0; i--) {
             /*当前选取的数字大小*/
-            final int num = candidates[i];
+            int num = candidates[i];
             /*可以添加当前数字*/
             if (remain >= num) {
                 /*添加当前数字*/
@@ -60,7 +60,7 @@ class Q39Test {
     private final Q39 solution = new Q39();
 
     @Test
-     void test() {
+    void test() {
         SoftAssertions.assertSoftly(soft -> {
             soft.assertThat(solution.combinationSum(new int[]{2, 3, 6, 7}, 7))
                 .hasSameElementsAs(Arrays.asList(Arrays.asList(7), Arrays.asList(2, 2, 3)));

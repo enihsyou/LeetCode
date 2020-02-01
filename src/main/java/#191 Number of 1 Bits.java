@@ -13,12 +13,12 @@ class Q191 {
 
 }
 
- class Q191Test {
+class Q191Test {
 
     private final Q191 solution = new Q191();
 
     @Test
-     void test() {
+    void test() {
         SoftAssertions.assertSoftly(soft -> {
             soft.assertThat(solution.hammingWeight(11)).isEqualTo(3);
             soft.assertThat(solution.hammingWeight(128)).isEqualTo(1);

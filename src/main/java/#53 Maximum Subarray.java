@@ -14,7 +14,7 @@ class Q53 {
         /*num[i] = 末尾在这里的序列和 最大值*/
         for (int i = 1; i < nums.length; i++) {
             nums[i] = Math.max(nums[i], nums[i - 1] + nums[i]);
-            max     = Math.max(max, nums[i]);
+            max = Math.max(max, nums[i]);
         }
         return max;
     }
@@ -27,9 +27,9 @@ class Q53 {
         int temp_sum = 0;
         while (cur < nums.length) {
             /*当前指向的数字*/
-            final int current = nums[cur];
+            int current = nums[cur];
             /*尝试累加到计算中的序列中*/
-            final int temp_add = temp_sum + current;
+            int temp_add = temp_sum + current;
             /*更新最大值*/
             if (temp_add > max) max = temp_add;
             /*如果大小小于0了，不需要它*/

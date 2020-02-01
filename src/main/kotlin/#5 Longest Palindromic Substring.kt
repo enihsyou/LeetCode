@@ -40,6 +40,7 @@ class Solution5 {
     private fun preProcess(s: String) =
         s.toCharArray().joinToString(separator = "#", prefix = "^#", postfix = "#$")
 }
+
 class Solution5Test : StringSpec() {
     init {
         Solution5().run {

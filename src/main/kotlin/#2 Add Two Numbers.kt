@@ -13,6 +13,7 @@ class Q2 {
     class ListNode(var `val`: Int = 0) {
         var next: ListNode? = null
     }
+
     fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
         var carry = false
         val sum = ListNode(0)
