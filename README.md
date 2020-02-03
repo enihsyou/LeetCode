@@ -26,6 +26,7 @@
 | 381 | Insert Delete GetRandom O(1) - Duplicates allowed | [Java][#381 java]     |
 | 401 | Binary Watch                                      | [Java][#401 java]     |
 | 811 | Longest Palindromic Substring                     | [Java][#811 java]     |
+| 986 | Interval List Intersections                       | [Kotlin][#986 kotlin]     |
 
 [#1 kotlin]: src/main/kotlin/%231%20Two%20Sum.kt
 [#2 kotlin]: src/main/kotlin/%232%20Add%20Two%20Numbers.kt
@@ -35,6 +36,7 @@
 [#15 kotlin]: src/main/kotlin/%2315%203Sum.kt
 [#65 kotlin]: src/main/kotlin/%2365%20Valid%20Number.kt
 [#371 kotlin]: src/main/kotlin/%23371%20Sum%20of%20Two%20Integers.kt
+[#986 kotlin]: src/main/kotlin/%23986%20Interval%20List%20Intersections.kt
 [#12 java]: src/main/java/%2312%20Integer%20to%20Roman.java
 [#13 java]: src/main/java/%2313%20Roman%20to%20Integer%20.java
 [#17 java]: src/main/java/%2317%20Letter%20Combinations%20of%20a%20Phone%20Number.java
@@ -46,10 +48,10 @@
 [#381 java]: src/main/java/%23381%20Insert%20Delete%20GetRandom%20O%281%29%20-%20Duplicates%20allowed.java
 [#401 java]: src/main/java/%23401%20Binary%20Watch.java
 [#811 java]: src/main/java/%23811%20Subdomain%20Visit%20Count.java
-[#175 sql]: src/main/sql/%23175%20Combine%20Two%20Tables.sql
-[#176 sql]: src/main/sql/%23176%20Second%20Highest%20Salary.sql
-[#178 sql]: src/main/sql/%23178%20Rank%20Scores.sql
-[#182 sql]: src/main/sql/%23182%20Duplicate%20Emails.sql
+[#175 mysql]: src/main/sql/%23175%20Combine%20Two%20Tables.sql
+[#176 mysql]: src/main/sql/%23176%20Second%20Highest%20Salary.sql
+[#178 mysql]: src/main/sql/%23178%20Rank%20Scores.sql
+[#182 mysql]: src/main/sql/%23182%20Duplicate%20Emails.sql
 [#192 bash]: src/main/shell/%23192%20Word%20Frequency.sh
 
 
