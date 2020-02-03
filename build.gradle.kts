@@ -7,6 +7,7 @@ sourceSets {
     main {
         resources {
             srcDir("src/main/shell")
+            srcDir("src/main/sql")
         }
     }
     test {
