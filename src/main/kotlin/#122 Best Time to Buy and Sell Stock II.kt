@@ -25,8 +25,6 @@ private class Solution122 {
             if (isRise(day1Price, day2Price)) {
                 /* 涨了，就有获利*/
                 profits += day2Price - day1Price
-            } else if (isFall(day1Price, day2Price)) {
-                /* 跌了，就卖出*/
             }
         }
 
@@ -34,7 +32,6 @@ private class Solution122 {
     }
 
     private inline fun isRise(day1: Int, day2: Int) = day1 < day2
-    private inline fun isFall(day1: Int, day2: Int) = day1 > day2
 }
 
 class Solution122Test : StringSpec({
