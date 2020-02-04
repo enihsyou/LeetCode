@@ -13,9 +13,10 @@
 | 17  | Letter Combinations of a Phone Number             | [Java][#17 java]      |
 | 20  | Valid Parentheses                                 | [Java][#20 java]      |
 | 22  | Generate Parentheses                              | [Java][#22 java]      |
+| 26  | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]  |
 | 39  | Combination Sum                                   | [Java][#39 java]      |
 | 53  | Maximum Subarray                                  | [Java][#53 java]      |
-| 56  | Merge Intervals                                   | [Kotlin][#56 kotlin]      |
+| 56  | Merge Intervals                                   | [Kotlin][#56 kotlin]  |
 | 65  | Valid Number                                      | [Kotlin][#65 kotlin]  |
 | 175 | Combine Two Tables                                | [MySQL][#175 mysql]   |
 | 176 | Second Highest Salary                             | [MySQL][#176 mysql]   |
@@ -35,6 +36,7 @@
 [#4 kotlin]: src/main/kotlin/%234%20Median%20of%20Two%20Sorted%20Arrays.kt
 [#5 kotlin]: src/main/kotlin/%235%20Longest%20Palindromic%20Substring.kt
 [#15 kotlin]: src/main/kotlin/%2315%203Sum.kt
+[#26 kotlin]: src/main/kotlin/%2326%20Remove%20Duplicates%20from%20Sorted%20Array.kt
 [#56 kotlin]: src/main/kotlin/%2356%20Merge%20Intervals.kt
 [#65 kotlin]: src/main/kotlin/%2365%20Valid%20Number.kt
 [#371 kotlin]: src/main/kotlin/%23371%20Sum%20of%20Two%20Integers.kt
