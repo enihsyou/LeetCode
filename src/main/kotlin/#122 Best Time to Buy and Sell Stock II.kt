@@ -1,4 +1,4 @@
-@file:Suppress("NOTHING_TO_INLINE")
+@file:Suppress("NOTHING_TO_INLINE", "ControlFlowWithEmptyBody")
 
 import io.kotlintest.matchers.numerics.shouldBeExactly
 import io.kotlintest.specs.StringSpec
@@ -18,31 +18,23 @@ private class Solution122 {
 
         var profits = 0
 
-        var purchaseDay = -1 // -1代表未持有
-        var day1Price = prices[0]
         for (day in 1 until prices.size) {
+            val day1Price = prices[day - 1]
             val day2Price = prices[day]
 
-            if (isFall(day1Price, day2Price) && isHolding(purchaseDay)) {
-                /* 已购入，跌了，卖出*/
-                profits += day1Price - prices[purchaseDay]
-                purchaseDay = -1
-            } else if (isRise(day1Price, day2Price) && !isHolding(purchaseDay)) {
-                /* 未购入，涨了，买进*/
-                purchaseDay = day - 1
+            if (isRise(day1Price, day2Price)) {
+                /* 涨了，就有获利*/
+                profits += day2Price - day1Price
+            } else if (isFall(day1Price, day2Price)) {
+                /* 跌了，就卖出*/
             }
-            day1Price = day2Price
         }
 
-        if (purchaseDay >= 0) {
-            profits += day1Price - prices[purchaseDay]
-        }
         return profits
     }
 
     private inline fun isRise(day1: Int, day2: Int) = day1 < day2
     private inline fun isFall(day1: Int, day2: Int) = day1 > day2
-    private inline fun isHolding(purchaseDay: Int) = purchaseDay >= 0
 }
 
 class Solution122Test : StringSpec({
