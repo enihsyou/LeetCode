@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions
  * [LeetCode](https://leetcode-cn.com/problems/interval-list-intersections/)
  */
 
-private class Solution {
+private class Solution986 {
 
     fun intervalIntersection(A: Array<IntArray>, B: Array<IntArray>): Array<IntArray> {
         val result = mutableListOf<IntArray>()
@@ -53,7 +53,7 @@ class Solution986Test : StringSpec({
             intArrayOf(8, 12),
             intArrayOf(15, 24),
             intArrayOf(25, 26))
-        val actual = Solution().intervalIntersection(a, b)
+        val actual = Solution986().intervalIntersection(a, b)
         val expect = arrayOf(
             intArrayOf(1, 2),
             intArrayOf(5, 5),
