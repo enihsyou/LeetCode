@@ -6,8 +6,8 @@ plugins {
 sourceSets {
     main {
         resources {
-            srcDir("src/main/shell")
-            srcDir("src/main/sql")
+            srcDir("src/main/bash")
+            srcDir("src/main/mysql")
         }
     }
     test {
