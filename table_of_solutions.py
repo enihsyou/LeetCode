@@ -312,6 +312,12 @@ def inplace_replace_readme_file(generator):
         writer.writelines(file_lines)
 
 
-if __name__ == '__main__':
+def main():
+    """ Main entry point.
+    Other file could import and call this function."""
     inplace_replace_readme_file(
         lambda: MarkdownTableGenerator(scan_for_problems()).generate())
+
+
+if __name__ == '__main__':
+    main()
