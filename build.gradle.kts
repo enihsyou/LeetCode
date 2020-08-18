@@ -25,6 +25,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
+    implementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
     runtimeOnly("org.junit.platform:junit-platform-launcher:1.6.0")
     runtimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
     implementation("io.kotlintest:kotlintest-runner-junit5:3.4.2")

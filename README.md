@@ -29,6 +29,7 @@
 | 371 | Sum of Two Integers                               | [Kotlin][#371 kotlin] | 2020-02-01 22:36 |
 | 381 | Insert Delete GetRandom O(1) - Duplicates allowed | [Java][#381 java]     | 2020-02-01 22:36 |
 | 401 | Binary Watch                                      | [Java][#401 java]     | 2020-02-01 22:36 |
+| 792 | Binary Search                                     | [Java][#792 java]     | 2020-08-18 23:00 |
 | 811 | Subdomain Visit Count                             | [Java][#811 java]     | 2020-02-01 22:36 |
 | 986 | Interval List Intersections                       | [Kotlin][#986 kotlin] | 2020-02-05 04:43 |
 
@@ -54,6 +55,7 @@
 [#191 java]: src/main/java/%23191%20Number%20of%201%20Bits.java
 [#381 java]: src/main/java/%23381%20Insert%20Delete%20GetRandom%20O%281%29%20-%20Duplicates%20allowed.java
 [#401 java]: src/main/java/%23401%20Binary%20Watch.java
+[#792 java]: src/main/java/%23792%20Binary%20Search.java
 [#811 java]: src/main/java/%23811%20Subdomain%20Visit%20Count.java
 [#175 mysql]: src/main/mysql/%23175%20Combine%20Two%20Tables.sql
 [#176 mysql]: src/main/mysql/%23176%20Second%20Highest%20Salary.sql
