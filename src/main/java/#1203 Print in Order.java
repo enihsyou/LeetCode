@@ -11,30 +11,39 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class Q1203 {
 
-    private final CountDownLatch latch2 = new CountDownLatch(1);
-    private final CountDownLatch latch3 = new CountDownLatch(1);
+    private int stage = 1;
 
     public Q1203() {
 
     }
 
     public void first(Runnable printFirst) throws InterruptedException {
-        latch2.countDown();
-        // printFirst.run() outputs "first". Do not change or remove this line.
-        printFirst.run();
+        synchronized (this) {
+            printFirst.run();
+            stage = 2;
+            this.notifyAll();
+        }
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
-        latch2.await();
-        // printSecond.run() outputs "second". Do not change or remove this line.
-        printSecond.run();
-        latch3.countDown();
+        synchronized (this) {
+            while (stage != 2) {
+                this.wait();
+            }
+            printSecond.run();
+            stage = 3;
+            this.notifyAll();
+        }
     }
 
     public void third(Runnable printThird) throws InterruptedException {
-        latch3.await();
-        // printThird.run() outputs "third". Do not change or remove this line.
-        printThird.run();
+        synchronized (this) {
+            while (stage != 3) {
+                this.wait();
+            }
+            printThird.run();
+            this.notifyAll();
+        }
     }
 }
 
