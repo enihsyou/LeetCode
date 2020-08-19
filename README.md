@@ -1,37 +1,38 @@
 ## List of solutions
 
 <!-- table of solutions -->
-| No. |                        Name                       |       Solutions       |   Last Update    |
-|-----|---------------------------------------------------|-----------------------|------------------|
-| 1   | Two Sum                                           | [Kotlin][#1 kotlin]   | 2020-02-01 22:13 |
-| 2   | Add Two Numbers                                   | [Kotlin][#2 kotlin]   | 2020-02-01 22:36 |
-| 3   | Longest Substring Without Repeating Characters    | [Kotlin][#3 kotlin]   | 2020-02-01 22:15 |
-| 4   | Median of Two Sorted Arrays                       | [Kotlin][#4 kotlin]   | 2020-02-01 22:36 |
-| 5   | Longest Palindromic Substring                     | [Kotlin][#5 kotlin]   | 2020-02-01 22:36 |
-| 12  | Integer to Roman                                  | [Java][#12 java]      | 2020-02-01 22:36 |
-| 13  | Roman to Integer                                  | [Java][#13 java]      | 2020-02-01 22:39 |
-| 15  | 3Sum                                              | [Kotlin][#15 kotlin]  | 2020-02-01 22:36 |
-| 17  | Letter Combinations of a Phone Number             | [Java][#17 java]      | 2020-02-01 22:36 |
-| 20  | Valid Parentheses                                 | [Java][#20 java]      | 2020-02-01 22:36 |
-| 22  | Generate Parentheses                              | [Java][#22 java]      | 2020-02-01 22:36 |
-| 26  | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]  | 2020-02-05 06:10 |
-| 39  | Combination Sum                                   | [Java][#39 java]      | 2020-02-01 22:36 |
-| 53  | Maximum Subarray                                  | [Java][#53 java]      | 2020-02-01 22:36 |
-| 56  | Merge Intervals                                   | [Kotlin][#56 kotlin]  | 2020-02-05 05:33 |
-| 65  | Valid Number                                      | [Kotlin][#65 kotlin]  | 2020-02-01 22:15 |
-| 122 | Best Time to Buy and Sell Stock II                | [Kotlin][#122 kotlin] | 2020-02-05 07:01 |
-| 175 | Combine Two Tables                                | [MySQL][#175 mysql]   | 2020-02-01 06:33 |
-| 176 | Second Highest Salary                             | [MySQL][#176 mysql]   | 2020-02-01 06:33 |
-| 178 | Rank Scores                                       | [MySQL][#178 mysql]   | 2020-02-01 06:33 |
-| 182 | Duplicate Emails                                  | [MySQL][#182 mysql]   | 2020-02-01 06:33 |
-| 191 | Number of 1 Bits                                  | [Java][#191 java]     | 2020-02-01 22:36 |
-| 192 | Word Frequency                                    | [Bash][#192 bash]     | 2020-02-03 23:38 |
-| 371 | Sum of Two Integers                               | [Kotlin][#371 kotlin] | 2020-02-01 22:36 |
-| 381 | Insert Delete GetRandom O(1) - Duplicates allowed | [Java][#381 java]     | 2020-02-01 22:36 |
-| 401 | Binary Watch                                      | [Java][#401 java]     | 2020-02-01 22:36 |
-| 792 | Binary Search                                     | [Java][#792 java]     | 2020-08-18 23:00 |
-| 811 | Subdomain Visit Count                             | [Java][#811 java]     | 2020-02-01 22:36 |
-| 986 | Interval List Intersections                       | [Kotlin][#986 kotlin] | 2020-02-05 04:43 |
+| No.  |                        Name                       |       Solutions       |   Last Update    |
+|------|---------------------------------------------------|-----------------------|------------------|
+| 1    | Two Sum                                           | [Kotlin][#1 kotlin]   | 2020-02-01 22:13 |
+| 2    | Add Two Numbers                                   | [Kotlin][#2 kotlin]   | 2020-02-01 22:36 |
+| 3    | Longest Substring Without Repeating Characters    | [Kotlin][#3 kotlin]   | 2020-02-01 22:15 |
+| 4    | Median of Two Sorted Arrays                       | [Kotlin][#4 kotlin]   | 2020-02-01 22:36 |
+| 5    | Longest Palindromic Substring                     | [Kotlin][#5 kotlin]   | 2020-02-01 22:36 |
+| 12   | Integer to Roman                                  | [Java][#12 java]      | 2020-02-01 22:36 |
+| 13   | Roman to Integer                                  | [Java][#13 java]      | 2020-02-01 22:39 |
+| 15   | 3Sum                                              | [Kotlin][#15 kotlin]  | 2020-02-01 22:36 |
+| 17   | Letter Combinations of a Phone Number             | [Java][#17 java]      | 2020-02-01 22:36 |
+| 20   | Valid Parentheses                                 | [Java][#20 java]      | 2020-02-01 22:36 |
+| 22   | Generate Parentheses                              | [Java][#22 java]      | 2020-02-01 22:36 |
+| 26   | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]  | 2020-02-05 06:10 |
+| 39   | Combination Sum                                   | [Java][#39 java]      | 2020-02-01 22:36 |
+| 53   | Maximum Subarray                                  | [Java][#53 java]      | 2020-02-01 22:36 |
+| 56   | Merge Intervals                                   | [Kotlin][#56 kotlin]  | 2020-02-05 05:33 |
+| 65   | Valid Number                                      | [Kotlin][#65 kotlin]  | 2020-02-01 22:15 |
+| 122  | Best Time to Buy and Sell Stock II                | [Kotlin][#122 kotlin] | 2020-02-05 07:01 |
+| 175  | Combine Two Tables                                | [MySQL][#175 mysql]   | 2020-02-07 00:30 |
+| 176  | Second Highest Salary                             | [MySQL][#176 mysql]   | 2020-02-07 00:30 |
+| 178  | Rank Scores                                       | [MySQL][#178 mysql]   | 2020-02-07 00:30 |
+| 182  | Duplicate Emails                                  | [MySQL][#182 mysql]   | 2020-02-07 00:30 |
+| 191  | Number of 1 Bits                                  | [Java][#191 java]     | 2020-02-01 22:36 |
+| 192  | Word Frequency                                    | [Bash][#192 bash]     | 2020-02-07 00:30 |
+| 371  | Sum of Two Integers                               | [Kotlin][#371 kotlin] | 2020-02-01 22:36 |
+| 381  | Insert Delete GetRandom O(1) - Duplicates allowed | [Java][#381 java]     | 2020-02-01 22:36 |
+| 401  | Binary Watch                                      | [Java][#401 java]     | 2020-02-01 22:36 |
+| 792  | Binary Search                                     | [Java][#792 java]     | 2020-08-19 00:29 |
+| 811  | Subdomain Visit Count                             | [Java][#811 java]     | 2020-02-01 22:36 |
+| 986  | Interval List Intersections                       | [Kotlin][#986 kotlin] | 2020-02-05 04:43 |
+| 1203 | Print in Order                                    | [Java][#1203 java]    | 2020-08-20 01:14 |
 
 [#1 kotlin]: src/main/kotlin/%231%20Two%20Sum.kt
 [#2 kotlin]: src/main/kotlin/%232%20Add%20Two%20Numbers.kt
@@ -57,6 +58,7 @@
 [#401 java]: src/main/java/%23401%20Binary%20Watch.java
 [#792 java]: src/main/java/%23792%20Binary%20Search.java
 [#811 java]: src/main/java/%23811%20Subdomain%20Visit%20Count.java
+[#1203 java]: src/main/java/%231203%20Print%20in%20Order.java
 [#175 mysql]: src/main/mysql/%23175%20Combine%20Two%20Tables.sql
 [#176 mysql]: src/main/mysql/%23176%20Second%20Highest%20Salary.sql
 [#178 mysql]: src/main/mysql/%23178%20Rank%20Scores.sql
