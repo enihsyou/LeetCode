@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * #39 Combination Sum
  */
-class Q39 {
+class Solution {
 
     private Deque<Integer> stack;
 
@@ -53,20 +53,19 @@ class Q39 {
         }
     }
 
-}
+    static class SolutionTest {
 
-class Q39Test {
+        private final Solution solution = new Solution();
 
-    private final Q39 solution = new Q39();
-
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-            soft.assertThat(solution.combinationSum(new int[]{2, 3, 6, 7}, 7))
-                .hasSameElementsAs(Arrays.asList(Arrays.asList(7), Arrays.asList(2, 2, 3)));
-            soft.assertThat(solution.combinationSum(new int[]{2, 3, 5}, 8))
-                .hasSameElementsAs(
-                    Arrays.asList(Arrays.asList(2, 2, 2, 2), Arrays.asList(2, 3, 3), Arrays.asList(3, 5)));
-        });
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
+                soft.assertThat(solution.combinationSum(new int[]{2, 3, 6, 7}, 7))
+                    .hasSameElementsAs(Arrays.asList(Arrays.asList(7), Arrays.asList(2, 2, 3)));
+                soft.assertThat(solution.combinationSum(new int[]{2, 3, 5}, 8))
+                    .hasSameElementsAs(
+                        Arrays.asList(Arrays.asList(2, 2, 2, 2), Arrays.asList(2, 3, 3), Arrays.asList(3, 5)));
+            });
+        }
     }
 }

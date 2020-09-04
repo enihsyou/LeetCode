@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-class Q22 {
+class Solution {
 
     private List<String> result;
 
@@ -46,19 +46,18 @@ class Q22 {
         }
     }
 
-}
+    static class SolutionTest {
 
-class Q22Test {
+        private final Solution solution = new Solution();
 
-    private final Q22 solution = new Q22();
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
 
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-
-            soft.assertThat(solution.generateParenthesis(3))
-                .hasSize(5)
-                .hasSameElementsAs(Arrays.asList("((()))", "(()())", "(())()", "()(())", "()()()"));
-        });
+                soft.assertThat(solution.generateParenthesis(3))
+                    .hasSize(5)
+                    .hasSameElementsAs(Arrays.asList("((()))", "(()())", "(())()", "()(())", "()()()"));
+            });
+        }
     }
 }
