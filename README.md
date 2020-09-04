@@ -26,10 +26,11 @@
 | 182  | Duplicate Emails                                  | [MySQL][#182 mysql]   | 2020-02-07 00:30 |
 | 191  | Number of 1 Bits                                  | [Java][#191 java]     | 2020-02-01 22:36 |
 | 192  | Word Frequency                                    | [Bash][#192 bash]     | 2020-02-07 00:30 |
-| 268  | Missing Number                                    | [Java][#268 java]     | 2020-09-04 18:59 |
+| 268  | Missing Number                                    | [Java][#268 java]     | 2020-09-04 19:04 |
 | 371  | Sum of Two Integers                               | [Kotlin][#371 kotlin] | 2020-02-01 22:36 |
 | 381  | Insert Delete GetRandom O(1) - Duplicates allowed | [Java][#381 java]     | 2020-02-01 22:36 |
 | 401  | Binary Watch                                      | [Java][#401 java]     | 2020-02-01 22:36 |
+| 405  | Convert a Number to Hexadecimal                   | [Java][#405 java]     | 2020-09-04 19:10 |
 | 792  | Binary Search                                     | [Java][#792 java]     | 2020-09-04 18:54 |
 | 811  | Subdomain Visit Count                             | [Java][#811 java]     | 2020-02-01 22:36 |
 | 986  | Interval List Intersections                       | [Kotlin][#986 kotlin] | 2020-02-05 04:43 |
@@ -58,6 +59,7 @@
 [#268 java]: src/main/java/%23268%20Missing%20Number.java
 [#381 java]: src/main/java/%23381%20Insert%20Delete%20GetRandom%20O%281%29%20-%20Duplicates%20allowed.java
 [#401 java]: src/main/java/%23401%20Binary%20Watch.java
+[#405 java]: src/main/java/%23405%20Convert%20a%20Number%20to%20Hexadecimal.java
 [#792 java]: src/main/java/%23792%20Binary%20Search.java
 [#811 java]: src/main/java/%23811%20Subdomain%20Visit%20Count.java
 [#1203 java]: src/main/java/%231203%20Print%20in%20Order.java
