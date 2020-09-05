@@ -1,3 +1,5 @@
+package leetcode.q39.java;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
