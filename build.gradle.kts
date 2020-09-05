@@ -1,15 +1,25 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     java
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.72"
 }
 
 repositories {
     mavenCentral()
 }
 
+/** Dependencies like implementation() but for solutions use java */
 val javaCompileDependencies: Configuration by configurations.creating
+
+/** Dependencies like runtimeOnly() but for solutions use java */
 val javaRuntimeDependencies: Configuration by configurations.creating
-val kotlinDependencies: Configuration by configurations.creating
+
+/** Dependencies like implementation() but for solutions use kotlin */
+val kotlinCompileDependencies: Configuration by configurations.creating
+
+/** Dependencies like runtimeOnly() but for solutions use kotlin */
+val kotlinRuntimeDependencies: Configuration by configurations.creating
 
 dependencies {
 
@@ -17,52 +27,40 @@ dependencies {
     javaCompileDependencies("org.junit.jupiter:junit-jupiter-api:5.6.0")
     javaCompileDependencies("org.junit.jupiter:junit-jupiter-params:5.6.0")
 
-    javaRuntimeDependencies("org.junit.platform:junit-platform-launcher:1.6.0")
     javaRuntimeDependencies("org.junit.jupiter:junit-jupiter-engine:5.6.0")
     javaRuntimeDependencies("org.apache.logging.log4j:log4j-slf4j-impl:2.13.0")
 
-    kotlinDependencies(kotlin("stdlib-jdk8"))
-    kotlinDependencies("io.kotlintest:kotlintest-runner-junit5:3.4.2")
+    kotlinCompileDependencies(kotlin("stdlib"))
 }
 
+val solutionDirVisitor: SolutionDirVisitor = SolutionDirVisitor()
+fileTree("solution").visit(solutionDirVisitor)
 
-sourceSets {
-    register("#22 Generate Parentheses") {
-        java {
-            srcDir("solution/#22 Generate Parentheses")
-            compileClasspath += javaCompileDependencies
-            runtimeClasspath += javaRuntimeDependencies
-        }
-    }
-    register("#39 Combination Sum") {
-        java {
-            srcDir("solution/#39 Combination Sum")
-            compileClasspath += javaCompileDependencies
-            runtimeClasspath += javaRuntimeDependencies
-        }
-    }
-    main {
-        resources {
-            srcDir("src/main/bash")
-            srcDir("src/main/mysql")
-        }
-    }
-    test {
-        java {
-            srcDir("src/main/java")
-            srcDir("src/main/kotlin")
-        }
+solutionDirVisitor.languageDirs.forEach { (folder, implementLanguages) ->
+    for (language in implementLanguages) {
+        language.register(folder, project.sourceSets, project.configurations)
     }
 }
 
 tasks {
     test {
         useJUnitPlatform()
+
+        // include compiled solution class file into test task.
+        solutionDirVisitor.languageDirs.keys.forEach { folder ->
+            classpath += sourceSets.getByName(folder).output.classesDirs
+            testClassesDirs += sourceSets.getByName(folder).output.classesDirs
+        }
+        // set classpath for 'test' task, then we can invoke the test task
+        // bundled with Gradle.
+        // instead doing in `configurations.testRuntimeOnly`, we are assigning
+        // values here to reduce dependencies leaks into default configurations
+        classpath += javaCompileDependencies
+        classpath += javaRuntimeDependencies
     }
-    compileKotlin {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
-    }
-    compileTestKotlin {
+
+    withType<KotlinCompile>().configureEach {
+        // test targeting JVM options in one line.
         kotlinOptions.jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
