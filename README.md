@@ -1,3 +1,5 @@
+![github workflow](https://github.com/enihsyou/LeetCode/workflows/main/badge.svg)
+
 ## List of solutions
 
 <!-- table of solutions -->
