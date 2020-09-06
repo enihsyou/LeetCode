@@ -1,25 +1,33 @@
-import io.kotlintest.properties.forAll
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.StringSpec
+package leetcode.q371.kotlin
 
-class Solution371 {
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+
+class Solution {
+
     fun getSum(a: Int, b: Int): Int = a.plus(b)
-}
 
-class Solution371Test : StringSpec() {
-    init {
-        Solution371().run {
-            "1 + 1 = 2"{
-                getSum(1, 1) shouldBe 2
-            }
-            "1 + 2 = 3"{
-                getSum(1, 2) shouldBe 3
-                getSum(2, 1) shouldBe 3
-            }
-            "Adding numbers"{
-                forAll { a: Int, b: Int ->
-                    getSum(a, b) == a + b
-                }
+    class SolutionTest {
+
+        private val solution = Solution()
+
+        @ParameterizedTest(name = "getSum({0}, {1}) = {2}")
+        @MethodSource("provider")
+        fun getSum(a: Int, b: Int, c: Int) {
+            Assertions.assertEquals(solution.getSum(a, b), c)
+        }
+
+        companion object {
+
+            @JvmStatic
+            fun provider(): List<Arguments> {
+                return listOf(
+                    Arguments.of(1, 1, 2),
+                    Arguments.of(1, 2, 3),
+                    Arguments.of(2, 1, 3)
+                )
             }
         }
     }

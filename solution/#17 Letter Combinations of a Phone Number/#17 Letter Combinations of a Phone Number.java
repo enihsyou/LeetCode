@@ -1,3 +1,5 @@
+package leetcode.q17.java;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-class Q17 {
+class Solution {
 
     private List<String> result;
 
@@ -56,19 +58,19 @@ class Q17 {
         }
     }
 
-}
+    static class SolutionTest {
 
-class Q17Test {
+        private final Solution solution = new Solution();
 
-    private final Q17 solution = new Q17();
-
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-            soft.assertThat(solution.letterCombinations(""))
-                .hasSameElementsAs(Collections.emptyList());
-            soft.assertThat(solution.letterCombinations("23"))
-                .hasSameElementsAs(Arrays.asList("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"));
-        });
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
+                soft.assertThat(solution.letterCombinations(""))
+                    .hasSameElementsAs(Collections.emptyList());
+                soft.assertThat(solution.letterCombinations("23"))
+                    .hasSameElementsAs(Arrays.asList("ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"));
+            });
+        }
     }
+
 }

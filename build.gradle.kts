@@ -45,7 +45,7 @@ solutionDirVisitor.languageDirs.forEach { (folder, implementLanguages) ->
 tasks {
     test {
         useJUnitPlatform()
-
+failFast = false
         // include compiled solution class file into test task.
         solutionDirVisitor.languageDirs.keys.forEach { folder ->
             classpath += sourceSets.getByName(folder).output.classesDirs
@@ -57,6 +57,8 @@ tasks {
         // values here to reduce dependencies leaks into default configurations
         classpath += javaCompileDependencies
         classpath += javaRuntimeDependencies
+        classpath += kotlinCompileDependencies
+        classpath += kotlinRuntimeDependencies
     }
 
     withType<KotlinCompile>().configureEach {

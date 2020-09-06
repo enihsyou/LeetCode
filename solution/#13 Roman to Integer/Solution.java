@@ -1,8 +1,10 @@
+package leetcode.q13.java;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /** 13. Roman to Integer */
-class Q13 {
+class Solution {
 
     static Map<Character, Integer> map = new HashMap<>();
 

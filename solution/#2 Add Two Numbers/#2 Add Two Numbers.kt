@@ -1,6 +1,9 @@
-import io.kotlintest.properties.forAll
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.StringSpec
+package leetcode.q2.kotlin;
+
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 /**
  * Definition for singly-linked list.
@@ -8,9 +11,10 @@ import io.kotlintest.specs.StringSpec
  *     var next: ListNode? = null
  * }
  */
-class Q2 {
+class Solution {
 
     class ListNode(var `val`: Int = 0) {
+
         var next: ListNode? = null
     }
 
@@ -40,58 +44,47 @@ class Q2 {
     val Boolean.int
         get() = if (this) 1 else 0
 
-    /*缺陷 不能把输入当做一定长度的整数，应该是个很长的序列*/
-    fun Int.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
+}
 
-    fun Long.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
-    fun IntArray.toListNode() = fold(null) { acc: ListNode?, i: Int ->
-        ListNode(i).also { it.next = acc }
+class SolutionTest {
+
+    private val solution = Solution()
+
+    /*缺陷 不能把输入当做一定长度的整数，应该是个很长的序列*/
+    private fun Int.toIntArray() = toString().toCharArray().map { it - '0' }.toIntArray()
+
+    private fun IntArray.toListNode() = fold(null) { acc: Solution.ListNode?, i: Int ->
+        Solution.ListNode(i).also { it.next = acc }
     }
 
-    fun ListNode.collect(): Long {
+    private fun Solution.ListNode.collect(): Int {
         val array = StringBuilder()
-        var p: ListNode? = this
+        var p: Solution.ListNode? = this
         while (p != null) {
             array.append(p.`val`)
             p = p.next
         }
-        return array.toString().reversed().toLong()
+        return array.toString().reversed().toInt()
     }
-}
 
-class Q2Test : StringSpec() {
-    init {
-        Q2().run {
-            "342 + 465 = 807" {
-                val node = addTwoNumbers(342.toIntArray().toListNode(), 465.toIntArray().toListNode())!!
-                node.`val` shouldBe 7
-                node.next!!.`val` shouldBe 0
-                node.next!!.next!!.`val` shouldBe 8
-                node.next!!.next!!.next shouldBe null
-            }
-            "1342 + 465 = 1807" {
-                val node = addTwoNumbers(1342.toIntArray().toListNode(), 465.toIntArray().toListNode())!!
-                node.collect() shouldBe 1807L
-            }
-            "89751589 + 1456471460 = 1546223049" {
-                val node = addTwoNumbers(89751589.toIntArray().toListNode(), 1456471460.toIntArray().toListNode())!!
-                node.collect() shouldBe 1546223049L
-            }
-            "Adding numbers" {
-                forAll { a: Int, b: Int ->
-                    if (a < 0 || b < 0)
-                        true
-                    else {
-                        val aArray = a.toIntArray()
-                        val bArray = b.toIntArray()
-                        val aNode = aArray.toListNode()
-                        val bNode = bArray.toListNode()
-                        val result = addTwoNumbers(aNode, bNode)?.collect()
-                        println("$a + $b = ${a.toLong() + b} $result")
-                        result == a.toLong() + b
-                    }
-                }
-            }
+    @ParameterizedTest(name = "addTwoNumbers({0}, {1}) = {2}")
+    @MethodSource("provider")
+    fun addTwoNumbers(node1: Int, node2: Int, output: Int) {
+        assertThat(solution.addTwoNumbers(
+            node1.toIntArray().toListNode(),
+            node2.toIntArray().toListNode())?.collect())
+            .isEqualTo(output)
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun provider(): List<Arguments> {
+            return listOf(
+                Arguments.of(342, 465, 807),
+                Arguments.of(1342, 465, 1807),
+                Arguments.of(89751589, 1456471460, 1546223049)
+            )
         }
     }
 }

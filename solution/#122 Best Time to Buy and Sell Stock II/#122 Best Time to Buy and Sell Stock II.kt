@@ -1,7 +1,9 @@
-@file:Suppress("NOTHING_TO_INLINE", "ControlFlowWithEmptyBody")
+package leetcode.q122.kotlin;
 
-import io.kotlintest.matchers.numerics.shouldBeExactly
-import io.kotlintest.specs.StringSpec
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 /**
  * 122. Best Time to Buy and Sell Stock II
@@ -9,7 +11,7 @@ import io.kotlintest.specs.StringSpec
  * [LeetCode](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)
  */
 
-private class Solution122 {
+class Solution {
 
     fun maxProfit(prices: IntArray): Int {
         if (prices.size < 2) {
@@ -31,29 +33,30 @@ private class Solution122 {
         return profits
     }
 
-    private inline fun isRise(day1: Int, day2: Int) = day1 < day2
+    private fun isRise(day1: Int, day2: Int) = day1 < day2
+
+    class SolutionTest {
+
+        private val solution = Solution()
+
+        @ParameterizedTest(name = "maxProfit({0}) = {1}")
+        @MethodSource("provider")
+        fun maxProfit(input: IntArray, output: Int) {
+            Assertions.assertEquals(solution.maxProfit(input), output)
+        }
+
+        companion object {
+
+            @JvmStatic
+            fun provider(): List<Arguments> {
+                return listOf(
+                    Arguments.of(intArrayOf(7, 1, 5, 3, 6, 4), 7),
+                    Arguments.of(intArrayOf(1, 2, 3, 4, 5), 4),
+                    Arguments.of(intArrayOf(7, 6, 4, 3, 1), 0),
+                    Arguments.of(intArrayOf(1), 0),
+                    Arguments.of(intArrayOf(), 0)
+                )
+            }
+        }
+    }
 }
-
-class Solution122Test : StringSpec({
-    val solution = Solution122()
-
-    "[7,1,5,3,6,4]"{
-        val input = intArrayOf(7, 1, 5, 3, 6, 4)
-        solution.maxProfit(input) shouldBeExactly 7
-    }
-
-    "[1,2,3,4,5]"{
-        val input = intArrayOf(1, 2, 3, 4, 5)
-        solution.maxProfit(input) shouldBeExactly 4
-    }
-
-    "[7,6,4,3,1]"{
-        val input = intArrayOf(7, 6, 4, 3, 1)
-        solution.maxProfit(input) shouldBeExactly 0
-    }
-
-    "no element"{
-        solution.maxProfit(intArrayOf()) shouldBeExactly 0
-        solution.maxProfit(intArrayOf(1)) shouldBeExactly 0
-    }
-})

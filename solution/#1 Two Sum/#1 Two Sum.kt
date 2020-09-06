@@ -1,7 +1,12 @@
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.StringSpec
+package leetcode.q1.kotlin
 
-class Solution1 {
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+
+class Solution {
+
     fun twoSum(nums: IntArray, target: Int): IntArray {
         val cache = mutableMapOf<Int, Int>()
         nums.forEachIndexed { index, i ->
@@ -25,22 +30,35 @@ class Solution1 {
 
         return intArrayOf(-1, -1)
     }
-}
 
-class Solution1Test : StringSpec() {
-    init {
-        Solution1().run {
-            "[2, 7, 11, 15], 9" {
-                twoSum(intArrayOf(2, 7, 11, 15), 9).sortedArray() shouldBe intArrayOf(0, 1)
-            }
-            "[3, 2, 4], 6"{
-                twoSum(intArrayOf(3, 2, 4), 6).sortedArray() shouldBe intArrayOf(1, 2)
-            }
-            "[3, 2, 4, 5], 6"{
-                twoSum(intArrayOf(3, 2, 4, 5), 6).sortedArray() shouldBe intArrayOf(1, 2)
-            }
-            "[3, 2, 5, 4, 5], 6"{
-                twoSum(intArrayOf(3, 2, 5, 4, 5), 6).sortedArray() shouldBe intArrayOf(1, 3)
+    class SolutionTest {
+
+        private val solution = Solution()
+
+        @ParameterizedTest(name = "twoSum({0}, {1}) = {2}")
+        @MethodSource("provider")
+        fun twoSum(input: IntArray, target: Int, output: IntArray) {
+            assertThat(solution.twoSum(input, target))
+                .containsOnly(*output)
+        }
+
+        @ParameterizedTest(name = "twoSum2({0}, {1}) = {2}")
+        @MethodSource("provider")
+        fun twoSum2(input: IntArray, target: Int, output: IntArray) {
+            assertThat(solution.twoSum2(input, target))
+                .containsOnly(*output)
+        }
+
+        companion object {
+
+            @JvmStatic
+            fun provider(): List<Arguments> {
+                return listOf(
+                    Arguments.of(intArrayOf(2, 7, 11, 15), 9, intArrayOf(0, 1)),
+                    Arguments.of(intArrayOf(3, 2, 4), 6, intArrayOf(1, 2)),
+                    Arguments.of(intArrayOf(3, 2, 4, 5), 6, intArrayOf(1, 2)),
+                    Arguments.of(intArrayOf(3, 2, 5, 4, 5), 6, intArrayOf(1, 3))
+                )
             }
         }
     }

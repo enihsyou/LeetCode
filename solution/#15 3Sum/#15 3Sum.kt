@@ -1,10 +1,13 @@
-import io.kotlintest.specs.StringSpec
-import io.kotlintest.tables.forAll
-import io.kotlintest.tables.headers
-import io.kotlintest.tables.row
-import io.kotlintest.tables.table
+package leetcode.q15.kotlin;
 
-class Solution15 {
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+
+class Solution {
+
     fun threeSum(nums: IntArray): List<List<Int>> {
         nums.sort()
 
@@ -36,19 +39,24 @@ class Solution15 {
     }
 }
 
-class Solution15Test : StringSpec() {
-    init {
-        Solution15().run {
-            "should" {
-                val table = table(
-                    headers("input", "output"),
-                    row(intArrayOf(-1, 0, 1, 2, -1, -4), listOf(listOf(-1, 0, 1), listOf(-1, -1, 2)))
-                )
-                forAll(table) { input, output ->
-                    // FIXME: 2020/2/1 expected: [[-1, 0, 1], [-1, -1, 2]] but was: [[-1, -1, 2], [-1, 0, 1]]
-//                    threeSum(input).also { println(it) } shouldBe output
-                }
-            }
+class SolutionTest {
+
+    private val solution = Solution()
+
+    @ParameterizedTest(name = "threeSum({0}) = {1}")
+    @MethodSource("provider")
+    fun threeSum(input: IntArray, output: List<List<Int>>) {
+        assertThat(solution.threeSum(input))
+            .containsExactlyInAnyOrderElementsOf(output)
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun provider(): List<Arguments> {
+            return listOf(
+                Arguments.of(intArrayOf(-1, 0, 1, 2, -1, -4), listOf(listOf(-1, 0, 1), listOf(-1, -1, 2)))
+            )
         }
     }
 }

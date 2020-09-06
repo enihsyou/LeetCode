@@ -1,5 +1,8 @@
-import io.kotlintest.specs.StringSpec
+package leetcode.q986.kotlin;
+
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 
 /**
  * #986 Interval List Intersections
@@ -7,13 +10,14 @@ import org.assertj.core.api.Assertions
  * [LeetCode](https://leetcode-cn.com/problems/interval-list-intersections/)
  */
 
-private class Solution986 {
+class Solution {
 
     fun intervalIntersection(A: Array<IntArray>, B: Array<IntArray>): Array<IntArray> {
         val result = mutableListOf<IntArray>()
 
         /** pointer of current position on A array */
         var pointerA = 0
+
         /** pointer of current position on B array */
         var pointerB = 0
 
@@ -39,10 +43,13 @@ private class Solution986 {
 
         return result.toTypedArray()
     }
+
 }
 
-class Solution986Test : StringSpec({
-    "simple example"{
+class SolutionTest{
+
+    @Test
+    fun `simple example`() {
         val a = arrayOf(
             intArrayOf(0, 2),
             intArrayOf(5, 10),
@@ -53,7 +60,7 @@ class Solution986Test : StringSpec({
             intArrayOf(8, 12),
             intArrayOf(15, 24),
             intArrayOf(25, 26))
-        val actual = Solution986().intervalIntersection(a, b)
+        val actual = Solution().intervalIntersection(a, b)
         val expect = arrayOf(
             intArrayOf(1, 2),
             intArrayOf(5, 5),
@@ -62,6 +69,6 @@ class Solution986Test : StringSpec({
             intArrayOf(24, 24),
             intArrayOf(25, 25))
 
-        Assertions.assertThat(actual).isEqualTo(expect)
+        assertThat(actual).isEqualTo(expect)
     }
-})
+}

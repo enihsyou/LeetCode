@@ -1,11 +1,12 @@
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.StringSpec
-import io.kotlintest.tables.forAll
-import io.kotlintest.tables.headers
-import io.kotlintest.tables.row
-import io.kotlintest.tables.table
+package leetcode.q5.kotlin;
 
-class Solution5 {
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+
+class Solution {
+
     fun longestPalindrome(s: String): String {
         val T = preProcess(s)
         println(T)
@@ -41,21 +42,26 @@ class Solution5 {
         s.toCharArray().joinToString(separator = "#", prefix = "^#", postfix = "#$")
 }
 
-class Solution5Test : StringSpec() {
-    init {
-        Solution5().run {
-            "should" {
-                val table = table(
-                    headers("input", "output"),
-                    row("babad", "bab"),
-                    row("cbbd", "bb"),
-                    row("", ""),
-                    row("a", "a")
-                )
-                forAll(table) { input, output ->
-                    longestPalindrome(input).also { println(it) } shouldBe output
-                }
-            }
+class SolutionTest {
+
+    private val solution = Solution()
+
+    @ParameterizedTest(name = "removeDuplicates({0}) = {1}")
+    @MethodSource("provider")
+    fun removeDuplicates(input: String, output: String) {
+        Assertions.assertEquals(solution.longestPalindrome(input), output)
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun provider(): List<Arguments> {
+            return listOf(
+                Arguments.of("babad", "bab"),
+                Arguments.of("cbbd", "bb"),
+                Arguments.of("", ""),
+                Arguments.of("a", "a")
+            )
         }
     }
 }

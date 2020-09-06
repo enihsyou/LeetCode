@@ -1,6 +1,9 @@
-import io.kotlintest.matchers.numerics.shouldBeExactly
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.StringSpec
+package leetcode.q26.kotlin;
+
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 /**
  * 26. Remove Duplicates from Sorted Array
@@ -8,7 +11,7 @@ import io.kotlintest.specs.StringSpec
  * [LeetCode](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)
  */
 
-class Solution26 {
+class Solution {
 
     fun removeDuplicates(nums: IntArray): Int {
         if (nums.isEmpty()) {
@@ -34,24 +37,26 @@ class Solution26 {
     }
 }
 
-class Solution26Test : StringSpec({
-    val solution = Solution26()
+class SolutionTest {
 
-    "1, 1, 2"{
-        val input = intArrayOf(1, 1, 2)
-        solution.removeDuplicates(input) shouldBeExactly 2
-        input.copyOfRange(0, 2) shouldBe intArrayOf(1, 2)
+    private val solution = Solution()
+
+    @ParameterizedTest(name = "removeDuplicates({0}) = {1}")
+    @MethodSource("provider")
+    fun removeDuplicates(input: IntArray, output: Int) {
+        Assertions.assertEquals(solution.removeDuplicates(input), output)
+//        Assertions.assertEquals(input.copyOfRange(0, 2), intArrayOf(1, 2))
     }
 
-    "single element"{
-        val input = intArrayOf(1)
-        solution.removeDuplicates(input) shouldBeExactly 1
-        input shouldBe intArrayOf(1)
-    }
+    companion object {
 
-    "no element"{
-        val input = intArrayOf()
-        solution.removeDuplicates(input) shouldBeExactly 0
-        input shouldBe intArrayOf()
+        @JvmStatic
+        fun provider(): List<Arguments> {
+            return listOf(
+                Arguments.of(intArrayOf(1, 1, 2), 2),
+                Arguments.of(intArrayOf(1), 1),
+                Arguments.of(intArrayOf(), 0)
+            )
+        }
     }
-})
+}

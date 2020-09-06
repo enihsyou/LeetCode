@@ -1,7 +1,12 @@
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.WordSpec
+package leetcode.q3.kotlin;
 
-class Solution3 {
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+
+class Solution {
+
     fun lengthOfLongestSubstring(s: String): Int {
         val n = s.length
         var max = 0
@@ -38,15 +43,27 @@ class Solution3 {
     }
 }
 
-class Solution3Test : WordSpec() {
-    init {
-        Solution3().run {
+class SolutionTest {
 
-            "abcabcbb".should { lengthOfLongestSubstring("abcabcbb") shouldBe 3 }
-            "bbbbb".should { lengthOfLongestSubstring("bbbbb") shouldBe 1 }
-            "pwwkew".should { lengthOfLongestSubstring("pwwkew") shouldBe 3 }
-            "dfaergsbcsbfrehsddf".should { lengthOfLongestSubstring("dfaergsbcsbfrehsddf") shouldBe 9 }
-            "tmmzuxt".should { lengthOfLongestSubstring("tmmzuxt") shouldBe 5 }
+    private val solution = Solution()
+
+    @ParameterizedTest(name = "lengthOfLongestSubstring({0}) = {1}")
+    @MethodSource("provider")
+    fun lengthOfLongestSubstring(input: String, output: Int) {
+        Assertions.assertEquals(solution.lengthOfLongestSubstring(input), output)
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun provider(): List<Arguments> {
+            return listOf(
+                Arguments.of("abcabcbb", 3),
+                Arguments.of("bbbbb", 1),
+                Arguments.of("pwwkew", 3),
+                Arguments.of("dfaergsbcsbfrehsddf", 9),
+                Arguments.of("tmmzuxt", 5)
+            )
         }
     }
 }

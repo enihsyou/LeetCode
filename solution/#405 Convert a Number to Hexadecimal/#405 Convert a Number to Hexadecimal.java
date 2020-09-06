@@ -1,7 +1,9 @@
+package leetcode.q405.java;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
-class Q405 {
+class Solution {
 
     public String toHex(int num) {
         if (num == 0) {
@@ -53,18 +55,18 @@ class Q405 {
 
         return sb.reverse().toString();
     }
-}
 
+    static class SolutionTest {
 
-class Q405Test {
+        private final Solution solution = new Solution();
 
-    private final Q405 solution = new Q405();
-
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-            soft.assertThat(solution.toHex(-1)).isEqualTo("ffffffff");
-            soft.assertThat(solution.toHex(26)).isEqualTo("1a");
-        });
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
+                soft.assertThat(solution.toHex(-1)).isEqualTo("ffffffff");
+                soft.assertThat(solution.toHex(26)).isEqualTo("1a");
+            });
+        }
     }
 }
+

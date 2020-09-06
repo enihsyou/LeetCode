@@ -1,7 +1,9 @@
+package leetcode.q792.java;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
-class Q792 {
+class Solution {
 
     public int search(int[] nums, int target) {
         for (int head = 0, tail = nums.length; head < tail; ) {
@@ -18,21 +20,21 @@ class Q792 {
         }
         return -1;
     }
-}
 
-class Q792Test {
+    static class SolutionTest {
 
-    private final Q792 solution = new Q792();
+        private final Solution solution = new Solution();
 
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-            soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, 12)).isEqualTo(5);
-            soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, -1)).isEqualTo(0);
-            soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, 9)).isEqualTo(4);
-            soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, 2)).isEqualTo(-1);
-            soft.assertThat(solution.search(new int[]{ 0 }, 0)).isEqualTo(0);
-            soft.assertThat(solution.search(new int[]{ 0 }, 1)).isEqualTo(-1);
-        });
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
+                soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, 12)).isEqualTo(5);
+                soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, -1)).isEqualTo(0);
+                soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, 9)).isEqualTo(4);
+                soft.assertThat(solution.search(new int[]{ -1, 0, 3, 5, 9, 12 }, 2)).isEqualTo(-1);
+                soft.assertThat(solution.search(new int[]{ 0 }, 0)).isEqualTo(0);
+                soft.assertThat(solution.search(new int[]{ 0 }, 1)).isEqualTo(-1);
+            });
+        }
     }
 }

@@ -1,7 +1,9 @@
-@file:Suppress("NOTHING_TO_INLINE")
+package leetcode.q56.kotlin;
 
-import io.kotlintest.specs.StringSpec
-import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 
 /**
  * 56. Merge Intervals
@@ -9,7 +11,7 @@ import org.assertj.core.api.Assertions
  * [LeetCode](https://leetcode-cn.com/problems/merge-intervals/)
  */
 
-private class Solution56 {
+class Solution {
 
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
         val result = java.util.LinkedList<IntArray>()
@@ -45,41 +47,37 @@ private class Solution56 {
         inline set(value) {
             this[1] = value
         }
+
 }
 
-class Solution56Test : StringSpec({
-    "example 1"{
-        /*
-        Input: [[1,3],[2,6],[8,10],[15,18]]
-        Output: [[1,6],[8,10],[15,18]]
-        Explanation: Since intervals [1,3] and [2,6] overlaps, merge them into [1,6].
-        */
-        val input = arrayOf(
-            intArrayOf(1, 3),
-            intArrayOf(2, 6),
-            intArrayOf(8, 10),
-            intArrayOf(15, 18))
-        val actual = Solution56().merge(input)
-        val expect = arrayOf(
-            intArrayOf(1, 6),
-            intArrayOf(8, 10),
-            intArrayOf(15, 18))
+class SolutionTest {
 
-        Assertions.assertThat(actual).isEqualTo(expect)
-    }
-    "example 2"{
-        /*
-        Input: [[1,4],[4,5]]
-        Output: [[1,5]]
-        Explanation: Intervals [1,4] and [4,5] are considered overlapping.
-        */
-        val input = arrayOf(
-            intArrayOf(1, 4),
-            intArrayOf(4, 5))
-        val actual = Solution56().merge(input)
-        val expect = arrayOf(
-            intArrayOf(1, 5))
+    private val solution = Solution()
 
-        Assertions.assertThat(actual).isEqualTo(expect)
+    @ParameterizedTest(name = "merge({0}) = {1}")
+    @MethodSource("provider")
+    fun merge(input: Array<IntArray>, output: Array<IntArray>) {
+        Assertions.assertArrayEquals(solution.merge(input), output)
     }
-})
+
+    companion object {
+
+        @JvmStatic
+        fun provider(): List<Arguments> {
+            return listOf(
+                Arguments.of(arrayOf(
+                    intArrayOf(1, 3),
+                    intArrayOf(2, 6),
+                    intArrayOf(8, 10),
+                    intArrayOf(15, 18)), arrayOf(
+                    intArrayOf(1, 6),
+                    intArrayOf(8, 10),
+                    intArrayOf(15, 18))),
+                Arguments.of(arrayOf(
+                    intArrayOf(1, 4),
+                    intArrayOf(4, 5)), arrayOf(
+                    intArrayOf(1, 5)))
+            )
+        }
+    }
+}

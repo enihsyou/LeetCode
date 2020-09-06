@@ -1,12 +1,14 @@
+package leetcode.q811.java;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Q811_Subdomain_Visit_Count {
+class Solution {
 
     public static void main(String[] args) {
-        Q811_Subdomain_Visit_Count solution = new Q811_Subdomain_Visit_Count();
+        Solution solution = new Solution();
         System.out.println(solution.subdomainVisits(
             new String[]{"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"}));
     }

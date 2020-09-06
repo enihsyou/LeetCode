@@ -1,7 +1,9 @@
+package leetcode.q268.java;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
-class Q268 {
+class Solution {
 
     public int missingNumber(int[] nums) {
         long sum       = nums.length * (nums.length + 1) / 2;
@@ -11,20 +13,20 @@ class Q268 {
         }
         return (int) (sum - actualSum);
     }
-}
 
+    @SuppressWarnings("ZeroLengthArrayAllocation")
+    static class SolutionTest {
 
-@SuppressWarnings("ZeroLengthArrayAllocation")
-class Q268Test {
+        private final Solution solution = new Solution();
 
-    private final Q268 solution = new Q268();
-
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-            soft.assertThat(solution.missingNumber(new int[]{ 3, 0, 1 })).isEqualTo(2);
-            soft.assertThat(solution.missingNumber(new int[]{ 9, 6, 4, 2, 3, 5, 7, 0, 1 })).isEqualTo(8);
-            soft.assertThat(solution.missingNumber(new int[]{ })).isEqualTo(0);
-        });
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
+                soft.assertThat(solution.missingNumber(new int[]{ 3, 0, 1 })).isEqualTo(2);
+                soft.assertThat(solution.missingNumber(new int[]{ 9, 6, 4, 2, 3, 5, 7, 0, 1 })).isEqualTo(8);
+                soft.assertThat(solution.missingNumber(new int[]{ })).isEqualTo(0);
+            });
+        }
     }
 }
+

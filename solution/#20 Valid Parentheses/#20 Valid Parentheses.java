@@ -1,7 +1,9 @@
+package leetcode.q20.java;
+
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
-class Q20 {
+class Solution {
 
     private static final char[] open = {'(', '{', '['};
 
@@ -54,22 +56,22 @@ class Q20 {
         return -1;
     }
 
-}
+    static class SolutionTest {
 
-class Q20Test {
+        private final Solution solution = new Solution();
 
-    private final Q20 solution = new Q20();
-
-    @Test
-    void test() {
-        SoftAssertions.assertSoftly(soft -> {
-            soft.assertThat(solution.isValid("")).isTrue();
-            soft.assertThat(solution.isValid("()")).isTrue();
-            soft.assertThat(solution.isValid("()[]{}")).isTrue();
-            soft.assertThat(solution.isValid("(]")).isFalse();
-            soft.assertThat(solution.isValid("(((((")).isFalse();
-            soft.assertThat(solution.isValid("([)]")).isFalse();
-            soft.assertThat(solution.isValid("{[]}")).isTrue();
-        });
+        @Test
+        void test() {
+            SoftAssertions.assertSoftly(soft -> {
+                soft.assertThat(solution.isValid("")).isTrue();
+                soft.assertThat(solution.isValid("()")).isTrue();
+                soft.assertThat(solution.isValid("()[]{}")).isTrue();
+                soft.assertThat(solution.isValid("(]")).isFalse();
+                soft.assertThat(solution.isValid("(((((")).isFalse();
+                soft.assertThat(solution.isValid("([)]")).isFalse();
+                soft.assertThat(solution.isValid("{[]}")).isTrue();
+            });
+        }
     }
+
 }
