@@ -45,7 +45,8 @@ solutionDirVisitor.languageDirs.forEach { (folder, implementLanguages) ->
 tasks {
     test {
         useJUnitPlatform()
-failFast = false
+        failFast = false
+
         // include compiled solution class file into test task.
         solutionDirVisitor.languageDirs.keys.forEach { folder ->
             classpath += sourceSets.getByName(folder).output.classesDirs

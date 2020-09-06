@@ -9,7 +9,7 @@ enum class Language {
             folder: LanguageDir, sourceSets: SourceSetContainer,
             configurations: ConfigurationContainer) {
             sourceSets.register(folder) {
-                java.srcDir("solution/$folder")
+                java.setSrcDirs(listOf("solution/$folder"))
                 compileClasspath += configurations["javaCompileDependencies"]
                 runtimeClasspath += configurations["javaRuntimeDependencies"]
                 sourceSets["test"].runtimeClasspath += this.output.classesDirs
@@ -22,7 +22,7 @@ enum class Language {
             folder: LanguageDir, sourceSets: SourceSetContainer,
             configurations: ConfigurationContainer) {
             sourceSets.register(folder) {
-                java.srcDir("solution/$folder")
+                java.setSrcDirs(listOf("solution/$folder"))
                 compileClasspath += configurations["javaCompileDependencies"]
                 runtimeClasspath += configurations["javaRuntimeDependencies"]
                 compileClasspath += configurations["kotlinCompileDependencies"]
@@ -36,6 +36,32 @@ enum class Language {
         override fun register(
             folder: LanguageDir, sourceSets: SourceSetContainer,
             configurations: ConfigurationContainer) {
+            sourceSets.register(folder) {
+                java.setSrcDirs(emptyList<String>())
+                resources.srcDir("solution/$folder")
+            }
+        }
+    },
+
+    MySql {
+
+        override fun register(
+            folder: LanguageDir, sourceSets: SourceSetContainer, configurations: ConfigurationContainer) {
+            sourceSets.register(folder) {
+                java.setSrcDirs(emptyList<String>())
+                resources.srcDir("solution/$folder")
+            }
+        }
+    },
+
+    Bash {
+
+        override fun register(
+            folder: LanguageDir, sourceSets: SourceSetContainer, configurations: ConfigurationContainer) {
+            sourceSets.register(folder) {
+                java.setSrcDirs(emptyList<String>())
+                resources.srcDir("solution/$folder")
+            }
         }
     };
 

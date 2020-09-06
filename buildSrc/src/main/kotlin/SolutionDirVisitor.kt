@@ -14,10 +14,12 @@ class SolutionDirVisitor : FileVisitor {
 
     private var visitingDir: String? = null
 
-    private val languageMapping = mapOf(
-        "java" to Language.Java,
-        "kt" to Language.Kotlin,
-        "py" to Language.Python
+    private val languageExtensions = mapOf(
+        ".java" to Language.Java,
+        ".kt" to Language.Kotlin,
+        ".py" to Language.Python,
+        ".mysql.sql" to Language.MySql,
+        ".bash.sh" to Language.Bash
     )
 
     override fun visitDir(dirDetails: FileVisitDetails) {
@@ -37,11 +39,12 @@ class SolutionDirVisitor : FileVisitor {
             return
         }
 
-        val extension = fileDetails.name.substringAfterLast('.')
-        languageMapping[extension]?.run {
-            languageDir
-                .computeIfAbsent(visitingDir) { mutableSetOf() }
-                .add(this)
-        }
+        languageExtensions
+            .filterKeys { fileDetails.name.endsWith(it) }
+            .values.forEach {
+                languageDir
+                    .computeIfAbsent(visitingDir) { mutableSetOf() }
+                    .add(it)
+            }
     }
 }
