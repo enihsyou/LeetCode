@@ -1,4 +1,4 @@
-![github workflow](https://github.com/enihsyou/LeetCode/workflows/main/badge.svg)
+![Java CI with Gradle](https://github.com/enihsyou/LeetCode/workflows/Java%20CI%20with%20Gradle/badge.svg)
 
 ## List of solutions
 
