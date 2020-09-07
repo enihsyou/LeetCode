@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-pyinquirer = "*"
+prompt_toolkit = "*"
 requests = "*"
 
 [requires]
