@@ -31,9 +31,3 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew test
-
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-report
-          path: build/reports/tests/test
