@@ -26,8 +26,8 @@ dependencies {
     javaCompileDependencies("org.assertj:assertj-core:3.15.0")
     javaCompileDependencies("org.junit.jupiter:junit-jupiter-api:5.6.0")
     javaCompileDependencies("org.junit.jupiter:junit-jupiter-params:5.6.0")
+    javaCompileDependencies("org.junit.jupiter:junit-jupiter-engine:5.6.0")
 
-    javaRuntimeDependencies("org.junit.jupiter:junit-jupiter-engine:5.6.0")
     javaRuntimeDependencies("org.apache.logging.log4j:log4j-slf4j-impl:2.13.0")
 
     kotlinCompileDependencies(kotlin("stdlib"))
@@ -41,6 +41,16 @@ solutionDirVisitor.languageDirs.forEach { (folder, implementLanguages) ->
         language.register(folder, project.sourceSets, project.configurations)
     }
 }
+
+sourceSets {
+    main {
+        compileClasspath += javaCompileDependencies
+    }
+}
+
+//configurations {
+//    compileClasspath.get().extendsFrom(javaCompileDependencies)
+//}
 
 tasks {
     test {

@@ -8,10 +8,12 @@ enum class Language {
         override fun register(
             folder: LanguageDir, sourceSets: SourceSetContainer,
             configurations: ConfigurationContainer) {
-            sourceSets.register(folder) {
+            sourceSets.maybeCreate(folder).run {
                 java.setSrcDirs(listOf("solution/$folder"))
                 compileClasspath += configurations["javaCompileDependencies"]
+                compileClasspath += sourceSets["main"].output
                 runtimeClasspath += configurations["javaRuntimeDependencies"]
+                runtimeClasspath += sourceSets["main"].output
                 sourceSets["test"].runtimeClasspath += this.output.classesDirs
             }
         }
@@ -21,7 +23,7 @@ enum class Language {
         override fun register(
             folder: LanguageDir, sourceSets: SourceSetContainer,
             configurations: ConfigurationContainer) {
-            sourceSets.register(folder) {
+            sourceSets.maybeCreate(folder).run {
                 java.setSrcDirs(listOf("solution/$folder"))
                 compileClasspath += configurations["javaCompileDependencies"]
                 runtimeClasspath += configurations["javaRuntimeDependencies"]
