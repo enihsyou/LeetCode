@@ -1,6 +1,8 @@
 # coding=utf-8
 
 from prompt_toolkit import PromptSession
+from prompt_toolkit.formatted_text import AnyFormattedText
+from prompt_toolkit.styles import DummyStyle, Style
 from prompt_toolkit.validation import DummyValidator, Validator
 
 
@@ -12,10 +14,11 @@ class AskSession:
         self._answers = [None, None]
         self._metadata = None
 
-    async def prompt(self, message: str, *,
-                     validator: Validator = DummyValidator()):
+    async def prompt(self, message: AnyFormattedText, *,
+                     validator: Validator = DummyValidator(),
+                     style: Style = DummyStyle()):
         return await self._prompt_session.prompt_async(
-            message, validator=validator)
+            message, validator=validator, style=style)
 
     @property
     def answer_for_ordinal(self):
