@@ -15,7 +15,12 @@ class Solution {
             int     num  = nums[i];
             Integer wish = target - num;
             if (visited.containsKey(wish)) {
-                return new int[]{ i, visited.get(wish) };
+                int found = visited.get(wish);
+                if (i < found) {
+                    return new int[]{ i, found };
+                } else {
+                    return new int[]{ found, i };
+                }
             } else {
                 visited.put(num, i);
             }

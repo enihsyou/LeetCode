@@ -131,6 +131,9 @@ public abstract class JavaTest<S> {
                 assertThat(methodOutput)
                     .asInstanceOf(InstanceOfAssertFactories.INT_ARRAY)
                     .containsExactly((int[]) methodExcept);
+            } else {
+                throw new AssertionError(
+                    "没有适配返回类型: " + methodExcept.getClass().getSimpleName());
             }
         } else {
             assertThat(methodOutput).isEqualTo(methodExcept);
@@ -138,6 +141,7 @@ public abstract class JavaTest<S> {
     }
 
     /** 获得子类继承实现该抽象类时，设置在JavaTest.{@link S}上的类型 */
+    @SuppressWarnings("unchecked")
     private Class<S> getSolutionClassObject() {
         Type _superType = this.getClass().getGenericSuperclass();
         if (!(_superType instanceof ParameterizedType)) {
@@ -147,7 +151,6 @@ public abstract class JavaTest<S> {
         }
         ParameterizedType superType = (ParameterizedType) _superType;
 
-        //noinspection unchecked
         return (Class<S>) superType.getActualTypeArguments()[0];
     }
 
