@@ -127,10 +127,10 @@ public abstract class JavaTest<S> {
 
         if (methodExcept.getClass().isArray()) {
             // TODO: 适配更多类型
-            if (methodExcept.getClass().getComponentType() == int[].class) {
+            if (methodExcept.getClass().getComponentType() == int.class) {
                 assertThat(methodOutput)
                     .asInstanceOf(InstanceOfAssertFactories.INT_ARRAY)
-                    .containsOnly((int[]) methodExcept);
+                    .containsExactly((int[]) methodExcept);
             }
         } else {
             assertThat(methodOutput).isEqualTo(methodExcept);

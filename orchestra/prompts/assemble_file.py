@@ -59,11 +59,33 @@ async def assemble(session: AskSession):
 def enhance_java(session: AskSession, code_snippet: str):
     question_id = session.metadata['questionId']
 
+    code_snippet = code_snippet[:code_snippet.rindex('}')]
+
+    def indent(size, string):
+        import inspect
+        return '\n'.join([
+            " " * size + line if line else ''
+            for line in inspect.cleandoc(string).splitlines()])
+
     statements = (
         f"package leetcode.q{question_id}.java;",
         "",
-        code_snippet,
+        indent(0, """
+        import java.util.stream.Stream;
+        import leetcode.base.java.JavaTest;
+        import org.junit.jupiter.params.provider.Arguments;"""),
         "",
+        code_snippet,
+        indent(4, """
+        static class SolutionTest extends JavaTest<Solution> {
+
+            @Override
+            protected Stream<Arguments> provider() {
+                return Stream.of(
+                );
+            }
+        }"""),
+        "}"
     )
 
-    return '\n'.join(statements)
+    return '\n'.join(statements) + '\n'
