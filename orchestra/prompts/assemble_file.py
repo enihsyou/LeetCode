@@ -82,6 +82,7 @@ def enhance_java(session: AskSession, code_snippet: str):
             @Override
             protected Stream<Arguments> provider() {
                 return Stream.of(
+                    Arguments.of()
                 );
             }
         }"""),
