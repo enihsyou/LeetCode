@@ -38,10 +38,14 @@ class AskSession:
 
     @property
     def metadata(self):
+        if not self._metadata:
+            raise ValueError("no metadata provided.")
         return self._metadata
 
     @metadata.setter
     def metadata(self, value):
+        if not value:
+            raise ValueError("no metadata provided.")
         self._metadata = value
 
     async def __aenter__(self):
