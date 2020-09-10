@@ -2,6 +2,7 @@ package leetcode.base.java;
 
 import org.assertj.core.api.AbstractDoubleArrayAssert;
 import org.assertj.core.api.AbstractIntArrayAssert;
+import org.assertj.core.api.AbstractObjectArrayAssert;
 
 /**
  * @author Ryoka Kujo chunxiang.huang@mail.hypers.com
@@ -20,6 +21,12 @@ public enum DiffMode {
         public void satisfies(AbstractDoubleArrayAssert<?> instance, Object methodExcept) {
             instance.containsExactly((double[]) methodExcept);
         }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <E> void satisfies(AbstractObjectArrayAssert<?, E> instance, Object methodExcept) {
+            instance.containsExactly((E[]) methodExcept);
+        }
     },
 
     /** 只要元素都有 数组顺序随意 */
@@ -31,11 +38,19 @@ public enum DiffMode {
 
         @Override
         public void satisfies(AbstractDoubleArrayAssert<?> instance, Object methodExcept) {
-            instance.containsExactly((double[]) methodExcept);
+            instance.containsExactlyInAnyOrder((double[]) methodExcept);
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <E> void satisfies(AbstractObjectArrayAssert<?, E> instance, Object methodExcept) {
+            instance.containsExactlyInAnyOrder((E[]) methodExcept);
         }
     };
 
     public abstract void satisfies(AbstractIntArrayAssert<?> instance, Object methodExcept);
 
     public abstract void satisfies(AbstractDoubleArrayAssert<?> instance, Object methodExcept);
+
+    public abstract <E> void satisfies(AbstractObjectArrayAssert<?, E> instance, Object methodExcept);
 }

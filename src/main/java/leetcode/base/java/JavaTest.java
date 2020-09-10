@@ -11,11 +11,14 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.assertj.core.api.InstanceOfAssertFactories;
+import org.assertj.core.api.ObjectArrayAssert;
+import org.assertj.core.util.Preconditions;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.DynamicTest;
@@ -47,6 +50,7 @@ public abstract class JavaTest<S> {
     /** 提供输入到解题方法中到测试数据，每组的最后一个参数为期望输出 */
     protected abstract Stream<Arguments> provider();
 
+    /** 定义结果比较模式 */
     protected DiffMode diffMode() {
         return DiffMode.EXACTLY;
     }
@@ -73,7 +77,7 @@ public abstract class JavaTest<S> {
 
         MethodSelector methodSelector = DiscoverySelectors.selectMethod(method.getDeclaringClass(), method);
 
-        Function<String, String> encode = (s) -> URLEncoder.encode(s, StandardCharsets.US_ASCII);
+        Function<String, String> encode = s -> URLEncoder.encode(s, StandardCharsets.US_ASCII);
         String uriString = "method:" +
                            encode.apply(methodSelector.getClassName()) + "#" +
                            encode.apply(methodSelector.getMethodName());
@@ -102,6 +106,10 @@ public abstract class JavaTest<S> {
      * @return {@code twoSum([3,2,4], 6) = [1, 2]}
      */
     private static String parameterizedTestCaseName(Method method, Object[] args) {
+        if (args.length < 1) {
+            return parameterizedMethodName(method, "#ERR", "#ERR");
+        }
+
         String methodArgs = Arrays.stream(args).limit(args.length - 1)
             .map(StringUtils::nullSafeToString)
             .collect(Collectors.joining(", "));
@@ -118,6 +126,8 @@ public abstract class JavaTest<S> {
     /** 调用AssertJ执行断言测试 */
     @SuppressWarnings("OverlyBroadCatchBlock")
     private static void executeTestCase(Method method, Object[] args, DiffMode diffMode) {
+        preconditions(method, args);
+
         Object[] methodInput  = Arrays.copyOf(args, args.length - 1);
         Object   methodExcept = args[args.length - 1];
         Object   methodOutput;
@@ -132,7 +142,6 @@ public abstract class JavaTest<S> {
         }
 
         if (methodExcept.getClass().isArray()) {
-            // TODO: 适配更多类型
             //noinspection ChainOfInstanceofChecks
             if (methodExcept.getClass().getComponentType() == int.class) {
                 diffMode.satisfies(InstanceOfAssertFactories.INT_ARRAY.createAssert(methodOutput),
@@ -140,8 +149,11 @@ public abstract class JavaTest<S> {
             } else if (methodExcept.getClass().getComponentType() == double.class) {
                 diffMode.satisfies(InstanceOfAssertFactories.DOUBLE_ARRAY.createAssert(methodOutput),
                                    methodExcept);
+            } else if (methodExcept.getClass().getComponentType() == int[].class) {
+                diffMode.satisfies(new ObjectArrayAssert<>((int[][]) methodOutput),
+                                   methodExcept);
             } else {
-                throw new AssertionError(
+                throw new UnsupportedOperationException(
                     "没有适配返回类型: " + methodExcept.getClass().getSimpleName());
             }
         } else {
@@ -163,9 +175,47 @@ public abstract class JavaTest<S> {
         return (Class<S>) superType.getActualTypeArguments()[0];
     }
 
+    private static void preconditions(Method method, Object[] args) {
+        Preconditions.checkState(args.length > 0, "尚未提供入参出参");
+        Preconditions.checkState(method.getParameterCount() == args.length - 1,
+                                 "需要%d个入参但(除去出参)只提供了%d个",
+                                 method.getParameterCount(), args.length - 1);
+
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        for (int i = 0; i < parameterTypes.length; i++) {
+            Class<?> parameterType = parameterTypes[i];
+            Preconditions.checkState(args[i] != null,
+                                     "第%d个入参不应该为null", i + 1);
+            Preconditions.checkState(isAssignableTo(args[i].getClass(), parameterType),
+                                     "第%d个入参的类型应该为%s而不是%s", i + 1,
+                                     args[i].getClass().getSimpleName(),
+                                     parameterType.getSimpleName());
+        }
+    }
+
+    private static final Map<Class<?>, Class<?>> primitiveWrapperMap = Map.of(
+        boolean.class, Boolean.class,
+        byte.class, Byte.class,
+        char.class, Character.class,
+        double.class, Double.class,
+        float.class, Float.class,
+        int.class, Integer.class,
+        long.class, Long.class,
+        short.class, Short.class);
+
+    private static boolean isAssignableTo(Class<?> from, Class<?> to) {
+        return to.isAssignableFrom(from) ||
+               from.isPrimitive() && primitiveWrapperMap.get(from) == to ||
+               to.isPrimitive() && primitiveWrapperMap.get(to) == from;
+    }
+
     /* 常用构造器 */
 
     protected static int[] ints(int... ints) {
+        return ints;
+    }
+
+    protected static int[][] ints(int[]... ints) {
         return ints;
     }
 
