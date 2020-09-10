@@ -47,22 +47,28 @@ public abstract class JavaTest<S> {
     /** 提供输入到解题方法中到测试数据，每组的最后一个参数为期望输出 */
     protected abstract Stream<Arguments> provider();
 
+    protected DiffMode diffMode() {
+        return DiffMode.EXACTLY;
+    }
+
     /** 动态创建测试用例 */
     @TestFactory
     Stream<? extends DynamicNode> dynamicTestsGenerator() {
         return solutionMethods.stream()
-            .map(method -> buildDynamicTest(method, provider()));
+            .map(method -> buildDynamicTest(method, provider(), diffMode()));
     }
 
     /** 创建一个解题方法组，如果有多个public方法会有多个测试组 */
-    private static DynamicContainer buildDynamicTest(Method method, Stream<Arguments> provider) {
+    private static DynamicContainer buildDynamicTest(Method method, Stream<Arguments> provider,
+                                                     DiffMode diffMode) {
         return DynamicContainer.dynamicContainer(
             parameterizedMethodName(method),
-            provider.map(args -> buildDynamicTest(method, args)));
+            provider.map(args -> buildDynamicTest(method, args, diffMode)));
     }
 
     /** 创建属于一个解题方法组的一个测试用例 */
-    private static DynamicTest buildDynamicTest(Method method, Arguments provider) {
+    private static DynamicTest buildDynamicTest(Method method, Arguments provider,
+                                                DiffMode diffMode) {
         Object[] args = provider.get();
 
         MethodSelector methodSelector = DiscoverySelectors.selectMethod(method.getDeclaringClass(), method);
@@ -74,7 +80,7 @@ public abstract class JavaTest<S> {
         return DynamicTest.dynamicTest(
             parameterizedTestCaseName(method, args),
             URI.create(uriString),
-            () -> executeTestCase(method, args));
+            () -> executeTestCase(method, args, diffMode));
     }
 
 
@@ -111,7 +117,7 @@ public abstract class JavaTest<S> {
 
     /** 调用AssertJ执行断言测试 */
     @SuppressWarnings("OverlyBroadCatchBlock")
-    private static void executeTestCase(Method method, Object[] args) {
+    private static void executeTestCase(Method method, Object[] args, DiffMode diffMode) {
         Object[] methodInput  = Arrays.copyOf(args, args.length - 1);
         Object   methodExcept = args[args.length - 1];
         Object   methodOutput;
@@ -127,10 +133,13 @@ public abstract class JavaTest<S> {
 
         if (methodExcept.getClass().isArray()) {
             // TODO: 适配更多类型
+            //noinspection ChainOfInstanceofChecks
             if (methodExcept.getClass().getComponentType() == int.class) {
-                assertThat(methodOutput)
-                    .asInstanceOf(InstanceOfAssertFactories.INT_ARRAY)
-                    .containsExactly((int[]) methodExcept);
+                diffMode.satisfies(InstanceOfAssertFactories.INT_ARRAY.createAssert(methodOutput),
+                                   methodExcept);
+            } else if (methodExcept.getClass().getComponentType() == double.class) {
+                diffMode.satisfies(InstanceOfAssertFactories.DOUBLE_ARRAY.createAssert(methodOutput),
+                                   methodExcept);
             } else {
                 throw new AssertionError(
                     "没有适配返回类型: " + methodExcept.getClass().getSimpleName());
@@ -152,6 +161,12 @@ public abstract class JavaTest<S> {
         ParameterizedType superType = (ParameterizedType) _superType;
 
         return (Class<S>) superType.getActualTypeArguments()[0];
+    }
+
+    /* 常用构造器 */
+
+    protected static int[] ints(int... ints) {
+        return ints;
     }
 
 }

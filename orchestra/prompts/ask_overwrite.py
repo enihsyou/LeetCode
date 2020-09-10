@@ -22,7 +22,7 @@ async def question(session: AskSession):
     ]
 
     styles: Style = Style.from_dict({
-        'file_path': 'bold',
+        'file_path': '#FF9D00 bold',
     })
 
     answer = await session.prompt(

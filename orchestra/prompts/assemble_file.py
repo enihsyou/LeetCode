@@ -55,6 +55,9 @@ async def assemble(session: AskSession):
             lang_code = enhancer(session, lang_code)
         writer.write(lang_code)
 
+    import webbrowser
+    webbrowser.open("idea://open?file=" + os.path.abspath(file_path))
+
 
 def enhance_java(session: AskSession, code_snippet: str):
     question_id = session.metadata['questionId']
