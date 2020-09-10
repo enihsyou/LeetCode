@@ -8,6 +8,7 @@ import datetime
 import enum
 import os
 import re
+import git
 from typing import Dict, Iterable, Tuple
 
 
@@ -15,6 +16,7 @@ class Language(enum.Enum):
     """ 代表解法使用的编程语言 """
     Kotlin = enum.auto()
     Java = enum.auto()
+    Python = enum.auto()
     MySQL = enum.auto()
     Bash = enum.auto()
 
@@ -78,51 +80,68 @@ class Problem:
 def scan_for_problems():
     solutions: Dict[int, Problem] = {}
 
-    def scan_for_solutions_internal(root_path, what_todo):
+    repo = git.Repo('.')
+
+    # for blob in tree:  # intuitive iteration of tree members
+    #     for commit in repo.iter_commits(paths=blob.path, max_count=1):
+
+    def scan_for_solutions_internal(root_tree, what_todo):
         """
-        :type root_path: str
-        :type what_todo: (os.DirEntry) -> None
+        :type root_tree: git.Tree
+        :type what_todo: (git.Blob) -> None
         """
-        with os.scandir(root_path) as scanner:  # type: Iterable[os.DirEntry]
-            for entry in scanner:
-                if not entry.name.startswith('.'):
-                    what_todo(entry)
+        for blob in root_tree:
+            if not blob.name.startswith('.'):
+                what_todo(blob)
 
-    def scan_language_dir(entry: os.DirEntry):
-        if not entry.is_dir():
-            return
-        scan_for_solutions_internal(entry.path, scan_solution_file)
-
-    def scan_solution_file(entry: os.DirEntry):
-        if not entry.is_file():
+    def scan_language_dir(tree):
+        """
+        :type tree: git.Blob | git.Tree
+        """
+        if not isinstance(tree, git.Tree):
             return
 
-        if search := re.search(r"#(\d+) (.+)\.", entry.name):
+        if search := re.search(r"#(\d+) (.+)", tree.name):
             ordinal = int(search.group(1))
             problem = search.group(2)
         else:
             return
-        category = resolve_language(entry)
-        filepath = entry.path
-        last_upd = datetime.datetime.fromtimestamp(
-            entry.stat().st_mtime,
-            tz=datetime.timezone(datetime.timedelta(hours=8)))
 
         if ordinal not in solutions:
-            solutions[ordinal] = Problem((ordinal, problem,))
+            problem = solutions[ordinal] = Problem((ordinal, problem,))
 
-        solution = Solution((ordinal, category, filepath, last_upd))
-        solutions[ordinal].solutions.append(solution)
+            scan_for_solutions_internal(
+                tree, lambda p: scan_solution_file(problem, p))
 
-    def resolve_language(entry: os.DirEntry):
-        return {
-            'bash'  : Language.Bash,
-            'java'  : Language.Java,
-            'kotlin': Language.Kotlin,
-            'mysql' : Language.MySQL,
-        }[os.path.basename(os.path.dirname(entry.path))]
+    def scan_solution_file(problem, blob):
+        """
+        :type problem: Problem
+        :type blob: git.Blob | git.Tree
+        """
+        if not isinstance(blob, git.Blob):
+            return
 
-    scan_for_solutions_internal('src/main', scan_language_dir)
+        if not blob.name.startswith('Solution'):
+            return
+
+        commit = next(repo.iter_commits(paths=blob.path, max_count=1))
+        category = resolve_language(blob.name)
+        filepath = blob.path
+        last_upd = commit.authored_datetime
+
+        solution = Solution((problem.ordinal, category, filepath, last_upd))
+        problem.solutions.append(solution)
+
+    def resolve_language(file_name: str):
+        return next(iter([v for k, v in {
+            '.java'     : Language.Java,
+            '.kt'       : Language.Kotlin,
+            '.py'       : Language.MySQL,
+            '.bash.sh'  : Language.Bash,
+            '.mysql.sql': Language.MySQL,
+        }.items() if file_name.endswith(k)]), None)
+
+    scan_for_solutions_internal(repo.tree() / 'solution', scan_language_dir)
     return sorted(solutions.values())
 
 
@@ -156,7 +175,7 @@ class MarkdownTableGenerator:
             self.table.add_row((
                 str(problem.ordinal),
                 problem.problem,
-                " ".join(map(for_solution, problem.solutions)),
+                "<br/>".join(map(for_solution, problem.solutions)),
                 max([s.last_upd for s in problem.solutions]).strftime(
                     "%Y-%m-%d %H:%M"),
             ))
@@ -280,9 +299,9 @@ def inplace_replace_readme_file(generator):
         processed = False
         file_lines = []
         for line in reader:
-            if start_mark in line:
+            if start_mark in line and line.startswith('<'):
                 processing = True
-            if not processing:
+            elif not processing:
                 file_lines.append(line)
             elif end_mark in line:
                 processing = False
