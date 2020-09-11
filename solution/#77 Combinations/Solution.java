@@ -47,6 +47,39 @@ class Solution {
         }
     }
 
+    public List<List<Integer>> combine2(int n, int k) {
+        List<List<Integer>> answer = new ArrayList<>(k * k);
+
+        Deque<Integer> stack = new ArrayDeque<>(n);
+        dfs2(answer, stack, 1, n, k);
+
+        return answer;
+    }
+
+    /**
+     * @param minNum     从这个数开始选
+     * @param maxNum     选到这个数
+     * @param slotRemain 还剩多少的空需要填充元素
+     */
+    private static void dfs2(List<List<Integer>> answer, Deque<Integer> stack,
+                            int minNum, int maxNum, int slotRemain) {
+        if (slotRemain == 0) {
+            answer.add(new ArrayList<>(stack));
+            return;
+        }
+
+        if (maxNum - minNum < slotRemain - 1) {
+            return;
+        }
+
+        // 不选当前数
+        dfs2(answer, stack, minNum + 1, maxNum, slotRemain);
+        stack.addLast(minNum);
+        // 选了当前数
+        dfs2(answer, stack, minNum + 1, maxNum, slotRemain - 1);
+        stack.removeLast();
+    }
+
     static class SolutionTest extends JavaTest<Solution> {
 
         @Override
