@@ -1,4 +1,4 @@
-package leetcode.q986.kotlin;
+package leetcode.q1028.kotlin;
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
