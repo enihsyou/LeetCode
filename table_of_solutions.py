@@ -6,10 +6,11 @@
 
 import datetime
 import enum
-import os
+import hashlib
 import re
+from typing import *
+
 import git
-from typing import Dict, Iterable, Tuple
 
 
 class Language(enum.Enum):
@@ -81,9 +82,6 @@ def scan_for_problems():
     solutions: Dict[int, Problem] = {}
 
     repo = git.Repo('.')
-
-    # for blob in tree:  # intuitive iteration of tree members
-    #     for commit in repo.iter_commits(paths=blob.path, max_count=1):
 
     def scan_for_solutions_internal(root_tree, what_todo):
         """
@@ -286,19 +284,24 @@ class MarkdownTableGenerator:
         return lines, links
 
 
-def inplace_replace_readme_file(generator):
+def inplace_replace_readme_file(generator) -> bool:
     """ 按需更新README.md文件
 
     :type generator: ()-> tuple[list[str], list[str]]
+    :return 实际更新了没
     """
+
+    file_hash = content_hasher()
+    gens_hash = content_hasher()
 
     start_mark = '<!-- table of solutions -->'
     end_mark = '<!-- end of table of solutions -->'
-    with open('README.md') as reader:
+    with open('README.md', 'r') as reader:
         processing = False
         processed = False
         file_lines = []
         for line in reader:
+            file_hash += line
             if start_mark in line and line.startswith('<'):
                 processing = True
             elif not processing:
@@ -327,8 +330,39 @@ def inplace_replace_readme_file(generator):
                       file=sys.stderr)
                 exit(1)
 
+            gens_hash += file_lines
+
+    if file_hash == gens_hash:
+        print("File content not changed, no writing is preformed.")
+        return False
+
     with open('README.md', 'w') as writer:
         writer.writelines(file_lines)
+        return True
+
+
+# noinspection PyPep8Naming
+class content_hasher:
+
+    def __init__(self) -> None:
+        self._md5 = hashlib.md5()
+
+    def __iadd__(self, other):
+        if isinstance(other, bytes):
+            self._md5.update(other)
+        if isinstance(other, str):
+            self._md5.update(other.encode())
+        elif isinstance(other, Iterable):
+            for element in other:
+                self.__iadd__(element)
+        return self
+
+    def __eq__(self, other):
+        return isinstance(other, content_hasher) and \
+               self._md5.digest() == other._md5.digest()
+
+    def __hash__(self) -> int:
+        return hash(self._md5.digest())
 
 
 def main():
