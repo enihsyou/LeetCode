@@ -30,6 +30,7 @@ jobs:
             ${{ runner.os }}-gradle-${{ env.cache-name }}
             ${{ runner.os }}-gradle-
             ${{ runner.os }}-
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
@@ -52,22 +53,24 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pipenv
-          pipenv install -d
-
       - name: Cache Python packages
         uses: actions/cache@v2
         env:
           cache-name: cache-pipenv-packages
         with:
-          path: ~/.local/share/virtualenvs
+          path:
+            - ~/.local/share/virtualenvs
+            - ~/.cache/pip
           key: ${{ runner.os }}-pipenv-${{ env.cache-name }}-${{ hashFiles('Pipfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pipenv-${{ env.cache-name }}
             ${{ runner.os }}-pipenv-
             ${{ runner.os }}-
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pipenv
+          pipenv install -d
 
       - name: Execute table_of_solution.py
         run: pipenv run python table_of_solutions.py
