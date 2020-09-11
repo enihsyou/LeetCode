@@ -215,6 +215,11 @@ public abstract class JavaTest<S> {
         return ints;
     }
 
+    @SuppressWarnings("ZeroLengthArrayAllocation")
+    protected static int[] emptyInts() {
+        return new int[]{ };
+    }
+
     protected static int[][] ints(int[]... ints) {
         return ints;
     }
