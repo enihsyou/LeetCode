@@ -3,6 +3,7 @@ package leetcode.base.java;
 import org.assertj.core.api.AbstractDoubleArrayAssert;
 import org.assertj.core.api.AbstractIntArrayAssert;
 import org.assertj.core.api.AbstractObjectArrayAssert;
+import org.assertj.core.api.ListAssert;
 
 /**
  * @author Ryoka Kujo chunxiang.huang@mail.hypers.com
@@ -27,6 +28,16 @@ public enum DiffMode {
         public <E> void satisfies(AbstractObjectArrayAssert<?, E> instance, Object methodExcept) {
             instance.containsExactly((E[]) methodExcept);
         }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <E> void satisfies(ListAssert<E> instance, Object methodExcept) {
+            if (methodExcept instanceof Iterable) {
+                instance.containsExactlyElementsOf((Iterable<? extends E>) methodExcept);
+            } else {
+                instance.isEqualTo(methodExcept);
+            }
+        }
     },
 
     /** 只要元素都有 数组顺序随意 */
@@ -46,6 +57,16 @@ public enum DiffMode {
         public <E> void satisfies(AbstractObjectArrayAssert<?, E> instance, Object methodExcept) {
             instance.containsExactlyInAnyOrder((E[]) methodExcept);
         }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        public <E> void satisfies(ListAssert<E> instance, Object methodExcept) {
+            if (methodExcept instanceof Iterable) {
+                instance.containsExactlyInAnyOrderElementsOf((Iterable<? extends E>) methodExcept);
+            } else {
+                throw new UnsupportedOperationException();
+            }
+        }
     };
 
     public abstract void satisfies(AbstractIntArrayAssert<?> instance, Object methodExcept);
@@ -53,4 +74,6 @@ public enum DiffMode {
     public abstract void satisfies(AbstractDoubleArrayAssert<?> instance, Object methodExcept);
 
     public abstract <E> void satisfies(AbstractObjectArrayAssert<?, E> instance, Object methodExcept);
+
+    public abstract <E> void satisfies(ListAssert<E> instance, Object methodExcept);
 }

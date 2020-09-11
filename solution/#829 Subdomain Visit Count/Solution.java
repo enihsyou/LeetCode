@@ -1,15 +1,21 @@
+package leetcode.q829.java;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
+import leetcode.base.java.DiffMode;
+import leetcode.base.java.JavaTest;
+import org.junit.jupiter.params.provider.Arguments;
+
+/**
+ * <a href="https://leetcode-cn.com/problems/subdomain-visit-count/">
+ * 811. Subdomain Visit Count
+ * </a>
+ */
 class Solution {
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.subdomainVisits(
-            new String[]{"900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"}));
-    }
 
     public List<String> subdomainVisits(String[] cpdomains) {
         Map<String, Integer> map = new HashMap<>();
@@ -34,5 +40,24 @@ class Solution {
             result.add(builder.append(map.get(str)).append(' ').append(str).toString());
         }
         return result;
+    }
+
+    static class SolutionTest extends JavaTest<Solution> {
+
+        @Override
+        protected DiffMode diffMode() {
+            return DiffMode.CONTAIN;
+        }
+
+        @Override
+        protected Stream<Arguments> provider() {
+            return Stream.of(
+                Arguments.of(strings("9001 discuss.leetcode.com"),
+                             lists("9001 discuss.leetcode.com", "9001 leetcode.com", "9001 com")),
+                Arguments.of(strings("900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"),
+                             lists("901 mail.com", "50 yahoo.com", "900 google.mail.com", "5 wiki.org", "5 org",
+                                   "1 intel.mail.com", "951 com"))
+            );
+        }
     }
 }

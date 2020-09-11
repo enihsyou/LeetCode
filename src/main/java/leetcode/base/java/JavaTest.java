@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 import org.assertj.core.api.InstanceOfAssertFactories;
 import org.assertj.core.api.ObjectArrayAssert;
 import org.assertj.core.util.Preconditions;
+import org.assertj.core.util.introspection.ClassUtils;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.DynamicTest;
@@ -157,7 +158,12 @@ public abstract class JavaTest<S> {
                     "没有适配返回类型: " + methodExcept.getClass().getSimpleName());
             }
         } else {
-            assertThat(methodOutput).isEqualTo(methodExcept);
+            if (List.class.isAssignableFrom(methodExcept.getClass())) {
+                diffMode.satisfies(InstanceOfAssertFactories.LIST.createAssert(methodOutput),
+                                   methodExcept);
+            } else {
+                assertThat(methodOutput).isEqualTo(methodExcept);
+            }
         }
     }
 
