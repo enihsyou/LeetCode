@@ -4,10 +4,13 @@
 # 生成用于README.md文件的解法文件目录
 # 通过扫描src的子文件夹，解析文件名，生成Markdown规范的文件
 
+import abc
 import datetime
 import enum
 import hashlib
 import re
+import sys
+from contextlib import contextmanager
 from typing import *
 
 import git
@@ -22,6 +25,35 @@ class Language(enum.Enum):
     Bash = enum.auto()
 
 
+class Metadata:
+    """ 代表LeetCode API获取的一道题目的元信息
+
+    :type id: int
+    :type frontend_id: int
+    :type title: str
+    :type slug: str
+    :type difficulty: int
+    :type site_url: str
+    """
+
+    def __init__(self, metadata):
+        self.id = metadata[0]
+        """ 题号 """
+        self.frontend_id = metadata[1]
+        """ 界面上展示的题号 """
+        self.title = metadata[2]
+        """ 题目名字 """
+        self.slug = metadata[3]
+        """ 用于URL中的英文名 """
+        self.difficulty = metadata[4]
+        """ 题目难度 """
+        self.site_url = f"https://leetcode-cn.com/problems/{self.slug}/"
+        """ 问题的网址 """
+
+    def __repr__(self) -> str:
+        return f"Id.{self.id}: [{self.slug}] {self.title} {'★' * self.difficulty}"
+
+
 class Solution:
     """ 代表一道题目的一个解法
 
@@ -31,14 +63,14 @@ class Solution:
     :type last_upd: datetime.datetime
     """
 
-    def __init__(self, metadata):
-        self.problem_no = metadata[0]
+    def __init__(self, metadata_):
+        self.problem_no = metadata_[0]
         """ 所解的题目 """
-        self.category = metadata[1]
+        self.category = metadata_[1]
         """ 使用语言 """
-        self.solution = metadata[2]
+        self.solution = metadata_[2]
         """ 文件在项目中的相对路径 """
-        self.last_upd = metadata[3]
+        self.last_upd = metadata_[3]
         """ 文件最后更新时间 """
 
     def __repr__(self) -> str:
@@ -51,15 +83,26 @@ class Problem:
     :type ordinal: int
     :type problem: str
     :type solutions: list of Solution
+    :type metadata: Metadata or None
     """
 
-    def __init__(self, metadata):
-        self.ordinal = metadata[0]
-        """ 序号 """
-        self.problem = metadata[1]
+    def __init__(self, metadata_):
+        self.ordinal = metadata_[0]
+        """ 真实序号 """
+        self.problem = metadata_[1]
         """ 题目名字 """
         self.solutions = []
         """ 已实现的解法 """
+        self.metadata = None
+        """ 题目关联的元信息 """
+
+    @property
+    def site_url(self) -> Optional[str]:
+        """ 题目的网址 """
+        if self.metadata:
+            return self.metadata.site_url
+        else:
+            return None
 
     def __eq__(self, o: object) -> bool:
         if not isinstance(o, self.__class__):
@@ -80,6 +123,7 @@ class Problem:
 
 def scan_for_problems():
     solutions: Dict[int, Problem] = {}
+    # [question, problem]
 
     repo = git.Repo('.')
 
@@ -139,7 +183,42 @@ def scan_for_problems():
             '.mysql.sql': Language.MySQL,
         }.items() if file_name.endswith(k)]), None)
 
-    scan_for_solutions_internal(repo.tree() / 'solution', scan_language_dir)
+    @contextmanager
+    def fetch_metadata_from_remote():
+        import threading
+
+        metadata: Dict[int, Metadata] = {}
+
+        def thread_function(sink: Dict[int, Metadata]):
+            import requests
+            resp = requests.get("https://leetcode-cn.com/api/problems/all")
+            for stat_obj in resp.json()["stat_status_pairs"]:
+                stat = stat_obj["stat"]
+                diff = stat_obj["difficulty"]
+                sink[stat["question_id"]] = Metadata((
+                    stat["question_id"],
+                    stat["frontend_question_id"],
+                    stat["question__title"],
+                    stat["question__title_slug"],
+                    diff["level"],
+                ))
+
+        future = threading.Thread(target=thread_function, args=(metadata,))
+        future.start()
+        yield
+        future.join()
+
+        for problem in solutions.values():
+            if (data := metadata.get(problem.ordinal, None)) is not None:
+                problem.metadata = data
+                if problem.ordinal == 1044:
+                    print()
+            else:
+                print("could not found metadata for %s" % problem,
+                      file=sys.stderr)
+
+    with fetch_metadata_from_remote():
+        scan_for_solutions_internal(repo.tree() / 'solution', scan_language_dir)
     return sorted(solutions.values())
 
 
@@ -160,8 +239,28 @@ class MarkdownTableGenerator:
         """ 在元素左右两边添加一个空格 """
 
         for problem in problems:
+            def for_ordinal(p: Problem):
+                """ 生成 No. 这列的文本 """
+
+                ordinal = str(p.ordinal)
+                if p.metadata is not None and p.metadata.frontend_id != ordinal:
+                    return "%s (%s)" % (p.metadata.frontend_id, ordinal)
+                else:
+                    return str(p.ordinal)
+
+            def for_problem(p: Problem):
+                """ 生成 Name 这列的文本 """
+                link = self.ProblemLink(
+                    problem=p,
+                    text=p.problem,
+                    label=f"p{p.ordinal}",
+                    href=p.site_url, )
+                self.links.append(link)
+                return link.render_in_table()
+
             def for_solution(s: Solution):
-                link = self.MarkdownLink(
+                """ 生成 Solutions 这列的文本 """
+                link = self.SolutionLink(
                     solution=s,
                     text=s.category.name,
                     label=f"#{s.problem_no} {s.category.name.lower()}",
@@ -171,8 +270,8 @@ class MarkdownTableGenerator:
 
             # some string conversions.
             self.table.add_row((
-                str(problem.ordinal),
-                problem.problem,
+                for_ordinal(problem),
+                for_problem(problem),
                 "<br/>".join(map(for_solution, problem.solutions)),
                 max([s.last_upd for s in problem.solutions]).strftime(
                     "%Y-%m-%d %H:%M"),
@@ -208,7 +307,7 @@ class MarkdownTableGenerator:
         def __repr__(self) -> str:
             return f"{dict(zip(self.header, self.widths))}({len(self.bodies)})"
 
-    class MarkdownLink:
+    class MarkdownLink(abc.ABC):
         """ Markdown Link reference ::
 
             [text][label]
@@ -216,15 +315,12 @@ class MarkdownTableGenerator:
 
         https://github.github.com/gfm/#link-reference-definition
 
-        :type solution: Solution
         :type text: str
         :type label: str
         :type destination: str
         """
 
-        def __init__(self, solution, *, text, label, href):
-            self.solution = solution
-            """ 指向的解法对象 """
+        def __init__(self, *, text, label, href):
             self.text = text
             """ 可见文字 """
             self.label = label
@@ -244,6 +340,31 @@ class MarkdownTableGenerator:
 
         def __str__(self) -> str:
             return f"[{self.text}][{self.label}]: {self.destination}"
+
+    class SolutionLink(MarkdownLink):
+        """ Solution Link reference
+
+        :type solution: Solution
+        """
+
+        def __init__(self, solution, *, text, label, href):
+            super().__init__(text=text, label=label, href=href)
+            self.solution = solution
+            """ 指向的解法对象 """
+
+    class ProblemLink(MarkdownLink):
+        """ Problem Link reference
+
+        :type problem: Problem
+        """
+
+        def __init__(self, problem, *, text, label, href):
+            super().__init__(text=text, label=label, href=href)
+            self.problem = problem
+            """ 指向的解法对象 """
+
+        def render_in_footer(self):
+            return f"[{self.label}]: {self.destination}"
 
     def generate(self):
         lines = []
@@ -271,8 +392,15 @@ class MarkdownTableGenerator:
                          for row in self.table.bodies)
 
         def print_links():
-            sorted_links = sorted(self.links, key=lambda s: (
-                s.solution.category.value, s.solution.problem_no))
+
+            def link_sorter_key(link: 'MarkdownTableGenerator.MarkdownLink'):
+                if isinstance(link, self.ProblemLink):
+                    return 0, link.problem.ordinal
+                if isinstance(link, self.SolutionLink):
+                    return link.solution.category.value, \
+                           link.solution.problem_no
+
+            sorted_links = sorted(self.links, key=link_sorter_key)
             links.extend(
                 link.render_in_footer()
                 for link in sorted_links)
@@ -320,7 +448,6 @@ def inplace_replace_readme_file(generator) -> bool:
                 file_lines.extend(map(new_line, links))
                 file_lines.append(new_line(end_mark))
         else:
-            import sys
             if not processed:
                 print(f"No {start_mark} found in README.md",
                       file=sys.stderr)

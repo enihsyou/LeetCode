@@ -5,47 +5,91 @@
 ## List of solutions
 
 <!-- table of solutions -->
-| No.  |                        Name                       |                Solutions                |   Last Update    |
-|------|---------------------------------------------------|-----------------------------------------|------------------|
-| 1    | Two Sum                                           | [Java][#1 java]<br/>[Kotlin][#1 kotlin] | 2020-09-09 21:42 |
-| 2    | Add Two Numbers                                   | [Kotlin][#2 kotlin]                     | 2020-09-06 18:42 |
-| 3    | Longest Substring Without Repeating Characters    | [Kotlin][#3 kotlin]                     | 2020-09-06 18:42 |
-| 4    | Median of Two Sorted Arrays                       | [Kotlin][#4 kotlin]                     | 2020-09-06 18:42 |
-| 5    | Longest Palindromic Substring                     | [Kotlin][#5 kotlin]                     | 2020-09-06 18:42 |
-| 12   | Integer to Roman                                  | [Java][#12 java]                        | 2020-09-06 18:40 |
-| 13   | Roman to Integer                                  | [Java][#13 java]                        | 2020-09-06 18:40 |
-| 15   | 3Sum                                              | [Kotlin][#15 kotlin]                    | 2020-09-06 18:42 |
-| 17   | Letter Combinations of a Phone Number             | [Java][#17 java]                        | 2020-09-06 18:42 |
-| 20   | Valid Parentheses                                 | [Java][#20 java]                        | 2020-09-06 18:42 |
-| 22   | Generate Parentheses                              | [Java][#22 java]                        | 2020-09-06 01:23 |
-| 26   | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]                    | 2020-09-06 18:42 |
-| 39   | Combination Sum                                   | [Java][#39 java]                        | 2020-09-06 01:23 |
-| 53   | Maximum Subarray                                  | [Java][#53 java]                        | 2020-09-06 18:42 |
-| 56   | Merge Intervals                                   | [Kotlin][#56 kotlin]                    | 2020-09-06 18:42 |
-| 65   | Valid Number                                      | [Kotlin][#65 kotlin]                    | 2020-09-06 18:42 |
-| 66   | Plus One                                          | [Java][#66 java]                        | 2020-09-09 21:21 |
-| 67   | Add Binary                                        | [Java][#67 java]                        | 2020-09-10 00:47 |
-| 122  | Best Time to Buy and Sell Stock II                | [Kotlin][#122 kotlin]                   | 2020-09-06 18:42 |
-| 136  | Single Number                                     | [Java][#136 java]                       | 2020-09-10 00:55 |
-| 137  | Single Number II                                  | [Java][#137 java]                       | 2020-09-10 01:52 |
-| 175  | Combine Two Tables                                | [MySQL][#175 mysql]                     | 2020-09-06 18:58 |
-| 176  | Second Highest Salary                             | [MySQL][#176 mysql]                     | 2020-09-06 18:58 |
-| 178  | Rank Scores                                       | [MySQL][#178 mysql]                     | 2020-09-06 18:58 |
-| 182  | Duplicate Emails                                  | [MySQL][#182 mysql]                     | 2020-09-06 18:58 |
-| 191  | Number of 1 Bits                                  | [Java][#191 java]                       | 2020-09-06 18:42 |
-| 192  | Word Frequency                                    | [Bash][#192 bash]                       | 2020-09-06 18:58 |
-| 260  | Single Number III                                 | [Java][#260 java]                       | 2020-09-10 02:03 |
-| 268  | Missing Number                                    | [Java][#268 java]                       | 2020-09-06 18:42 |
-| 371  | Sum of Two Integers                               | [Kotlin][#371 kotlin]                   | 2020-09-06 18:42 |
-| 381  | Insert Delete GetRandom O(1) - Duplicates allowed | [Java][#381 java]                       | 2020-09-06 18:42 |
-| 401  | Binary Watch                                      | [Java][#401 java]                       | 2020-09-06 18:42 |
-| 405  | Convert a Number to Hexadecimal                   | [Java][#405 java]                       | 2020-09-06 18:42 |
-| 792  | Binary Search                                     | [Java][#792 java]                       | 2020-09-06 18:42 |
-| 811  | Subdomain Visit Count                             | [Java][#811 java]                       | 2020-09-06 18:40 |
-| 898  | Transpose Matrix                                  | [Java][#898 java]                       | 2020-09-10 22:34 |
-| 986  | Interval List Intersections                       | [Kotlin][#986 kotlin]                   | 2020-09-06 18:42 |
-| 1203 | Print in Order                                    | [Java][#1203 java]                      | 2020-09-06 18:42 |
+|     No.     |                            Name                           |                Solutions                |   Last Update    |
+|-------------|-----------------------------------------------------------|-----------------------------------------|------------------|
+| 1           | [Two Sum][p1]                                             | [Java][#1 java]<br/>[Kotlin][#1 kotlin] | 2020-09-09 21:42 |
+| 2           | [Add Two Numbers][p2]                                     | [Kotlin][#2 kotlin]                     | 2020-09-06 18:42 |
+| 3           | [Longest Substring Without Repeating Characters][p3]      | [Kotlin][#3 kotlin]                     | 2020-09-06 18:42 |
+| 4           | [Median of Two Sorted Arrays][p4]                         | [Kotlin][#4 kotlin]                     | 2020-09-06 18:42 |
+| 5           | [Longest Palindromic Substring][p5]                       | [Kotlin][#5 kotlin]                     | 2020-09-06 18:42 |
+| 12          | [Integer to Roman][p12]                                   | [Java][#12 java]                        | 2020-09-06 18:40 |
+| 13          | [Roman to Integer][p13]                                   | [Java][#13 java]                        | 2020-09-06 18:40 |
+| 15          | [3Sum][p15]                                               | [Kotlin][#15 kotlin]                    | 2020-09-06 18:42 |
+| 17          | [Letter Combinations of a Phone Number][p17]              | [Java][#17 java]                        | 2020-09-06 18:42 |
+| 20          | [Valid Parentheses][p20]                                  | [Java][#20 java]                        | 2020-09-06 18:42 |
+| 22          | [Generate Parentheses][p22]                               | [Java][#22 java]                        | 2020-09-06 01:23 |
+| 26          | [Remove Duplicates from Sorted Array][p26]                | [Kotlin][#26 kotlin]                    | 2020-09-06 18:42 |
+| 39          | [Combination Sum][p39]                                    | [Java][#39 java]                        | 2020-09-06 01:23 |
+| 53          | [Maximum Subarray][p53]                                   | [Java][#53 java]                        | 2020-09-06 18:42 |
+| 56          | [Merge Intervals][p56]                                    | [Kotlin][#56 kotlin]                    | 2020-09-06 18:42 |
+| 65          | [Valid Number][p65]                                       | [Kotlin][#65 kotlin]                    | 2020-09-06 18:42 |
+| 66          | [Plus One][p66]                                           | [Java][#66 java]                        | 2020-09-09 21:21 |
+| 67          | [Add Binary][p67]                                         | [Java][#67 java]                        | 2020-09-10 00:47 |
+| 122         | [Best Time to Buy and Sell Stock II][p122]                | [Kotlin][#122 kotlin]                   | 2020-09-06 18:42 |
+| 136         | [Single Number][p136]                                     | [Java][#136 java]                       | 2020-09-10 00:55 |
+| 137         | [Single Number II][p137]                                  | [Java][#137 java]                       | 2020-09-10 01:52 |
+| 175         | [Combine Two Tables][p175]                                | [MySQL][#175 mysql]                     | 2020-09-06 18:58 |
+| 176         | [Second Highest Salary][p176]                             | [MySQL][#176 mysql]                     | 2020-09-06 18:58 |
+| 178         | [Rank Scores][p178]                                       | [MySQL][#178 mysql]                     | 2020-09-06 18:58 |
+| 182         | [Duplicate Emails][p182]                                  | [MySQL][#182 mysql]                     | 2020-09-06 18:58 |
+| 191         | [Number of 1 Bits][p191]                                  | [Java][#191 java]                       | 2020-09-06 18:42 |
+| 192         | [Word Frequency][p192]                                    | [Bash][#192 bash]                       | 2020-09-06 18:58 |
+| 260         | [Single Number III][p260]                                 | [Java][#260 java]                       | 2020-09-10 02:03 |
+| 268         | [Missing Number][p268]                                    | [Java][#268 java]                       | 2020-09-06 18:42 |
+| 349         | [Intersection of Two Arrays][p349]                        | [Java][#349 java]                       | 2020-09-11 15:03 |
+| 350         | [Intersection of Two Arrays II][p350]                     | [Java][#350 java]                       | 2020-09-11 15:13 |
+| 371         | [Sum of Two Integers][p371]                               | [Kotlin][#371 kotlin]                   | 2020-09-06 18:42 |
+| 381         | [Insert Delete GetRandom O(1) - Duplicates allowed][p381] | [Java][#381 java]                       | 2020-09-06 18:42 |
+| 401         | [Binary Watch][p401]                                      | [Java][#401 java]                       | 2020-09-06 18:42 |
+| 405         | [Convert a Number to Hexadecimal][p405]                   | [Java][#405 java]                       | 2020-09-06 18:42 |
+| 704 (792)   | [Binary Search][p792]                                     | [Java][#792 java]                       | 2020-09-06 18:42 |
+| 811 (829)   | [Subdomain Visit Count][p829]                             | [Java][#829 java]                       | 2020-09-11 18:12 |
+| 867 (898)   | [Transpose Matrix][p898]                                  | [Java][#898 java]                       | 2020-09-10 22:34 |
+| 986 (1028)  | [Interval List Intersections][p1028]                      | [Kotlin][#1028 kotlin]                  | 2020-09-11 17:54 |
+| 1002 (1044) | [Find Common Characters][p1044]                           | [Java][#1044 java]                      | 2020-09-11 17:54 |
+| 1114 (1203) | [Print in Order][p1203]                                   | [Java][#1203 java]                      | 2020-09-06 18:42 |
 
+[p1]: https://leetcode-cn.com/problems/two-sum/
+[p2]: https://leetcode-cn.com/problems/add-two-numbers/
+[p3]: https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/
+[p4]: https://leetcode-cn.com/problems/median-of-two-sorted-arrays/
+[p5]: https://leetcode-cn.com/problems/longest-palindromic-substring/
+[p12]: https://leetcode-cn.com/problems/integer-to-roman/
+[p13]: https://leetcode-cn.com/problems/roman-to-integer/
+[p15]: https://leetcode-cn.com/problems/3sum/
+[p17]: https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
+[p20]: https://leetcode-cn.com/problems/valid-parentheses/
+[p22]: https://leetcode-cn.com/problems/generate-parentheses/
+[p26]: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+[p39]: https://leetcode-cn.com/problems/combination-sum/
+[p53]: https://leetcode-cn.com/problems/maximum-subarray/
+[p56]: https://leetcode-cn.com/problems/merge-intervals/
+[p65]: https://leetcode-cn.com/problems/valid-number/
+[p66]: https://leetcode-cn.com/problems/plus-one/
+[p67]: https://leetcode-cn.com/problems/add-binary/
+[p122]: https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
+[p136]: https://leetcode-cn.com/problems/single-number/
+[p137]: https://leetcode-cn.com/problems/single-number-ii/
+[p175]: https://leetcode-cn.com/problems/combine-two-tables/
+[p176]: https://leetcode-cn.com/problems/second-highest-salary/
+[p178]: https://leetcode-cn.com/problems/rank-scores/
+[p182]: https://leetcode-cn.com/problems/duplicate-emails/
+[p191]: https://leetcode-cn.com/problems/number-of-1-bits/
+[p192]: https://leetcode-cn.com/problems/word-frequency/
+[p260]: https://leetcode-cn.com/problems/single-number-iii/
+[p268]: https://leetcode-cn.com/problems/missing-number/
+[p349]: https://leetcode-cn.com/problems/intersection-of-two-arrays/
+[p350]: https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
+[p371]: https://leetcode-cn.com/problems/sum-of-two-integers/
+[p381]: https://leetcode-cn.com/problems/insert-delete-getrandom-o1-duplicates-allowed/
+[p401]: https://leetcode-cn.com/problems/binary-watch/
+[p405]: https://leetcode-cn.com/problems/convert-a-number-to-hexadecimal/
+[p792]: https://leetcode-cn.com/problems/binary-search/
+[p829]: https://leetcode-cn.com/problems/subdomain-visit-count/
+[p898]: https://leetcode-cn.com/problems/transpose-matrix/
+[p1028]: https://leetcode-cn.com/problems/interval-list-intersections/
+[p1044]: https://leetcode-cn.com/problems/find-common-characters/
+[p1203]: https://leetcode-cn.com/problems/print-in-order/
 [#1 kotlin]: solution/%231%20Two%20Sum/Solution.kt
 [#2 kotlin]: solution/%232%20Add%20Two%20Numbers/Solution.kt
 [#3 kotlin]: solution/%233%20Longest%20Substring%20Without%20Repeating%20Characters/Solution.kt
@@ -57,7 +101,7 @@
 [#65 kotlin]: solution/%2365%20Valid%20Number/Solution.kt
 [#122 kotlin]: solution/%23122%20Best%20Time%20to%20Buy%20and%20Sell%20Stock%20II/Solution.kt
 [#371 kotlin]: solution/%23371%20Sum%20of%20Two%20Integers/Solution.kt
-[#986 kotlin]: solution/%23986%20Interval%20List%20Intersections/Solution.kt
+[#1028 kotlin]: solution/%231028%20Interval%20List%20Intersections/Solution.kt
 [#1 java]: solution/%231%20Two%20Sum/Solution.java
 [#12 java]: solution/%2312%20Integer%20to%20Roman/Solution.java
 [#13 java]: solution/%2313%20Roman%20to%20Integer/Solution.java
@@ -73,12 +117,15 @@
 [#191 java]: solution/%23191%20Number%20of%201%20Bits/Solution.java
 [#260 java]: solution/%23260%20Single%20Number%20III/Solution.java
 [#268 java]: solution/%23268%20Missing%20Number/Solution.java
+[#349 java]: solution/%23349%20Intersection%20of%20Two%20Arrays/Solution.java
+[#350 java]: solution/%23350%20Intersection%20of%20Two%20Arrays%20II/Solution.java
 [#381 java]: solution/%23381%20Insert%20Delete%20GetRandom%20O%281%29%20-%20Duplicates%20allowed/Solution.java
 [#401 java]: solution/%23401%20Binary%20Watch/Solution.java
 [#405 java]: solution/%23405%20Convert%20a%20Number%20to%20Hexadecimal/Solution.java
 [#792 java]: solution/%23792%20Binary%20Search/Solution.java
-[#811 java]: solution/%23811%20Subdomain%20Visit%20Count/Solution.java
+[#829 java]: solution/%23829%20Subdomain%20Visit%20Count/Solution.java
 [#898 java]: solution/%23898%20Transpose%20Matrix/Solution.java
+[#1044 java]: solution/%231044%20Find%20Common%20Characters/Solution.java
 [#1203 java]: solution/%231203%20Print%20in%20Order/Solution.java
 [#175 mysql]: solution/%23175%20Combine%20Two%20Tables/Solution.mysql.sql
 [#176 mysql]: solution/%23176%20Second%20Highest%20Salary/Solution.mysql.sql
@@ -86,6 +133,8 @@
 [#182 mysql]: solution/%23182%20Duplicate%20Emails/Solution.mysql.sql
 [#192 bash]: solution/%23192%20Word%20Frequency/Solution.bash.sh
 <!-- end of table of solutions -->
+
+> *No. 704 (792)* means the problem has ID 792, but display as 704 in web page.
 
 ## How to start a new problem?
 

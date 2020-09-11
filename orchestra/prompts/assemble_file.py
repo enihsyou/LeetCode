@@ -15,7 +15,7 @@ async def assemble(session: AskSession):
     lang_code = code_snippet['code']
 
     title = metadata['title']
-    question_id = metadata['questionFrontendId']
+    question_id = metadata['questionId']
 
     ext_mapping = {
         'C++'       : 'cpp',
@@ -60,7 +60,8 @@ async def assemble(session: AskSession):
 
 
 def enhance_java(session: AskSession, code_snippet: str):
-    question_id = session.metadata['questionFrontendId']
+    question_id = session.metadata['questionId']
+    question_frontend_id = session.metadata['questionFrontendId']
     # questionId can be differed with questionFrontendId,
     # such as find-common-characters
 
@@ -88,7 +89,7 @@ def enhance_java(session: AskSession, code_snippet: str):
         indent(0, f"""
         /**
          * <a href="{question_url}">
-         *     {question_id}. {question_title}
+         *     {question_frontend_id}. {question_title}
          * </a>
          */"""),
         code_snippet,
