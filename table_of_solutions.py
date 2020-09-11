@@ -29,7 +29,7 @@ class Metadata:
     """ 代表LeetCode API获取的一道题目的元信息
 
     :type id: int
-    :type frontend_id: int
+    :type frontend_id: str
     :type title: str
     :type slug: str
     :type difficulty: int
@@ -81,7 +81,7 @@ class Problem:
     """ 代表一道LeetCode题目
 
     :type ordinal: int
-    :type problem: str
+    :type display: str
     :type solutions: list of Solution
     :type metadata: Metadata or None
     """
@@ -89,7 +89,7 @@ class Problem:
     def __init__(self, metadata_):
         self.ordinal = metadata_[0]
         """ 真实序号 """
-        self.problem = metadata_[1]
+        self.display = metadata_[1]
         """ 题目名字 """
         self.solutions = []
         """ 已实现的解法 """
@@ -113,7 +113,7 @@ class Problem:
         return self.ordinal
 
     def __repr__(self) -> str:
-        return f"No.{self.ordinal}: {self.problem} ({len(self.solutions)})"
+        return f"No.{self.ordinal}: {self.display} ({len(self.solutions)})"
 
     def __lt__(self, o: object) -> bool:
         if not isinstance(o, Problem):
@@ -232,31 +232,39 @@ class MarkdownTableGenerator:
 
     def __init__(self, problems: Iterable[Problem]):
         self.table = self.ElasticTable(
-            ("No.", "Name", "Solutions", "Last Update"))
+            ("No.", "Id.", "Name", "Solutions", "Last Update"))
         self.links = list()
 
         self.pad_column = True
         """ 在元素左右两边添加一个空格 """
 
         for problem in problems:
-            def for_ordinal(p: Problem):
+            def for_frontend(p: Problem):
                 """ 生成 No. 这列的文本 """
 
-                ordinal = str(p.ordinal)
-                if p.metadata is not None and p.metadata.frontend_id != ordinal:
-                    return "%s (%s)" % (p.metadata.frontend_id, ordinal)
-                else:
-                    return str(p.ordinal)
+                if p.metadata is None:
+                    return "-"
 
-            def for_problem(p: Problem):
-                """ 生成 Name 这列的文本 """
-                link = self.ProblemLink(
+                ordinal = p.metadata.frontend_id
+                link = self.OrdinalLink(
                     problem=p,
-                    text=p.problem,
-                    label=f"p{p.ordinal}",
+                    text=ordinal,
+                    label=f"p{ordinal}",
                     href=p.site_url, )
                 self.links.append(link)
                 return link.render_in_table()
+
+            def for_ordinal(p: Problem):
+                """ 生成 Id. 这列的文本 """
+
+                if p.metadata is None :
+                    return str(p.ordinal)
+                else:
+                    return str(p.metadata.id)
+
+            def for_problem(p: Problem):
+                """ 生成 Name 这列的文本 """
+                return p.display
 
             def for_solution(s: Solution):
                 """ 生成 Solutions 这列的文本 """
@@ -270,6 +278,7 @@ class MarkdownTableGenerator:
 
             # some string conversions.
             self.table.add_row((
+                for_frontend(problem),
                 for_ordinal(problem),
                 for_problem(problem),
                 "<br/>".join(map(for_solution, problem.solutions)),
@@ -355,6 +364,22 @@ class MarkdownTableGenerator:
     class ProblemLink(MarkdownLink):
         """ Problem Link reference
 
+        deprecated, 不在题目名上放链接，放在序号上
+
+        :type problem: Problem
+        """
+
+        def __init__(self, problem, *, text, label, href):
+            super().__init__(text=text, label=label, href=href)
+            self.problem = problem
+            """ 指向的解法对象 """
+
+        def render_in_footer(self):
+            return f"[{self.label}]: {self.destination}"
+
+    class OrdinalLink(MarkdownLink):
+        """ Ordinal Link reference
+
         :type problem: Problem
         """
 
@@ -394,6 +419,8 @@ class MarkdownTableGenerator:
         def print_links():
 
             def link_sorter_key(link: 'MarkdownTableGenerator.MarkdownLink'):
+                if isinstance(link, self.OrdinalLink):
+                    return 0, link.problem.ordinal
                 if isinstance(link, self.ProblemLink):
                     return 0, link.problem.ordinal
                 if isinstance(link, self.SolutionLink):
