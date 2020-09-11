@@ -58,9 +58,9 @@ jobs:
         env:
           cache-name: cache-pipenv-packages
         with:
-          path:
-            - ~/.local/share/virtualenvs
-            - ~/.cache/pip
+          path: |
+            ~/.local/share/virtualenvs
+            ~/.cache/pip
           key: ${{ runner.os }}-pipenv-${{ env.cache-name }}-${{ hashFiles('Pipfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-pipenv-${{ env.cache-name }}
