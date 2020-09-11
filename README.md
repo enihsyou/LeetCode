@@ -1,4 +1,6 @@
-![Java CI with Gradle](https://github.com/enihsyou/LeetCode/workflows/Java%20CI%20with%20Gradle/badge.svg)
+# LeetCode Practices
+
+[![Java CI with Gradle](https://github.com/enihsyou/LeetCode/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/enihsyou/LeetCode/actions)
 
 ## List of solutions
 
@@ -85,11 +87,7 @@
 [#192 bash]: solution/%23192%20Word%20Frequency/Solution.bash.sh
 <!-- end of table of solutions -->
 
-
-> Regex used to process file names:
-> > `\s.+\.(java\])\((.+)\)` => ` $1: $2`
-
-## How to start new problem?
+## How to start a new problem?
 
 ```shell script
 python3 orchestra/orchestra.py
@@ -97,11 +95,14 @@ python3 orchestra/orchestra.py
 # select one language you preferred.
 ```
 
-IntelliJ should popup right after the solution file is created.
+IntelliJ should popup right after the solution file had been created.
+Due to the lack of API support exposed by Jetbrains platform, 
+a *Reload All Gradle Projects* action should be performed manually in order to
+make IntelliJ pick up the newly created source set.
 
 If you choose Java as the implementation language, 
 you will notice a `SolutionTest` static nest class has been created inside
-regular `Solution` template, and it extends `JavaBase<Solution>`.
+regular `Solution` template, and it extends [`JavaBase<Solution>`][JavaBase].
 This super class provides auto test discovery and many useful helper methods,
 refer to my implementation as example.
 
@@ -110,6 +111,8 @@ Simply delete all sub folders inside [solution](solution) directory
 and here you go, remember to run `gradle test` before submit your solution.
 
 > [old script](enter_problem.py) is deprecated.
+
+[JavaBase]: src/main/java/leetcode/base/java/JavaTest.java
 
 ## How to generate this README file?
 
