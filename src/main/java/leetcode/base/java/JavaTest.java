@@ -224,4 +224,13 @@ public abstract class JavaTest<S> {
         return ints;
     }
 
+    protected static String[] strings(String... strings) {
+        return strings;
+    }
+
+    @SafeVarargs
+    protected static <E> List<E> lists(E... elements) {
+        return Arrays.asList(elements);
+    }
+
 }
