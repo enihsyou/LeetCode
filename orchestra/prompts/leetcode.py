@@ -20,7 +20,23 @@ async def fetch_problem_graphql(hostname, title_slug,
         "variables"    : {
             "titleSlug": title_slug
         },
-        "query"        : "query questionData($titleSlug: String!) {\n  question(titleSlug: $titleSlug) {\n    questionId\n    titleSlug\n    title\n    translatedTitle\n    difficulty\n    codeSnippets {\n      lang\n      langSlug\n      code\n    }\n  }\n}\n"
+        "query"        : """
+                        query questionData($titleSlug: String!) {
+                            question(titleSlug: $titleSlug) {
+                                titleSlug
+                                title
+                                questionId
+                                questionFrontendId
+                                questionDetailUrl
+                                translatedTitle
+                                difficulty
+                                codeSnippets {
+                                    lang
+                                    langSlug
+                                    code
+                                }
+                            }
+                        }"""
     }
     try:
         resp = requests.get(f"https://{hostname}/graphql/",

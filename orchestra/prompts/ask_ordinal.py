@@ -28,8 +28,7 @@ class LeetCodeUrlValidator(Validator):
         self.session = session
 
     def validate(self, document: Document) -> None:
-        print(document)
-        # raise AssertionError("should use async version of validate function.")
+        raise AssertionError("should use async version of validate function.")
 
     async def validate_async(self, document: Document) -> None:
         (_, hostname, path, _, _, _) = urllib.parse.urlparse(
@@ -50,3 +49,4 @@ class LeetCodeUrlValidator(Validator):
                 message=f'Cannot fetch metadata for problem "{title_slug}"')
         else:
             self.session.metadata = prob
+            prob["siteUrlPrefix"] = "https://" + hostname

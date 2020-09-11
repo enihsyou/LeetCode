@@ -11,7 +11,7 @@
         "introspect": true
       },
       "LeetCode Global GraphQL Endpoint": {
-        "url": "https://leetcode-cn.com/graphql/",
+        "url": "https://leetcode.com/graphql/",
         "headers": {
           "user-agent": "JS GraphQL"
         },

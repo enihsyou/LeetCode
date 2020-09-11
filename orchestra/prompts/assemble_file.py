@@ -15,7 +15,7 @@ async def assemble(session: AskSession):
     lang_code = code_snippet['code']
 
     title = metadata['title']
-    question_id = metadata['questionId']
+    question_id = metadata['questionFrontendId']
 
     ext_mapping = {
         'C++'       : 'cpp',
@@ -60,7 +60,13 @@ async def assemble(session: AskSession):
 
 
 def enhance_java(session: AskSession, code_snippet: str):
-    question_id = session.metadata['questionId']
+    question_id = session.metadata['questionFrontendId']
+    # questionId can be differed with questionFrontendId,
+    # such as find-common-characters
+
+    question_title = session.metadata['title']
+    question_url = session.metadata["siteUrlPrefix"] + \
+                   session.metadata['questionDetailUrl']
 
     code_snippet = code_snippet[:code_snippet.rindex('}')]
 
@@ -75,9 +81,16 @@ def enhance_java(session: AskSession, code_snippet: str):
         "",
         indent(0, """
         import java.util.stream.Stream;
+
         import leetcode.base.java.JavaTest;
         import org.junit.jupiter.params.provider.Arguments;"""),
         "",
+        indent(0, f"""
+        /**
+         * <a href="{question_url}">
+         *     {question_id}. {question_title}
+         * </a>
+         */"""),
         code_snippet,
         indent(4, """
         static class SolutionTest extends JavaTest<Solution> {
