@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 import leetcode.base.java.DiffMode;
@@ -63,6 +64,44 @@ class Solution implements Cloneable {
         } while (pointer < candidates.length && candidates[pointer] == current);
         dfs(stack, candidates, remain, pointer);
     }
+
+
+    public List<List<Integer>> combinationSum2_2(int[] candidates, int target) {
+        answer.clear();
+
+        Arrays.sort(candidates);
+        dfs2(new ArrayDeque<>(candidates.length), candidates, target, 0);
+        return answer;
+    }
+
+    /**
+     * @param remain  还需要多少数字
+     * @param pointer 接下来从哪个candidate开始选
+     */
+    private void dfs2(Deque<Integer> stack, int[] candidates, int remain, int pointer) {
+        if (remain == 0) {
+            answer.add(new ArrayList<>(stack));
+            return;
+        }
+        for (int i = pointer; i < candidates.length; i++) {
+            if (pointer != i && candidates[i - 1] == candidates[i]) {
+                // 跳过重复项
+                continue;
+            }
+            int thisRemain = remain - candidates[i];
+            if (thisRemain >= 0) {
+                // 选用这个数字
+                stack.addLast(candidates[i]);
+                dfs2(stack, candidates, thisRemain, i + 1);
+                // 不选这个数字
+                stack.removeLast();
+            } else {
+                // 超过求和限制
+                break;
+            }
+        }
+    }
+
 
     static class SolutionTest extends JavaTest<Solution> {
 
