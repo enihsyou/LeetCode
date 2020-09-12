@@ -1,13 +1,14 @@
 package leetcode.q39.java;
 
-import org.assertj.core.api.SoftAssertions;
-import org.junit.jupiter.api.Test;
+import leetcode.base.java.DiffMode;
+import leetcode.base.java.JavaTest;
+import org.junit.jupiter.params.provider.Arguments;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 /**
@@ -24,50 +25,54 @@ class Solution {
 
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         this.candidates = candidates;
-        result = new ArrayList<>();
-        stack = new LinkedList<>();
-        Arrays.sort(candidates);
-        helper(target, candidates.length - 1);
+        this.result     = new ArrayList<>();
+        this.stack      = new ArrayDeque<>(target / 2);
+        dfs(target, 0);
         return result;
     }
 
     /**
-     * @param remain 还需要多少数字
-     * @param start  接下来从哪个candidate开始选
+     * @param remain  还需要多少数字
+     * @param pointer 接下来从哪个candidate开始选
      */
-    private void helper(int remain, int start) {
+    private void dfs(int remain, int pointer) {
         if (remain == 0) {
             result.add(new ArrayList<>(stack));
             return;
         }
 
-        for (int i = start; i >= 0; i--) {
-            /*当前选取的数字大小*/
-            int num = candidates[i];
-            /*可以添加当前数字*/
-            if (remain >= num) {
-                /*添加当前数字*/
-                stack.push(Integer.valueOf(num));
-                helper(remain - num, i);
-                /*递归跳出，移除当前数字*/
-                stack.pop();
-            }
+        if (pointer == candidates.length) {
+            return;
         }
+
+        if (remain < 0) {
+            return;
+        }
+
+        // 重复使用这个数字
+        stack.addLast(candidates[pointer]);
+        dfs(remain - candidates[pointer], pointer);
+
+        // 不选这个数字
+        stack.removeLast();
+        dfs(remain, pointer + 1);
     }
 
-    static class SolutionTest {
+    static class SolutionTest extends JavaTest<Solution> {
 
-        private final Solution solution = new Solution();
+        @Override
+        protected DiffMode diffMode() {
+            return DiffMode.CONTAIN;
+        }
 
-        @Test
-        void test() {
-            SoftAssertions.assertSoftly(soft -> {
-                soft.assertThat(solution.combinationSum(new int[]{2, 3, 6, 7}, 7))
-                    .hasSameElementsAs(Arrays.asList(Arrays.asList(7), Arrays.asList(2, 2, 3)));
-                soft.assertThat(solution.combinationSum(new int[]{2, 3, 5}, 8))
-                    .hasSameElementsAs(
-                        Arrays.asList(Arrays.asList(2, 2, 2, 2), Arrays.asList(2, 3, 3), Arrays.asList(3, 5)));
-            });
+        @Override
+        protected Stream<Arguments> provider() {
+            return Stream.of(
+                Arguments.of(ints(2, 3, 6, 7), 7,
+                             lists(lists(7), lists(2, 2, 3))),
+                Arguments.of(ints(2, 3, 5), 8,
+                             lists(lists(2, 2, 2, 2), lists(2, 3, 3), lists(3, 5)))
+            );
         }
     }
 }
