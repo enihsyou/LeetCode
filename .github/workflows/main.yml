@@ -54,7 +54,7 @@ jobs:
 
       - name: Rebase onto master
         run: |
-          git rebase master
+          git rebase origin/master
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
