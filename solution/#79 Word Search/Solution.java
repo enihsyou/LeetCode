@@ -12,13 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
  */
 class Solution {
 
-    private static final int[][] directions = {
-        new int[]{ 0, -1 },
-        new int[]{ 0, +1 },
-        new int[]{ -1, 0 },
-        new int[]{ +1, 0 }
-    };
-
     private char[][] board;
     private String   word;
 
@@ -26,9 +19,12 @@ class Solution {
         this.board = board;
         this.word  = word;
 
-        boolean[][] visited = new boolean[board.length][board[0].length];
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[0].length; col++) {
+        int rows = board.length;
+        int cols = board[0].length;
+
+        boolean[][] visited = new boolean[rows][cols];
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
                 if (bfs(visited, row, col, 0)) {
                     return true;
                 }
@@ -38,33 +34,30 @@ class Solution {
     }
 
     private boolean bfs(boolean[][] visited, int iamX, int iamY, int pointer) {
+        if (pointer == word.length()) {
+            // 是目标值，而且指针到底了
+            return true;
+        }
+        if (iamX < 0 || board.length == iamX ||
+            iamY < 0 || board[0].length == iamY) {
+            // 忽略在边界之外坐标
+            return false;
+        }
         if (board[iamX][iamY] != word.charAt(pointer)) {
             // 不是目标值
             return false;
         }
-        if (pointer == word.length() - 1) {
-            // 是目标值，而且指针到底了
-            return true;
+        if (visited[iamX][iamY]) {
+            // 访问过的路径点
+            return false;
         }
         visited[iamX][iamY] = true;
-        for (int[] direction : directions) {
-            int gotoX = iamX + direction[0];
-            int gotoY = iamY + direction[1];
-            if (gotoX < 0 || board.length == gotoX ||
-                gotoY < 0 || board[0].length == gotoY) {
-                // 忽略在边界之外坐标
-                continue;
-            }
-            if (visited[gotoX][gotoY]) {
-                // 忽略已经走过的路径点
-                continue;
-            }
-            if (bfs(visited, gotoX, gotoY, pointer + 1)) {
-                return true;
-            }
-        }
+        boolean found = bfs(visited, iamX + 1, iamY, pointer + 1) ||
+                        bfs(visited, iamX - 1, iamY, pointer + 1) ||
+                        bfs(visited, iamX, iamY + 1, pointer + 1) ||
+                        bfs(visited, iamX, iamY - 1, pointer + 1);
         visited[iamX][iamY] = false;
-        return false;
+        return found;
     }
 
     static class SolutionTest extends JavaTest<Solution> {
