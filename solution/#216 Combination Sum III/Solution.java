@@ -85,8 +85,7 @@ class Solution {
                 Arguments.of(3, 15, lists(lists(1, 5, 9), lists(1, 6, 8), lists(2, 4, 9),
                                           lists(2, 5, 8), lists(2, 6, 7), lists(3, 4, 8),
                                           lists(3, 5, 7), lists(4, 5, 6))),
-                Arguments.of(2, 18, lists()),
-                Arguments.of(5, 20)
+                Arguments.of(2, 18, lists())
             );
         }
     }
