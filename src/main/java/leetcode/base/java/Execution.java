@@ -12,6 +12,7 @@ import org.assertj.core.util.Preconditions;
  * @author Ryoka Kujo chunxiang.huang@mail.hypers.com
  * @since 2020-09-13
  */
+@SuppressWarnings("WeakerAccess")
 abstract class Execution {
 
     protected final Method   method;
@@ -34,14 +35,6 @@ abstract class Execution {
         assertions(methodOutput);
     }
 
-    public static Execution getInstance(Method method, Object[] args, DiffMode diffMode) {
-        if (method.getParameterCount() == args.length) {
-            return new PrintExecution(method, args, diffMode);
-        } else {
-            return new AssertExecution(method, args, diffMode);
-        }
-    }
-
     private Object invokeMethod() throws Throwable {
         Object[] methodInput = Arrays.copyOf(args, argsLength());
         try {
@@ -59,6 +52,12 @@ abstract class Execution {
     }
 
     private void preconditions() {
+        miscArgsPreconditions();
+        inputArgsPreconditions();
+        outputArgsPreconditions();
+    }
+
+    protected void miscArgsPreconditions() {
         Preconditions.checkState(args.length > 0, "尚未提供入参出参");
 
         String argsLengthAssertMessage = assertion
@@ -67,7 +66,9 @@ abstract class Execution {
         Preconditions.checkState(method.getParameterCount() == argsLength(),
                                  argsLengthAssertMessage,
                                  method.getParameterCount(), argsLength());
+    }
 
+    protected void inputArgsPreconditions() {
         Class<?>[] parameterTypes = method.getParameterTypes();
         for (int i = 0; i < parameterTypes.length; i++) {
             Class<?> parameterType = parameterTypes[i];
@@ -77,16 +78,22 @@ abstract class Execution {
                                      args[i].getClass().getSimpleName(),
                                      parameterType.getSimpleName());
         }
-        if (assertion) {
-            Class<?> returnsType   = method.getReturnType();
-            Object   returnsObject = args[method.getParameterCount()];
-            Preconditions.checkState(returnsObject != null, "出参不应该为null");
-            assert returnsObject != null; // IDEA bug
-            Preconditions.checkState(isAssignableTo(returnsObject.getClass(), returnsType),
-                                     "出参的类型应该为%s而不是%s",
-                                     returnsObject.getClass().getSimpleName(),
-                                     returnsType.getSimpleName());
+    }
+
+    protected void outputArgsPreconditions() {
+        if (args.length == method.getParameterCount()) {
+            // 可能是用例不好assert，只需打印结果
+            return;
         }
+
+        Class<?> returnsType   = method.getReturnType();
+        Object   returnsObject = args[method.getParameterCount()];
+        Preconditions.checkState(returnsObject != null, "出参不应该为null");
+        assert returnsObject != null; // IDEA bug
+        Preconditions.checkState(isAssignableTo(returnsObject.getClass(), returnsType),
+                                 "出参的类型应该为%s而不是%s",
+                                 returnsObject.getClass().getSimpleName(),
+                                 returnsType.getSimpleName());
     }
 
     protected abstract void assertions(Object methodOutput);

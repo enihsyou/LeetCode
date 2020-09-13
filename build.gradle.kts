@@ -47,6 +47,9 @@ sourceSets {
     main {
         compileClasspath += javaCompileDependencies
     }
+    test {
+        compileClasspath += javaCompileDependencies
+    }
 }
 
 //configurations {

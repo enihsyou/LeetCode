@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.DynamicContainer;
@@ -19,7 +18,6 @@ import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.platform.commons.support.ModifierSupport;
 import org.junit.platform.commons.util.ReflectionUtils;
-import org.junit.platform.commons.util.StringUtils;
 import org.junit.platform.engine.discovery.DiscoverySelectors;
 import org.junit.platform.engine.discovery.MethodSelector;
 
@@ -48,24 +46,32 @@ public abstract class JavaTest<S> {
         return DiffMode.EXACTLY;
     }
 
+    @SuppressWarnings("WeakerAccess")
+    protected AssertMode assertMode() {
+        return AssertMode.exceptOutputMode();
+    }
+
+    @SuppressWarnings("WeakerAccess")
+    protected DisplayNameGenerator displayNameGenerator() {
+        return new DisplayNameGenerator.Default();
+    }
+
     /** 动态创建测试用例 */
     @TestFactory
     Stream<? extends DynamicNode> dynamicTestsGenerator() {
         return solutionMethods.stream()
-            .map(method -> buildDynamicTest(method, provider(), diffMode()));
+            .map(method -> buildDynamicTest(method, provider()));
     }
 
     /** 创建一个解题方法组，如果有多个public方法会有多个测试组 */
-    private static DynamicContainer buildDynamicTest(Method method, Stream<Arguments> provider,
-                                                     DiffMode diffMode) {
+    private DynamicContainer buildDynamicTest(Method method, Stream<Arguments> provider) {
         return DynamicContainer.dynamicContainer(
-            parameterizedMethodName(method),
-            provider.map(args -> buildDynamicTest(method, args, diffMode)));
+            displayNameGenerator().nameForMethod(method),
+            provider.map(args -> buildDynamicTest(method, args)));
     }
 
     /** 创建属于一个解题方法组的一个测试用例 */
-    private static DynamicTest buildDynamicTest(Method method, Arguments provider,
-                                                DiffMode diffMode) {
+    private DynamicTest buildDynamicTest(Method method, Arguments provider) {
         Object[] args = provider.get();
 
         MethodSelector methodSelector = DiscoverySelectors.selectMethod(method.getDeclaringClass(), method);
@@ -75,59 +81,10 @@ public abstract class JavaTest<S> {
                            encode.apply(methodSelector.getClassName()) + "#" +
                            encode.apply(methodSelector.getMethodName());
 
-        Execution execution = Execution.getInstance(method, args, diffMode);
         return DynamicTest.dynamicTest(
-            parameterizedTestCaseName(method, args),
+            displayNameGenerator().nameForCase(method, args),
             URI.create(uriString),
-            execution::executeTestCase);
-    }
-
-
-    /**
-     * 生成未填充参数值，只有参数类型的测试组名
-     * @return {@code twoSum(int[], int) = int[]}
-     */
-    private static String parameterizedMethodName(Method method) {
-        String methodArgs = Arrays.stream(method.getParameterTypes())
-            .map(Class::getSimpleName)
-            .collect(Collectors.joining(", "));
-        String methodReturn = method.getReturnType().getSimpleName();
-
-        return parameterizedMethodName(method, methodArgs, methodReturn);
-    }
-
-    /**
-     * 生成填充了参数值的测试名
-     * @return {@code twoSum([3,2,4], 6) = [1, 2]}
-     */
-    private static String parameterizedTestCaseName(Method method, Object[] args) {
-        if (args.length < 1) {
-            return parameterizedMethodName(method, "#ERR", "#ERR");
-        }
-
-        if (args.length == method.getParameterCount()) {
-            String methodArgs = Arrays.stream(args)
-                .map(StringUtils::nullSafeToString)
-                .collect(Collectors.joining(", "));
-            return parameterizedMethodName(method, methodArgs);
-        } else {
-            String methodArgs = Arrays.stream(args).limit(args.length - 1)
-                .map(StringUtils::nullSafeToString)
-                .collect(Collectors.joining(", "));
-            String methodReturn = StringUtils.nullSafeToString(args[args.length - 1]);
-
-            return parameterizedMethodName(method, methodArgs, methodReturn);
-        }
-    }
-
-    @SuppressWarnings("TypeMayBeWeakened")
-    private static String parameterizedMethodName(Method method, String methodArgs) {
-        return String.format("%s(%s)", method.getName(), methodArgs);
-    }
-
-    @SuppressWarnings("TypeMayBeWeakened")
-    private static String parameterizedMethodName(Method method, String methodArgs, String methodReturn) {
-        return String.format("%s(%s) = %s", method.getName(), methodArgs, methodReturn);
+            assertMode().createExecutable(method, args, diffMode()));
     }
 
     /** 获得子类继承实现该抽象类时，设置在JavaTest.{@link S}上的类型 */

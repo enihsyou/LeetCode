@@ -3,6 +3,8 @@ package leetcode.base.java;
 import java.lang.reflect.Method;
 
 import org.junit.platform.commons.util.StringUtils;
+import org.opentest4j.TestAbortedException;
+import org.opentest4j.TestSkippedException;
 
 /**
  * @author Ryoka Kujo chunxiang.huang@mail.hypers.com
@@ -10,13 +12,20 @@ import org.junit.platform.commons.util.StringUtils;
  */
 class PrintExecution extends Execution {
 
-    PrintExecution(Method method, Object[] args, DiffMode diffMode) {
+    /** 执行完以后标注错误 */
+    private final boolean abortAtLast;
+
+    PrintExecution(Method method, Object[] args, DiffMode diffMode, boolean abortAtLast) {
         super(method, args, diffMode, false);
+        this.abortAtLast = abortAtLast;
     }
 
     @Override
     public void assertions(Object methodOutput) {
         System.out.println(StringUtils.nullSafeToString(methodOutput));
+        if (abortAtLast) {
+            throw new TestAbortedException("print output without assertion.");
+        }
     }
 
     @Override
