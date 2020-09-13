@@ -28,6 +28,7 @@ dependencies {
     javaCompileDependencies("org.junit.jupiter:junit-jupiter-params:5.6.0")
     javaCompileDependencies("org.junit.jupiter:junit-jupiter-engine:5.6.0")
 
+    javaRuntimeDependencies("org.apache.logging.log4j:log4j-jul:2.13.0")
     javaRuntimeDependencies("org.apache.logging.log4j:log4j-slf4j-impl:2.13.0")
 
     kotlinCompileDependencies(kotlin("stdlib"))
@@ -55,6 +56,7 @@ sourceSets {
 tasks {
     test {
         useJUnitPlatform()
+        systemProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
         failFast = false
 
         // include compiled solution class file into test task.

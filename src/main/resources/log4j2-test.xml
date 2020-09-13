@@ -9,11 +9,12 @@
   <Appenders>
     <Console name="CONSOLE" target="SYSTEM_OUT">
       <PatternLayout
-          pattern="%date{ABSOLUTE} %highlight{%level{length=1}} [%15.15t] %style{%-30.30logger{1.}}{blue}: %highlight{%message}%n%exception" />
+          pattern="%date{ABSOLUTE} %style{%-.30logger}{blue}: %highlight{%message}%n%exception" />
     </Console>
   </Appenders>
 
   <Loggers>
+    <Logger name="leetcode" level="ALL" />
     <Root level="INFO">
       <AppenderRef ref="CONSOLE" />
     </Root>
