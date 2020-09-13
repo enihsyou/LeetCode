@@ -15,13 +15,13 @@ import org.junit.jupiter.params.provider.Arguments;
 class Solution {
 
     public void rotate(int[] nums, int k) {
-        boolean[] swapped = new boolean[nums.length];
-        for (int i = 0; i < nums.length; i++) {
-            int pointer      = i;
+        // 多次循环和一次的效果一样
+        k %= nums.length;
+
+        int swapped = 0;
+        for (int current = 0; swapped < nums.length; current++) {
+            int pointer      = current;
             int numAtPointer = nums[pointer];
-            if (swapped[pointer]) {
-                continue;
-            }
             do {
                 // 要交换到到位置
                 int shiftPointer = (pointer + k) % nums.length;
@@ -30,11 +30,11 @@ class Solution {
                 // 旧数字交换到新位置
                 nums[shiftPointer] = numAtPointer;
                 // 保存被交换覆盖的数字
-                swapped[shiftPointer] = true;
+                swapped++;
 
                 numAtPointer = numAtShift;
                 pointer      = shiftPointer;
-            } while (pointer != i);
+            } while (pointer != current);
         }
     }
 
