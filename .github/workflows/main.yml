@@ -49,7 +49,12 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v2
         with:
+          ref: action/update-readme
           fetch-depth: 0
+
+      - name: Rebase onto master
+        run: |
+          git rebase master
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
