@@ -19,12 +19,15 @@
 | [20][p20]     | 20   | Valid Parentheses                                 | [Java][#20 java]                        | 2020-09-06 18:42 |
 | [22][p22]     | 22   | Generate Parentheses                              | [Java][#22 java]                        | 2020-09-06 01:23 |
 | [26][p26]     | 26   | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]                    | 2020-09-06 18:42 |
-| [39][p39]     | 39   | Combination Sum                                   | [Java][#39 java]                        | 2020-09-06 01:23 |
+| [39][p39]     | 39   | Combination Sum                                   | [Java][#39 java]                        | 2020-09-12 16:10 |
+| [40][p40]     | 40   | Combination Sum II                                | [Java][#40 java]                        | 2020-09-13 02:15 |
 | [53][p53]     | 53   | Maximum Subarray                                  | [Java][#53 java]                        | 2020-09-06 18:42 |
 | [56][p56]     | 56   | Merge Intervals                                   | [Kotlin][#56 kotlin]                    | 2020-09-06 18:42 |
 | [65][p65]     | 65   | Valid Number                                      | [Kotlin][#65 kotlin]                    | 2020-09-06 18:42 |
 | [66][p66]     | 66   | Plus One                                          | [Java][#66 java]                        | 2020-09-09 21:21 |
 | [67][p67]     | 67   | Add Binary                                        | [Java][#67 java]                        | 2020-09-10 00:47 |
+| [77][p77]     | 77   | Combinations                                      | [Java][#77 java]                        | 2020-09-12 02:19 |
+| [79][p79]     | 79   | Word Search                                       | [Java][#79 java]                        | 2020-09-13 17:59 |
 | [122][p122]   | 122  | Best Time to Buy and Sell Stock II                | [Kotlin][#122 kotlin]                   | 2020-09-06 18:42 |
 | [136][p136]   | 136  | Single Number                                     | [Java][#136 java]                       | 2020-09-10 00:55 |
 | [137][p137]   | 137  | Single Number II                                  | [Java][#137 java]                       | 2020-09-10 01:52 |
@@ -34,6 +37,7 @@
 | [182][p182]   | 182  | Duplicate Emails                                  | [MySQL][#182 mysql]                     | 2020-09-06 18:58 |
 | [191][p191]   | 191  | Number of 1 Bits                                  | [Java][#191 java]                       | 2020-09-06 18:42 |
 | [192][p192]   | 192  | Word Frequency                                    | [Bash][#192 bash]                       | 2020-09-06 18:58 |
+| [216][p216]   | 216  | Combination Sum III                               | [Java][#216 java]                       | 2020-09-13 16:05 |
 | [260][p260]   | 260  | Single Number III                                 | [Java][#260 java]                       | 2020-09-10 02:03 |
 | [268][p268]   | 268  | Missing Number                                    | [Java][#268 java]                       | 2020-09-06 18:42 |
 | [349][p349]   | 349  | Intersection of Two Arrays                        | [Java][#349 java]                       | 2020-09-11 15:03 |
@@ -62,11 +66,14 @@
 [p22]: https://leetcode-cn.com/problems/generate-parentheses/
 [p26]: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
 [p39]: https://leetcode-cn.com/problems/combination-sum/
+[p40]: https://leetcode-cn.com/problems/combination-sum-ii/
 [p53]: https://leetcode-cn.com/problems/maximum-subarray/
 [p56]: https://leetcode-cn.com/problems/merge-intervals/
 [p65]: https://leetcode-cn.com/problems/valid-number/
 [p66]: https://leetcode-cn.com/problems/plus-one/
 [p67]: https://leetcode-cn.com/problems/add-binary/
+[p77]: https://leetcode-cn.com/problems/combinations/
+[p79]: https://leetcode-cn.com/problems/word-search/
 [p122]: https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
 [p136]: https://leetcode-cn.com/problems/single-number/
 [p137]: https://leetcode-cn.com/problems/single-number-ii/
@@ -76,6 +83,7 @@
 [p182]: https://leetcode-cn.com/problems/duplicate-emails/
 [p191]: https://leetcode-cn.com/problems/number-of-1-bits/
 [p192]: https://leetcode-cn.com/problems/word-frequency/
+[p216]: https://leetcode-cn.com/problems/combination-sum-iii/
 [p260]: https://leetcode-cn.com/problems/single-number-iii/
 [p268]: https://leetcode-cn.com/problems/missing-number/
 [p349]: https://leetcode-cn.com/problems/intersection-of-two-arrays/
@@ -109,12 +117,16 @@
 [#20 java]: solution/%2320%20Valid%20Parentheses/Solution.java
 [#22 java]: solution/%2322%20Generate%20Parentheses/Solution.java
 [#39 java]: solution/%2339%20Combination%20Sum/Solution.java
+[#40 java]: solution/%2340%20Combination%20Sum%20II/Solution.java
 [#53 java]: solution/%2353%20Maximum%20Subarray/Solution.java
 [#66 java]: solution/%2366%20Plus%20One/Solution.java
 [#67 java]: solution/%2367%20Add%20Binary/Solution.java
+[#77 java]: solution/%2377%20Combinations/Solution.java
+[#79 java]: solution/%2379%20Word%20Search/Solution.java
 [#136 java]: solution/%23136%20Single%20Number/Solution.java
 [#137 java]: solution/%23137%20Single%20Number%20II/Solution.java
 [#191 java]: solution/%23191%20Number%20of%201%20Bits/Solution.java
+[#216 java]: solution/%23216%20Combination%20Sum%20III/Solution.java
 [#260 java]: solution/%23260%20Single%20Number%20III/Solution.java
 [#268 java]: solution/%23268%20Missing%20Number/Solution.java
 [#349 java]: solution/%23349%20Intersection%20of%20Two%20Arrays/Solution.java
