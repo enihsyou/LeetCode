@@ -83,7 +83,7 @@ jobs:
       - name: Make git commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update table of solutions in README.md
+          commit_message: "🤖 Update table of solutions in README.md"
           branch: action/update-readme
           file_pattern: README.md
           push_options: --force-with-lease
