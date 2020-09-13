@@ -35,9 +35,12 @@
 | [176][p176]   | 176  | Second Highest Salary                             | [MySQL][#176 mysql]                     | 2020-09-06 18:58 |
 | [178][p178]   | 178  | Rank Scores                                       | [MySQL][#178 mysql]                     | 2020-09-06 18:58 |
 | [182][p182]   | 182  | Duplicate Emails                                  | [MySQL][#182 mysql]                     | 2020-09-06 18:58 |
+| [189][p189]   | 189  | Rotate Array                                      | [Java][#189 java]                       | 2020-09-13 22:25 |
+| [190][p190]   | 190  | Reverse Bits                                      | [Java][#190 java]                       | 2020-09-13 23:12 |
 | [191][p191]   | 191  | Number of 1 Bits                                  | [Java][#191 java]                       | 2020-09-06 18:42 |
 | [192][p192]   | 192  | Word Frequency                                    | [Bash][#192 bash]                       | 2020-09-06 18:58 |
-| [216][p216]   | 216  | Combination Sum III                               | [Java][#216 java]                       | 2020-09-13 16:05 |
+| [216][p216]   | 216  | Combination Sum III                               | [Java][#216 java]                       | 2020-09-13 22:18 |
+| [217][p217]   | 217  | Contains Duplicate                                | [Java][#217 java]                       | 2020-09-14 00:27 |
 | [260][p260]   | 260  | Single Number III                                 | [Java][#260 java]                       | 2020-09-10 02:03 |
 | [268][p268]   | 268  | Missing Number                                    | [Java][#268 java]                       | 2020-09-06 18:42 |
 | [349][p349]   | 349  | Intersection of Two Arrays                        | [Java][#349 java]                       | 2020-09-11 15:03 |
@@ -81,9 +84,12 @@
 [p176]: https://leetcode-cn.com/problems/second-highest-salary/
 [p178]: https://leetcode-cn.com/problems/rank-scores/
 [p182]: https://leetcode-cn.com/problems/duplicate-emails/
+[p189]: https://leetcode-cn.com/problems/rotate-array/
+[p190]: https://leetcode-cn.com/problems/reverse-bits/
 [p191]: https://leetcode-cn.com/problems/number-of-1-bits/
 [p192]: https://leetcode-cn.com/problems/word-frequency/
 [p216]: https://leetcode-cn.com/problems/combination-sum-iii/
+[p217]: https://leetcode-cn.com/problems/contains-duplicate/
 [p260]: https://leetcode-cn.com/problems/single-number-iii/
 [p268]: https://leetcode-cn.com/problems/missing-number/
 [p349]: https://leetcode-cn.com/problems/intersection-of-two-arrays/
@@ -125,8 +131,11 @@
 [#79 java]: solution/%2379%20Word%20Search/Solution.java
 [#136 java]: solution/%23136%20Single%20Number/Solution.java
 [#137 java]: solution/%23137%20Single%20Number%20II/Solution.java
+[#189 java]: solution/%23189%20Rotate%20Array/Solution.java
+[#190 java]: solution/%23190%20Reverse%20Bits/Solution.java
 [#191 java]: solution/%23191%20Number%20of%201%20Bits/Solution.java
 [#216 java]: solution/%23216%20Combination%20Sum%20III/Solution.java
+[#217 java]: solution/%23217%20Contains%20Duplicate/Solution.java
 [#260 java]: solution/%23260%20Single%20Number%20III/Solution.java
 [#268 java]: solution/%23268%20Missing%20Number/Solution.java
 [#349 java]: solution/%23349%20Intersection%20of%20Two%20Arrays/Solution.java
