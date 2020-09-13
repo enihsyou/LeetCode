@@ -26,9 +26,9 @@ class Solution {
         this.board = board;
         this.word  = word;
 
+        boolean[][] visited = new boolean[board.length][board[0].length];
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[0].length; col++) {
-                boolean[][] visited = new boolean[board.length][board[0].length];
                 if (bfs(visited, row, col, 0)) {
                     return true;
                 }
@@ -38,33 +38,31 @@ class Solution {
     }
 
     private boolean bfs(boolean[][] visited, int iamX, int iamY, int pointer) {
-        if (pointer == word.length()) {
-            // 到达目标
-            return true;
-        }
-        if (iamX < 0 || board.length == iamX ||
-            iamY < 0 || board[0].length == iamY) {
-            // 忽略在边界之外坐标
-            return false;
-        }
-        if (visited[iamX][iamY]) {
-            // 忽略已经走过的路径点
-            return false;
-        }
         if (board[iamX][iamY] != word.charAt(pointer)) {
-            // 结束目标值不匹配的路径
+            // 不是目标值
             return false;
         }
-
-        // 访问这个路径点，继续搜索
-        visited[iamX][iamY] = true;
-        if (bfs(visited, iamX + 1, iamY, pointer + 1) ||
-            bfs(visited, iamX - 1, iamY, pointer + 1) ||
-            bfs(visited, iamX, iamY + 1, pointer + 1) ||
-            bfs(visited, iamX, iamY - 1, pointer + 1)) {
+        if (pointer == word.length() - 1) {
+            // 是目标值，而且指针到底了
             return true;
         }
-        // 这个路径点走不通了，允许其他搜索继续使用这个路径点
+        visited[iamX][iamY] = true;
+        for (int[] direction : directions) {
+            int gotoX = iamX + direction[0];
+            int gotoY = iamY + direction[1];
+            if (gotoX < 0 || board.length == gotoX ||
+                gotoY < 0 || board[0].length == gotoY) {
+                // 忽略在边界之外坐标
+                continue;
+            }
+            if (visited[gotoX][gotoY]) {
+                // 忽略已经走过的路径点
+                continue;
+            }
+            if (bfs(visited, gotoX, gotoY, pointer + 1)) {
+                return true;
+            }
+        }
         visited[iamX][iamY] = false;
         return false;
     }
@@ -79,6 +77,7 @@ class Solution {
             char[][] board2 = chars(chars('A', 'B', 'C', 'E'),
                                     chars('S', 'F', 'E', 'S'),
                                     chars('A', 'D', 'E', 'E'));
+            char[][] board3 = { chars('A') };
             return Stream.of(
                 Arguments.of(board1, "ABCCED", true),
                 Arguments.of(board1, "SEE", true),
@@ -87,7 +86,12 @@ class Solution {
                 Arguments.of(board1, "DECCE", true),
                 Arguments.of(board1, "SCFS", true),
                 Arguments.of(board1, "ABCB", false),
-                Arguments.of(board2, "ABCESEEEFS", true)
+                Arguments.of(board1, "CEF", false),
+                Arguments.of(board1, "ABCESCFSADEE", true),
+                Arguments.of(board1, "ABCESCFSADEF", false),
+                Arguments.of(board2, "ABCESEEEFS", true),
+                Arguments.of(board3, "A", true),
+                Arguments.of(board3, "B", false)
             );
         }
     }
