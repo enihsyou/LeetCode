@@ -28,7 +28,7 @@ abstract class Execution {
     }
 
     /** 调用AssertJ执行断言测试 */
-    public void executeTestCase() {
+    public void executeTestCase() throws Throwable {
         preconditions();
         Object methodOutput = invokeMethod();
         assertions(methodOutput);
@@ -42,7 +42,7 @@ abstract class Execution {
         }
     }
 
-    private Object invokeMethod() {
+    private Object invokeMethod() throws Throwable {
         Object[] methodInput = Arrays.copyOf(args, argsLength());
         try {
             Constructor<?> solutionConstructor = method.getDeclaringClass().getDeclaredConstructor();
@@ -52,7 +52,7 @@ abstract class Execution {
             return method.invoke(solutionObject, methodInput);
         } catch (InvocationTargetException e) {
             //noinspection ThrowInsideCatchBlockWhichIgnoresCaughtException
-            throw (RuntimeException) e.getCause();
+            throw e.getCause();
         } catch (@SuppressWarnings("OverlyBroadCatchBlock") Exception e) {
             throw new RuntimeException("reflection invocation failed.", e);
         }

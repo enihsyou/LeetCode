@@ -150,6 +150,10 @@ public abstract class JavaTest<S> {
         return ints;
     }
 
+    protected static char[] chars(char... chars) {
+        return chars;
+    }
+
     @SuppressWarnings("ZeroLengthArrayAllocation")
     protected static int[] emptyInts() {
         return new int[]{ };
@@ -157,6 +161,10 @@ public abstract class JavaTest<S> {
 
     protected static int[][] ints(int[]... ints) {
         return ints;
+    }
+
+    protected static char[][] chars(char[]... chars) {
+        return chars;
     }
 
     protected static String[] strings(String... strings) {
