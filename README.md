@@ -19,6 +19,7 @@
 | [20][p20]     | 20   | Valid Parentheses                                 | [Java][#20 java]                        | 2020-09-06 18:42 |
 | [22][p22]     | 22   | Generate Parentheses                              | [Java][#22 java]                        | 2020-09-06 01:23 |
 | [26][p26]     | 26   | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]                    | 2020-09-06 18:42 |
+| [36][p36]     | 36   | Valid Sudoku                                      | [Java][#36 java]                        | 2020-09-14 01:01 |
 | [39][p39]     | 39   | Combination Sum                                   | [Java][#39 java]                        | 2020-09-12 16:10 |
 | [40][p40]     | 40   | Combination Sum II                                | [Java][#40 java]                        | 2020-09-13 02:15 |
 | [53][p53]     | 53   | Maximum Subarray                                  | [Java][#53 java]                        | 2020-09-06 18:42 |
@@ -68,6 +69,7 @@
 [p20]: https://leetcode-cn.com/problems/valid-parentheses/
 [p22]: https://leetcode-cn.com/problems/generate-parentheses/
 [p26]: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+[p36]: https://leetcode-cn.com/problems/valid-sudoku/
 [p39]: https://leetcode-cn.com/problems/combination-sum/
 [p40]: https://leetcode-cn.com/problems/combination-sum-ii/
 [p53]: https://leetcode-cn.com/problems/maximum-subarray/
@@ -122,6 +124,7 @@
 [#17 java]: solution/%2317%20Letter%20Combinations%20of%20a%20Phone%20Number/Solution.java
 [#20 java]: solution/%2320%20Valid%20Parentheses/Solution.java
 [#22 java]: solution/%2322%20Generate%20Parentheses/Solution.java
+[#36 java]: solution/%2336%20Valid%20Sudoku/Solution.java
 [#39 java]: solution/%2339%20Combination%20Sum/Solution.java
 [#40 java]: solution/%2340%20Combination%20Sum%20II/Solution.java
 [#53 java]: solution/%2353%20Maximum%20Subarray/Solution.java
