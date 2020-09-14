@@ -15,12 +15,12 @@ import org.assertj.core.api.ObjectArrayAssert;
 class AssertExecution extends Execution {
 
     AssertExecution(Method method, Object[] args, DiffMode diffMode) {
-        super(method, args, diffMode, true);
+        super(method, args, diffMode);
     }
 
     @Override
     public void assertions(Object methodOutput) {
-        Object methodExcept = args[argsLength()];
+        Object methodExcept = args[method.getParameterCount()];
 
         if (methodExcept.getClass().isArray()) {
             //noinspection ChainOfInstanceofChecks

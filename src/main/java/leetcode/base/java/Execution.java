@@ -19,13 +19,10 @@ abstract class Execution {
     protected final Object[] args;
     protected final DiffMode diffMode;
 
-    private final boolean assertion;
-
-    protected Execution(Method method, Object[] args, DiffMode diffMode, boolean assertion) {
-        this.method    = method;
-        this.args      = args;
-        this.diffMode  = diffMode;
-        this.assertion = assertion;
+    protected Execution(Method method, Object[] args, DiffMode diffMode) {
+        this.method   = method;
+        this.args     = args;
+        this.diffMode = diffMode;
     }
 
     /** 调用AssertJ执行断言测试 */
@@ -36,7 +33,7 @@ abstract class Execution {
     }
 
     private Object invokeMethod() throws Throwable {
-        Object[] methodInput = Arrays.copyOf(args, argsLength());
+        Object[] methodInput = Arrays.copyOf(args, method.getParameterCount());
         try {
             Constructor<?> solutionConstructor = method.getDeclaringClass().getDeclaredConstructor();
             solutionConstructor.setAccessible(true);
@@ -60,21 +57,28 @@ abstract class Execution {
     protected void miscArgsPreconditions() {
         Preconditions.checkState(args.length > 0, "尚未提供入参出参");
 
-        String argsLengthAssertMessage = assertion
-            ? "需要%d个入参但(除去出参)提供了%d个"
-            : "需要%d个入参但提供了%d个";
-        Preconditions.checkState(method.getParameterCount() == argsLength(),
-                                 argsLengthAssertMessage,
-                                 method.getParameterCount(), argsLength());
+        boolean  enoughParameters = args.length == method.getParameterCount();
+        boolean  assertParameters = args.length == method.getParameterCount() + 1;
+        Class<?> returnsType      = method.getReturnType();
+        if (returnsType == void.class) {
+            Preconditions.checkState(enoughParameters || assertParameters,
+                                     "函数需要%d个参数和最多一个返回值，但提供了%d个，" +
+                                     "返回void的函数推荐使用AssertMode.exceptArgumentMode",
+                                     method.getParameterCount(), args.length);
+        } else {
+            Preconditions.checkState(enoughParameters || assertParameters,
+                                     "函数需要%d个参数和最多一个返回值，但提供了%d个",
+                                     method.getParameterCount(), args.length);
+        }
     }
 
     protected void inputArgsPreconditions() {
         Class<?>[] parameterTypes = method.getParameterTypes();
         for (int i = 0; i < parameterTypes.length; i++) {
             Class<?> parameterType = parameterTypes[i];
-            Preconditions.checkState(args[i] != null, "第%d个入参不应该为null", i + 1);
+            Preconditions.checkState(args[i] != null, "第%d个参数不应该为null", i + 1);
             Preconditions.checkState(isAssignableTo(args[i].getClass(), parameterType),
-                                     "第%d个入参的类型应该为%s而不是%s", i + 1,
+                                     "第%d个参数的类型应该为%s而不是%s", i + 1,
                                      args[i].getClass().getSimpleName(),
                                      parameterType.getSimpleName());
         }
@@ -86,12 +90,14 @@ abstract class Execution {
             return;
         }
 
-        Class<?> returnsType   = method.getReturnType();
-        Object   returnsObject = args[method.getParameterCount()];
-        Preconditions.checkState(returnsObject != null, "出参不应该为null");
+        Class<?> returnsType = method.getReturnType();
+        Preconditions.checkState(returnsType != void.class,
+                                 "函数返回void时推荐使用AssertMode.exceptArgumentMode");
+        Object returnsObject = args[method.getParameterCount()];
+        Preconditions.checkState(returnsObject != null, "函数返回不应该为null");
         assert returnsObject != null; // IDEA bug
         Preconditions.checkState(isAssignableTo(returnsObject.getClass(), returnsType),
-                                 "出参的类型应该为%s而不是%s",
+                                 "函数返回的类型应该为%s而不是%s",
                                  returnsObject.getClass().getSimpleName(),
                                  returnsType.getSimpleName());
     }

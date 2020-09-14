@@ -4,7 +4,6 @@ import java.lang.reflect.Method;
 
 import org.junit.platform.commons.util.StringUtils;
 import org.opentest4j.TestAbortedException;
-import org.opentest4j.TestSkippedException;
 
 /**
  * @author Ryoka Kujo chunxiang.huang@mail.hypers.com
@@ -16,7 +15,7 @@ class PrintExecution extends Execution {
     private final boolean abortAtLast;
 
     PrintExecution(Method method, Object[] args, DiffMode diffMode, boolean abortAtLast) {
-        super(method, args, diffMode, false);
+        super(method, args, diffMode);
         this.abortAtLast = abortAtLast;
     }
 

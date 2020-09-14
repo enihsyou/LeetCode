@@ -2,6 +2,8 @@ package leetcode.base.java;
 
 import java.lang.reflect.Method;
 
+import org.assertj.core.util.Preconditions;
+
 /**
  * @author Ryoka Kujo chunxiang.huang@mail.hypers.com
  * @since 2020-09-13
@@ -23,8 +25,11 @@ public class AssignableAssertExecution extends AssertExecution {
 
     @Override
     protected void outputArgsPreconditions() {
-        if (outputResides == argsLength()) {
-            super.outputArgsPreconditions();
-        }
+        Preconditions.checkState(outputResides < method.getParameterCount(),
+                                 "函数应该原地修改参数，" +
+                                 "其他情况推荐使用AssertMode.exceptOutputMode");
+        Preconditions.checkState(method.getReturnType() == void.class,
+                                 "函数应该返回void，" +
+                                 "其他情况推荐使用AssertMode.exceptOutputMode");
     }
 }

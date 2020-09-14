@@ -46,7 +46,6 @@ public abstract class JavaTest<S> {
         return DiffMode.EXACTLY;
     }
 
-    @SuppressWarnings("WeakerAccess")
     protected AssertMode assertMode() {
         return AssertMode.exceptOutputMode();
     }
@@ -114,6 +113,10 @@ public abstract class JavaTest<S> {
     @SuppressWarnings("ZeroLengthArrayAllocation")
     protected static int[] emptyInts() {
         return new int[]{ };
+    }
+
+    protected static int[][] arrayInts(int[] ints) {
+        return new int[][]{ ints };
     }
 
     protected static int[][] ints(int[]... ints) {
