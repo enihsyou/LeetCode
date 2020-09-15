@@ -33,6 +33,9 @@ class AssertExecution extends Execution {
             } else if (methodExcept.getClass().getComponentType() == int[].class) {
                 diffMode.satisfies(new ObjectArrayAssert<>((int[][]) methodOutput),
                                    methodExcept);
+            } else if (methodExcept.getClass().getComponentType() == char[].class) {
+                diffMode.satisfies(new ObjectArrayAssert<>((char[][]) methodOutput),
+                                   methodExcept);
             } else {
                 throw new UnsupportedOperationException(
                     "没有适配返回类型: " + methodExcept.getClass().getSimpleName());
