@@ -56,7 +56,10 @@ async def assemble(session: AskSession):
         writer.write(lang_code)
 
     import webbrowser
-    webbrowser.open("idea://open?file=" + os.path.abspath(file_path))
+    import urllib.parse
+
+    webbrowser.open("idea://open?file=" +
+                    urllib.parse.quote(os.path.abspath(file_path)))
 
 
 def enhance_java(session: AskSession, code_snippet: str):
