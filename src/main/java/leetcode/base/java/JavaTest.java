@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import leetcode.base.struct.TreeNode;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicNode;
 import org.junit.jupiter.api.DynamicTest;
@@ -134,6 +135,24 @@ public abstract class JavaTest<S> {
     @SafeVarargs
     protected static <E> List<E> lists(E... elements) {
         return Arrays.asList(elements);
+    }
+
+    protected static TreeNode node(int value) {
+        return new TreeNode(value);
+    }
+
+    protected static TreeNode node(int value, Integer left, Integer right) {
+        TreeNode node = new TreeNode(value);
+        if (left != null) node.left = new TreeNode(left);
+        if (right != null) node.right = new TreeNode(right);
+        return node;
+    }
+
+    protected static TreeNode node(int value, TreeNode left, TreeNode right) {
+        TreeNode node = new TreeNode(value);
+        node.left  = left;
+        node.right = right;
+        return node;
     }
 
 }

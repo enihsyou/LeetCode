@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import leetcode.base.java.JavaTest;
+import leetcode.base.struct.TreeNode;
 import org.junit.jupiter.params.provider.Arguments;
 
 /**
@@ -49,16 +50,6 @@ class Solution {
         return answer;
     }
 
-
-    static class TreeNode {
-
-        int      val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) { val = x; }
-    }
-
     static class SolutionTest extends JavaTest<Solution> {
 
         @Override
@@ -69,17 +60,6 @@ class Solution {
                 Arguments.of(node(1, node(4, node(5), null), node(2, node(3), null)),
                              lists(5, 4, 1, 3, 2))
             );
-        }
-
-        private static TreeNode node(int value) {
-            return new TreeNode(value);
-        }
-
-        private static TreeNode node(int value, TreeNode left, TreeNode right) {
-            TreeNode node = new TreeNode(value);
-            node.left  = left;
-            node.right = right;
-            return node;
         }
     }
 }
