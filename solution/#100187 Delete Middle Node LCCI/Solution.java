@@ -18,15 +18,8 @@ import org.junit.jupiter.params.provider.Arguments;
 class Solution {
 
     public void deleteNode(ListNode node) {
-        while (node.next != null) {
-            node.val = node.next.val;
-            if (node.next.next == null) {
-                node.next = null;
-                break;
-            } else {
-                node = node.next;
-            }
-        }
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
 
     static class SolutionTest extends JavaTest<Solution> {
