@@ -38,8 +38,10 @@ enum class Language {
         override fun register(
             folder: LanguageDir, sourceSets: SourceSetContainer,
             configurations: ConfigurationContainer) {
-            sourceSets.register(folder) {
-                java.setSrcDirs(emptyList<String>())
+            sourceSets.maybeCreate(folder).run {
+                if (java.srcDirs.none { it.parentFile?.name == "solution" }) {
+                    java.setSrcDirs(emptyList<String>())
+                }
                 resources.srcDir("solution/$folder")
             }
         }
@@ -48,9 +50,12 @@ enum class Language {
     MySql {
 
         override fun register(
-            folder: LanguageDir, sourceSets: SourceSetContainer, configurations: ConfigurationContainer) {
-            sourceSets.register(folder) {
-                java.setSrcDirs(emptyList<String>())
+            folder: LanguageDir, sourceSets: SourceSetContainer,
+            configurations: ConfigurationContainer) {
+            sourceSets.maybeCreate(folder).run {
+                if (java.srcDirs.none { it.parentFile?.name == "solution" }) {
+                    java.setSrcDirs(emptyList<String>())
+                }
                 resources.srcDir("solution/$folder")
             }
         }
@@ -59,9 +64,12 @@ enum class Language {
     Bash {
 
         override fun register(
-            folder: LanguageDir, sourceSets: SourceSetContainer, configurations: ConfigurationContainer) {
-            sourceSets.register(folder) {
-                java.setSrcDirs(emptyList<String>())
+            folder: LanguageDir, sourceSets: SourceSetContainer,
+            configurations: ConfigurationContainer) {
+            sourceSets.maybeCreate(folder).run {
+                if (java.srcDirs.none { it.parentFile?.name == "solution" }) {
+                    java.setSrcDirs(emptyList<String>())
+                }
                 resources.srcDir("solution/$folder")
             }
         }
