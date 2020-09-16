@@ -16,6 +16,18 @@ from typing import *
 import git
 
 
+def info(message, *args):
+    print(message % args, file=sys.stdout)
+
+
+def warn(message, *args):
+    print(message % args, file=sys.stderr)
+
+
+def error(message, *args):
+    print(message % args, file=sys.stderr)
+
+
 class Language(enum.Enum):
     """ 代表解法使用的编程语言 """
     Kotlin = enum.auto()
@@ -163,13 +175,14 @@ def scan_for_problems():
         if not isinstance(blob, git.Blob):
             return
 
-        if not blob.name.startswith('Solution'):
-            return
-
         commit = next(repo.iter_commits(paths=blob.path, max_count=1))
         category = resolve_language(blob.name)
         filepath = blob.path
         last_upd = commit.authored_datetime
+
+        if category is None:
+            warn("Cannot resolve language category for %s", filepath)
+            return
 
         solution = Solution((problem.ordinal, category, filepath, last_upd))
         problem.solutions.append(solution)
@@ -178,7 +191,7 @@ def scan_for_problems():
         return next(iter([v for k, v in {
             '.java'     : Language.Java,
             '.kt'       : Language.Kotlin,
-            '.py'       : Language.MySQL,
+            '.py'       : Language.Python,
             '.bash.sh'  : Language.Bash,
             '.mysql.sql': Language.MySQL,
         }.items() if file_name.endswith(k)]), None)
@@ -211,11 +224,8 @@ def scan_for_problems():
         for problem in solutions.values():
             if (data := metadata.get(problem.ordinal, None)) is not None:
                 problem.metadata = data
-                if problem.ordinal == 1044:
-                    print()
             else:
-                print("could not found metadata for %s" % problem,
-                      file=sys.stderr)
+                error("could not found metadata for %s", problem)
 
     with fetch_metadata_from_remote():
         scan_for_solutions_internal(repo.tree() / 'solution', scan_language_dir)
@@ -239,6 +249,11 @@ class MarkdownTableGenerator:
         """ 在元素左右两边添加一个空格 """
 
         for problem in problems:
+
+            if not problem.solutions:
+                error("No solution found for %s", problem.display)
+                continue
+
             def for_frontend(p: Problem):
                 """ 生成 No. 这列的文本 """
 
@@ -476,18 +491,16 @@ def inplace_replace_readme_file(generator) -> bool:
                 file_lines.append(new_line(end_mark))
         else:
             if not processed:
-                print(f"No {start_mark} found in README.md",
-                      file=sys.stderr)
+                error("No %s found in README.md", start_mark)
                 exit(1)
             if processing:
-                print(f"No {end_mark} found in README.md",
-                      file=sys.stderr)
+                error("No %s found in README.md", end_mark)
                 exit(1)
 
             gens_hash += file_lines
 
     if file_hash == gens_hash:
-        print("File content not changed, no writing is preformed.")
+        info("File content not changed, no writing is preformed.")
         return False
 
     with open('README.md', 'w') as writer:
