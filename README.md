@@ -18,7 +18,9 @@
 | [17][p17]                             | 17      | Letter Combinations of a Phone Number             | [Java][#17 java]                              | 2020-09-06 18:42 |
 | [20][p20]                             | 20      | Valid Parentheses                                 | [Java][#20 java]                              | 2020-09-06 18:42 |
 | [22][p22]                             | 22      | Generate Parentheses                              | [Java][#22 java]                              | 2020-09-06 01:23 |
+| [24][p24]                             | 24      | Swap Nodes in Pairs                               | [Java][#24 java]                              | 2020-09-17 01:35 |
 | [26][p26]                             | 26      | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]                          | 2020-09-06 18:42 |
+| [33][p33]                             | 33      | Search in Rotated Sorted Array                    | [Java][#33 java]                              | 2020-09-17 02:18 |
 | [36][p36]                             | 36      | Valid Sudoku                                      | [Java][#36 java]                              | 2020-09-14 01:01 |
 | [37][p37]                             | 37      | Sudoku Solver                                     | [Java][#37 java]                              | 2020-09-16 01:45 |
 | [39][p39]                             | 39      | Combination Sum                                   | [Java][#39 java]                              | 2020-09-12 16:10 |
@@ -87,7 +89,9 @@
 [p17]: https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
 [p20]: https://leetcode-cn.com/problems/valid-parentheses/
 [p22]: https://leetcode-cn.com/problems/generate-parentheses/
+[p24]: https://leetcode-cn.com/problems/swap-nodes-in-pairs/
 [p26]: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
+[p33]: https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
 [p36]: https://leetcode-cn.com/problems/valid-sudoku/
 [p37]: https://leetcode-cn.com/problems/sudoku-solver/
 [p39]: https://leetcode-cn.com/problems/combination-sum/
@@ -162,6 +166,8 @@
 [#17 java]: solution/%2317%20Letter%20Combinations%20of%20a%20Phone%20Number/Solution.java
 [#20 java]: solution/%2320%20Valid%20Parentheses/Solution.java
 [#22 java]: solution/%2322%20Generate%20Parentheses/Solution.java
+[#24 java]: solution/%2324%20Swap%20Nodes%20in%20Pairs/Solution.java
+[#33 java]: solution/%2333%20Search%20in%20Rotated%20Sorted%20Array/Solution.java
 [#36 java]: solution/%2336%20Valid%20Sudoku/Solution.java
 [#37 java]: solution/%2337%20Sudoku%20Solver/Solution.java
 [#39 java]: solution/%2339%20Combination%20Sum/Solution.java
