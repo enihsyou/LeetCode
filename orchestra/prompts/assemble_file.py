@@ -80,7 +80,7 @@ def enhance_java(session: AskSession, code_snippet: str):
                    session.metadata['questionDetailUrl']
 
     code_snippet = code_snippet[:code_snippet.rindex('}')]
-    if (match := re.search(r'class (.+?)\s?[{]', code_snippet)) is not None:
+    if (match := re.search(r'^class (.+?)\s?[{]', code_snippet)) is not None:
         class_name = match.group(1)
         session.metadata['file_basename'] = class_name
     else:

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import leetcode.base.struct.ListNode;
 import leetcode.base.struct.TreeNode;
 import org.junit.jupiter.api.DynamicContainer;
 import org.junit.jupiter.api.DynamicNode;
@@ -155,4 +156,13 @@ public abstract class JavaTest<S> {
         return node;
     }
 
+    protected static ListNode linklist(int head, int... values) {
+        ListNode root = new ListNode(head);
+        ListNode node = root;
+        for (int value : values) {
+            node.next = new ListNode(value);
+            node = node.next;
+        }
+        return root;
+    }
 }
