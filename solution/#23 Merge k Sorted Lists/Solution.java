@@ -23,6 +23,22 @@ class Solution {
         return root;
     }
 
+    public ListNode mergeKLists2(ListNode[] lists) {
+        return mergeRangeLists(lists, 0, lists.length - 1);
+    }
+
+    private static ListNode mergeRangeLists(ListNode[] lists, int lower, int right) {
+        if (lower == right) {
+            return lists[lower];
+        }
+        if (lower > right) {
+            return null;
+        }
+        int middle = (lower + right) / 2;
+        return mergeTwoLists(mergeRangeLists(lists, lower, middle),
+                             mergeRangeLists(lists, middle + 1, right));
+    }
+
     private static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         ListNode root = new ListNode(-1);
 
