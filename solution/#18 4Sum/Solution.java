@@ -32,6 +32,11 @@ class Solution {
 
                 int target3 = target - value1 - value2;
 
+                // 递增数列中最大的两个数都够不上所需的和，肯定不够
+                if (nums[nums.length - 2] + nums[nums.length - 1] < target3) continue;
+                // 递增数列中最小的正数已经大于所需的和，肯定超过
+                if (nums[point2 + 1] >= 0 && nums[point2 + 1] > target3) continue;
+
                 int point3 = point2 + 1;
                 int point4 = nums.length - 1;
                 while (point3 < point4) {
@@ -39,7 +44,12 @@ class Solution {
                     int value4 = nums[point4];
 
                     if (target3 == value3 + value4) {
-                        answer.add(result(value1, value2, value3, value4));
+                        List<Integer> list = new ArrayList<>();
+                        list.add(value1);
+                        list.add(value2);
+                        list.add(value3);
+                        list.add(value4);
+                        answer.add(list);
                     }
                     if (target3 > value3 + value4) {
                         while (point3 < point4 && nums[point3] == value3) { point3++; }
@@ -52,15 +62,6 @@ class Solution {
         return answer;
     }
 
-    private static List<Integer> result(int a, int b, int c, int d) {
-        List<Integer> list = new ArrayList<>();
-        list.add(a);
-        list.add(b);
-        list.add(c);
-        list.add(d);
-        return list;
-    }
-
     static class SolutionTest extends JavaTest<Solution> {
 
         @Override
@@ -71,20 +72,26 @@ class Solution {
         @Override
         protected Stream<Arguments> provider() {
             return Stream.of(
-                Arguments.of(ints(-2, -1, 0, 0, 1, 2), 0,
-                             lists(lists(-1, 0, 0, 1),
-                                   lists(-2, -1, 1, 2),
-                                   lists(-2, 0, 0, 2))),
+                Arguments.of(ints(1, 0, -1), 0, emptyLists()),
+                Arguments.of(ints(1, 0, -1, 0, -2, 2), 4, emptyLists()),
                 Arguments.of(ints(1, 0, -1, 0, -2, 2), 0,
                              lists(lists(-1, 0, 0, 1),
                                    lists(-2, -1, 1, 2),
                                    lists(-2, 0, 0, 2))),
+                Arguments.of(ints(-3, -2, -1, 0, 1, 2, 3), 0,
+                             lists(lists(-3, -2, 2, 3),
+                                   lists(-3, -1, 1, 3),
+                                   lists(-2, -1, 1, 2),
+                                   lists(-3, 0, 1, 2),
+                                   lists(-2, -1, 0, 3))),
                 Arguments.of(ints(0, 0, 0, 0), 0,
                              lists(lists(0, 0, 0, 0))),
+                Arguments.of(ints(-1, 0, 1, 2, -1, -4), -1,
+                             lists(lists(-1, -1, 0, 1),
+                                   lists(-4, 0, 1, 2))),
                 Arguments.of(ints(0, 0, 0, 0, 1), 1,
                              lists(lists(0, 0, 0, 1))),
-                Arguments.of(ints(0, 0, 0, 0, 1), 2,
-                             emptyLists())
+                Arguments.of(ints(0, 0, 0, 0, 1), 2, emptyLists())
             );
         }
     }
