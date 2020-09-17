@@ -7,6 +7,7 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -136,6 +137,10 @@ public abstract class JavaTest<S> {
     @SafeVarargs
     protected static <E> List<E> lists(E... elements) {
         return Arrays.asList(elements);
+    }
+
+    protected static <E> List<E> emptyLists() {
+        return Collections.emptyList();
     }
 
     protected static TreeNode node(int value) {
