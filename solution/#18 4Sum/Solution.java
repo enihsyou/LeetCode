@@ -23,22 +23,45 @@ class Solution {
         for (int point1 = 0; point1 < nums.length - 3; point1++) {
             int value1 = nums[point1];
             // 跳过重复的数字
-            if (point1 > 0 && value1 == nums[point1 - 1]) continue;
+            if (point1 > 0 && value1 == nums[point1 - 1]) {
+                continue;
+            }
+
+            // 递增数列中最小的组合已经超过目标值
+            if (nums[point1] + nums[point1 + 1] +
+                nums[point1 + 2] + nums[point1 + 3] > target) {
+                break;
+            }
+
+            // 递增数列中最大的组合还不够目标值
+            if (nums[point1] + nums[nums.length - 3] +
+                nums[nums.length - 2] + nums[nums.length - 1] < target) {
+                continue;
+            }
 
             for (int point2 = point1 + 1; point2 < nums.length - 2; point2++) {
                 int value2 = nums[point2];
                 // 跳过重复的数字
-                if (point2 > point1 + 1 && value2 == nums[point2 - 1]) continue;
+                if (point2 > point1 + 1 && value2 == nums[point2 - 1]) {
+                    continue;
+                }
 
                 int target3 = target - value1 - value2;
-
-                // 递增数列中最大的两个数都够不上所需的和，肯定不够
-                if (nums[nums.length - 2] + nums[nums.length - 1] < target3) continue;
-                // 递增数列中最小的正数已经大于所需的和，肯定超过
-                if (nums[point2 + 1] >= 0 && nums[point2 + 1] > target3) continue;
-
                 int point3 = point2 + 1;
                 int point4 = nums.length - 1;
+
+                // 递增数列中最小的组合已经超过目标值
+                if (nums[point1] + nums[point2] +
+                    nums[point3] + nums[point3 + 1] > target) {
+                    break;
+                }
+
+                // 递增数列中最大的组合还不够目标值
+                if (nums[point1] + nums[point2] +
+                    nums[point4 - 1] + nums[point4] < target) {
+                    continue;
+                }
+
                 while (point3 < point4) {
                     int value3 = nums[point3];
                     int value4 = nums[point4];
