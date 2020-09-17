@@ -6,14 +6,15 @@ import org.junit.jupiter.api.Test;
 class Solution {
 
     public int search(int[] nums, int target) {
-        for (int head = 0, tail = nums.length; head < tail; ) {
+        int head = 0, tail = nums.length - 1;
+        while (head <= tail) {
             int cursor  = (head + tail) / 2;
             int compare = nums[cursor] - target;
             if (compare == 0) {
                 return cursor;
             }
             if (compare > 0) {
-                tail = cursor;
+                tail = cursor - 1;
             } else {
                 head = cursor + 1;
             }
