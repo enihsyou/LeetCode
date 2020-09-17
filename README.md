@@ -16,8 +16,11 @@
 | [13][p13]                             | 13      | Roman to Integer                                  | [Java][#13 java]                              | 2020-09-06 18:40 |
 | [15][p15]                             | 15      | 3Sum                                              | [Kotlin][#15 kotlin]                          | 2020-09-06 18:42 |
 | [17][p17]                             | 17      | Letter Combinations of a Phone Number             | [Java][#17 java]                              | 2020-09-06 18:42 |
+| [18][p18]                             | 18      | 4Sum                                              | [Java][#18 java]                              | 2020-09-17 15:32 |
 | [20][p20]                             | 20      | Valid Parentheses                                 | [Java][#20 java]                              | 2020-09-06 18:42 |
+| [21][p21]                             | 21      | Merge Two Sorted Lists                            | [Java][#21 java]                              | 2020-09-17 15:51 |
 | [22][p22]                             | 22      | Generate Parentheses                              | [Java][#22 java]                              | 2020-09-06 01:23 |
+| [23][p23]                             | 23      | Merge k Sorted Lists                              | [Java][#23 java]                              | 2020-09-17 16:06 |
 | [24][p24]                             | 24      | Swap Nodes in Pairs                               | [Java][#24 java]                              | 2020-09-17 01:35 |
 | [26][p26]                             | 26      | Remove Duplicates from Sorted Array               | [Kotlin][#26 kotlin]                          | 2020-09-06 18:42 |
 | [33][p33]                             | 33      | Search in Rotated Sorted Array                    | [Java][#33 java]                              | 2020-09-17 02:18 |
@@ -70,6 +73,7 @@
 | [1476][p1476]                         | 1572    | Subrectangle Queries                              | [Java][#1572 java]                            | 2020-09-16 17:08 |
 | [1470][p1470]                         | 1580    | Shuffle the Array                                 | [Java][#1580 java]                            | 2020-09-16 19:11 |
 | [1480][p1480]                         | 1603    | Running Sum of 1d Array                           | [Java][#1603 java]                            | 2020-09-16 02:20 |
+| [1486][p1486]                         | 1610    | XOR Operation in an Array                         | [Java][#1610 java]                            | 2020-09-17 13:41 |
 | [1512][p1512]                         | 1635    | Number of Good Pairs                              | [Java][#1635 java]<br/>[Python][#1635 python] | 2020-09-16 17:23 |
 | [1572][p1572]                         | 1677    | Matrix Diagonal Sum                               | [Java][#1677 java]                            | 2020-09-16 23:11 |
 | [面试题 02.03][p面试题 02.03]               | 100187  | Delete Middle Node LCCI                           | [Java][#100187 java]                          | 2020-09-16 23:03 |
@@ -87,8 +91,11 @@
 [p13]: https://leetcode-cn.com/problems/roman-to-integer/
 [p15]: https://leetcode-cn.com/problems/3sum/
 [p17]: https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/
+[p18]: https://leetcode-cn.com/problems/4sum/
 [p20]: https://leetcode-cn.com/problems/valid-parentheses/
+[p21]: https://leetcode-cn.com/problems/merge-two-sorted-lists/
 [p22]: https://leetcode-cn.com/problems/generate-parentheses/
+[p23]: https://leetcode-cn.com/problems/merge-k-sorted-lists/
 [p24]: https://leetcode-cn.com/problems/swap-nodes-in-pairs/
 [p26]: https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
 [p33]: https://leetcode-cn.com/problems/search-in-rotated-sorted-array/
@@ -141,6 +148,7 @@
 [p1476]: https://leetcode-cn.com/problems/subrectangle-queries/
 [p1470]: https://leetcode-cn.com/problems/shuffle-the-array/
 [p1480]: https://leetcode-cn.com/problems/running-sum-of-1d-array/
+[p1486]: https://leetcode-cn.com/problems/xor-operation-in-an-array/
 [p1512]: https://leetcode-cn.com/problems/number-of-good-pairs/
 [p1572]: https://leetcode-cn.com/problems/matrix-diagonal-sum/
 [p面试题 02.03]: https://leetcode-cn.com/problems/delete-middle-node-lcci/
@@ -164,8 +172,11 @@
 [#12 java]: solution/%2312%20Integer%20to%20Roman/Solution.java
 [#13 java]: solution/%2313%20Roman%20to%20Integer/Solution.java
 [#17 java]: solution/%2317%20Letter%20Combinations%20of%20a%20Phone%20Number/Solution.java
+[#18 java]: solution/%2318%204Sum/Solution.java
 [#20 java]: solution/%2320%20Valid%20Parentheses/Solution.java
+[#21 java]: solution/%2321%20Merge%20Two%20Sorted%20Lists/Solution.java
 [#22 java]: solution/%2322%20Generate%20Parentheses/Solution.java
+[#23 java]: solution/%2323%20Merge%20k%20Sorted%20Lists/Solution.java
 [#24 java]: solution/%2324%20Swap%20Nodes%20in%20Pairs/Solution.java
 [#33 java]: solution/%2333%20Search%20in%20Rotated%20Sorted%20Array/Solution.java
 [#36 java]: solution/%2336%20Valid%20Sudoku/Solution.java
@@ -207,6 +218,7 @@
 [#1572 java]: solution/%231572%20Subrectangle%20Queries/SubrectangleQueries.java
 [#1580 java]: solution/%231580%20Shuffle%20the%20Array/Solution.java
 [#1603 java]: solution/%231603%20Running%20Sum%20of%201d%20Array/Solution.java
+[#1610 java]: solution/%231610%20XOR%20Operation%20in%20an%20Array/Solution.java
 [#1635 java]: solution/%231635%20Number%20of%20Good%20Pairs/Solution.java
 [#1677 java]: solution/%231677%20Matrix%20Diagonal%20Sum/Solution.java
 [#100187 java]: solution/%23100187%20Delete%20Middle%20Node%20LCCI/Solution.java
