@@ -17,33 +17,35 @@ class Solution {
             return false;
         }
 
-        for (int i = 1; i < nums.length; i++) {
-            if (nums[i] == target) {
+        int start = 0, right = nums.length - 1;
+        while (start <= right) {
+            int middle = (start + right) / 2;
+            int nums0  = nums[start];
+            int nums9  = nums[right];
+            int nums5  = nums[middle];
+            if (nums5 == target) {
                 return true;
             }
-            if (nums[i] < nums[i - 1]) {
-                return search(nums, target, i);
-            }
-        }
-        return nums[0] == target;
-    }
 
-
-    private static boolean search(int[] nums, int target, int offset) {
-        int arrow0 = offset, arrow9 = nums.length - 1 + offset;
-        while (arrow0 <= arrow9) {
-            int arrow5 = (arrow0 + arrow9) / 2;
-            if (nums[arrow5 % nums.length] == target) {
-                return true;
-            }
-            if (nums[arrow5 % nums.length] < target) {
-                arrow0 = arrow5 + 1;
+            if (nums0 < nums5) {
+                if (nums0 <= target && target < nums5) {
+                    right = middle - 1;
+                } else {
+                    start = middle + 1;
+                }
+            } else if (nums0 == nums5) {
+                start++;
             } else {
-                arrow9 = arrow5 - 1;
+                if (nums5 < target && target <= nums9) {
+                    start = middle + 1;
+                } else {
+                    right = middle - 1;
+                }
             }
         }
         return false;
     }
+
 
     static class SolutionTest extends JavaTest<Solution> {
 
