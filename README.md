@@ -39,6 +39,7 @@
 | [77][p77]                             | 77      | Combinations                                            | [Java][#77 java]                              | 2020-09-12 02:19 |
 | [79][p79]                             | 79      | Word Search                                             | [Java][#79 java]                              | 2020-09-13 17:59 |
 | [81][p81]                             | 81      | Search in Rotated Sorted Array II                       | [Java][#81 java]                              | 2020-09-18 11:21 |
+| [88][p88]                             | 88      | Merge Sorted Array                                      | [Java][#88 java]                              | 2020-09-19 01:00 |
 | [94][p94]                             | 94      | Binary Tree Inorder Traversal                           | [Java][#94 java]                              | 2020-09-16 01:59 |
 | [122][p122]                           | 122     | Best Time to Buy and Sell Stock II                      | [Kotlin][#122 kotlin]                         | 2020-09-06 18:42 |
 | [136][p136]                           | 136     | Single Number                                           | [Java][#136 java]                             | 2020-09-10 00:55 |
@@ -60,6 +61,7 @@
 | [216][p216]                           | 216     | Combination Sum III                                     | [Java][#216 java]                             | 2020-09-13 22:18 |
 | [217][p217]                           | 217     | Contains Duplicate                                      | [Java][#217 java]                             | 2020-09-14 00:27 |
 | [226][p226]                           | 226     | Invert Binary Tree                                      | [Java][#226 java]                             | 2020-09-16 01:59 |
+| [257][p257]                           | 257     | Binary Tree Paths                                       | [Java][#257 java]                             | 2020-09-19 00:31 |
 | [260][p260]                           | 260     | Single Number III                                       | [Java][#260 java]                             | 2020-09-10 02:03 |
 | [268][p268]                           | 268     | Missing Number                                          | [Java][#268 java]                             | 2020-09-06 18:42 |
 | [300][p300]                           | 300     | Longest Increasing Subsequence                          | [Java][#300 java]                             | 2020-09-18 13:45 |
@@ -68,6 +70,7 @@
 | [371][p371]                           | 371     | Sum of Two Integers                                     | [Kotlin][#371 kotlin]                         | 2020-09-06 18:42 |
 | [381][p381]                           | 381     | Insert Delete GetRandom O(1) - Duplicates allowed       | [Java][#381 java]                             | 2020-09-06 18:42 |
 | [401][p401]                           | 401     | Binary Watch                                            | [Java][#401 java]                             | 2020-09-06 18:42 |
+| [404][p404]                           | 404     | Sum of Left Leaves                                      | [Java][#404 java]                             | 2020-09-19 00:51 |
 | [405][p405]                           | 405     | Convert a Number to Hexadecimal                         | [Java][#405 java]                             | 2020-09-06 18:42 |
 | [535][p535]                           | 535     | Encode and Decode TinyURL                               | [Java][#535 java]                             | 2020-09-16 23:30 |
 | [704][p704]                           | 792     | Binary Search                                           | [Java][#792 java]                             | 2020-09-18 01:05 |
@@ -126,6 +129,7 @@
 [p77]: https://leetcode-cn.com/problems/combinations/
 [p79]: https://leetcode-cn.com/problems/word-search/
 [p81]: https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/
+[p88]: https://leetcode-cn.com/problems/merge-sorted-array/
 [p94]: https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
 [p122]: https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
 [p136]: https://leetcode-cn.com/problems/single-number/
@@ -147,6 +151,7 @@
 [p216]: https://leetcode-cn.com/problems/combination-sum-iii/
 [p217]: https://leetcode-cn.com/problems/contains-duplicate/
 [p226]: https://leetcode-cn.com/problems/invert-binary-tree/
+[p257]: https://leetcode-cn.com/problems/binary-tree-paths/
 [p260]: https://leetcode-cn.com/problems/single-number-iii/
 [p268]: https://leetcode-cn.com/problems/missing-number/
 [p300]: https://leetcode-cn.com/problems/longest-increasing-subsequence/
@@ -155,6 +160,7 @@
 [p371]: https://leetcode-cn.com/problems/sum-of-two-integers/
 [p381]: https://leetcode-cn.com/problems/insert-delete-getrandom-o1-duplicates-allowed/
 [p401]: https://leetcode-cn.com/problems/binary-watch/
+[p404]: https://leetcode-cn.com/problems/sum-of-left-leaves/
 [p405]: https://leetcode-cn.com/problems/convert-a-number-to-hexadecimal/
 [p535]: https://leetcode-cn.com/problems/encode-and-decode-tinyurl/
 [p704]: https://leetcode-cn.com/problems/binary-search/
@@ -217,6 +223,7 @@
 [#77 java]: solution/%2377%20Combinations/Solution.java
 [#79 java]: solution/%2379%20Word%20Search/Solution.java
 [#81 java]: solution/%2381%20Search%20in%20Rotated%20Sorted%20Array%20II/Solution.java
+[#88 java]: solution/%2388%20Merge%20Sorted%20Array/Solution.java
 [#94 java]: solution/%2394%20Binary%20Tree%20Inorder%20Traversal/Solution.java
 [#136 java]: solution/%23136%20Single%20Number/Solution.java
 [#137 java]: solution/%23137%20Single%20Number%20II/Solution.java
@@ -232,6 +239,7 @@
 [#216 java]: solution/%23216%20Combination%20Sum%20III/Solution.java
 [#217 java]: solution/%23217%20Contains%20Duplicate/Solution.java
 [#226 java]: solution/%23226%20Invert%20Binary%20Tree/Solution.java
+[#257 java]: solution/%23257%20Binary%20Tree%20Paths/Solution.java
 [#260 java]: solution/%23260%20Single%20Number%20III/Solution.java
 [#268 java]: solution/%23268%20Missing%20Number/Solution.java
 [#300 java]: solution/%23300%20Longest%20Increasing%20Subsequence/Solution.java
@@ -239,6 +247,7 @@
 [#350 java]: solution/%23350%20Intersection%20of%20Two%20Arrays%20II/Solution.java
 [#381 java]: solution/%23381%20Insert%20Delete%20GetRandom%20O%281%29%20-%20Duplicates%20allowed/Solution.java
 [#401 java]: solution/%23401%20Binary%20Watch/Solution.java
+[#404 java]: solution/%23404%20Sum%20of%20Left%20Leaves/Solution.java
 [#405 java]: solution/%23405%20Convert%20a%20Number%20to%20Hexadecimal/Solution.java
 [#535 java]: solution/%23535%20Encode%20and%20Decode%20TinyURL/Codec.java
 [#792 java]: solution/%23792%20Binary%20Search/Solution.java
