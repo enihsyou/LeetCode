@@ -15,8 +15,12 @@ class Solution {
 
     public int findInMountainArray(int target, MountainArray mountainArr) {
         int peak = findPeakInMountainArray(mountainArr);
-        int left = findValueInAscendingMountain(mountainArr, target, 0, peak);
-        int stop = findValueInDescendingMountain(mountainArr, target, peak, mountainArr.length() - 1);
+        if (target == mountainArr.get(peak)) {
+            return peak;
+        }
+
+        int left = findValueInMountain(mountainArr, target, 0, peak, true);
+        int stop = findValueInMountain(mountainArr, target, peak, mountainArr.length(), false);
         return left == -1 ? stop : left;
     }
 
@@ -36,34 +40,33 @@ class Solution {
         return start;
     }
 
-    private int findValueInAscendingMountain(MountainArray mountainArr, int target, int start, int right) {
-        while (start <= right) {
-            int middle  = (start + right) / 2;
-            int vMiddle = mountainArr.get(middle);
-            if (vMiddle < target) {
-                start = middle + 1;
-                continue;
-            }
-            if (vMiddle > target) {
-                right = middle - 1;
-                continue;
-            }
-            return middle;
-        }
-        return -1;
-    }
+    private int findValueInMountain(MountainArray mountainArr, int target, int start, int right,
+                                    boolean ascendingSide) {
+        // [start, right)
+        // 当在上升段搜索时，遇到 middle < target 左指针向右移动1
+        // 当在下降段搜索时，遇到 middle < target 左指针向左移动1
 
-    private int findValueInDescendingMountain(MountainArray mountainArr, int target, int start, int right) {
-        while (start <= right) {
+        while (start < right) { // break when start = right
             int middle  = (start + right) / 2;
             int vMiddle = mountainArr.get(middle);
-            if (vMiddle < target) {
-                right = middle - 1;
-                continue;
-            }
-            if (vMiddle > target) {
-                start = middle + 1;
-                continue;
+            if (ascendingSide) {
+                if (vMiddle < target) {
+                    start = middle + 1;
+                    continue;
+                }
+                if (vMiddle > target) {
+                    right = middle - 1;
+                    continue;
+                }
+            } else {
+                if (vMiddle > target) {
+                    start = middle + 1;
+                    continue;
+                }
+                if (vMiddle < target) {
+                    right = middle - 1;
+                    continue;
+                }
             }
             return middle;
         }
@@ -82,6 +85,7 @@ class Solution {
                 Arguments.of(4, mountain(1, 4, 5, 1), 1),
                 Arguments.of(5, mountain(1, 4, 5, 1), 2),
                 Arguments.of(3, mountain(0, 1, 2, 4, 2, 1), -1),
+                Arguments.of(2, mountain(3, 5, 3, 2, 0), 3),
                 Arguments.of(0, mountain(3, 5, 3, 2, 0), 4)
             );
         }
