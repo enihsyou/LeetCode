@@ -42,8 +42,22 @@ class Solution {
         }
         return right;
     }
-
     public int peakIndexInMountainArray3(int[] arr) {
+        int start = 0, right = arr.length - 1;
+        while (start <= right) { // break when start = right + 1
+            int middle = (start + right) / 2;
+
+            if (arr[middle] < arr[middle + 1]) {
+                start = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+        assert start == right + 1;
+        return start;
+    }
+
+    public int peakIndexInMountainArray4(int[] arr) {
         int start = 0, right = arr.length - 1;
         while (start <= right) {
             int middle = (start + right) / 2;
