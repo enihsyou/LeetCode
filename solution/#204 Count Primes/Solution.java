@@ -16,18 +16,18 @@ class Solution {
         if (n <= 2) {
             return 0;
         }
-        int answer = 0;
-        boolean[] primes = new boolean[n]; // excluded number
-        for (int i = 2; i < n; i++) {
-            if (primes[i]) {
+        boolean[] excludes = new boolean[n]; // excluded number
+        for (int i = 2; i * i < n; i++) {
+            if (excludes[i]) {
                 continue;
             }
-            answer++;
-            int num = i + i;
-            while (num < primes.length) {
-                primes[num] = true;
-                num += i;
+            for (int j = i * i; j < n; j += i) {
+                excludes[j] = true;
             }
+        }
+        int answer = 0;
+        for (int i = 2; i < n; i++) {
+            if (!excludes[i]) answer++;
         }
         return answer;
     }
@@ -43,7 +43,10 @@ class Solution {
                 Arguments.of(3, 1),
                 Arguments.of(10, 4),
                 Arguments.of(11, 4),
-                Arguments.of(12, 5)
+                Arguments.of(12, 5),
+                Arguments.of(499979, 41537),
+                Arguments.of(999983, 78497),
+                Arguments.of(1500000, 114155)
             );
         }
     }
