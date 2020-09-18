@@ -38,10 +38,13 @@
 | [67][p67]                             | 67      | Add Binary                                              | [Java][#67 java]                              | 2020-09-10 00:47 |
 | [77][p77]                             | 77      | Combinations                                            | [Java][#77 java]                              | 2020-09-12 02:19 |
 | [79][p79]                             | 79      | Word Search                                             | [Java][#79 java]                              | 2020-09-13 17:59 |
+| [81][p81]                             | 81      | Search in Rotated Sorted Array II                       | [Java][#81 java]                              | 2020-09-18 11:21 |
 | [94][p94]                             | 94      | Binary Tree Inorder Traversal                           | [Java][#94 java]                              | 2020-09-16 01:59 |
 | [122][p122]                           | 122     | Best Time to Buy and Sell Stock II                      | [Kotlin][#122 kotlin]                         | 2020-09-06 18:42 |
 | [136][p136]                           | 136     | Single Number                                           | [Java][#136 java]                             | 2020-09-10 00:55 |
 | [137][p137]                           | 137     | Single Number II                                        | [Java][#137 java]                             | 2020-09-10 01:52 |
+| [153][p153]                           | 153     | Find Minimum in Rotated Sorted Array                    | [Java][#153 java]                             | 2020-09-18 12:02 |
+| [154][p154]                           | 154     | Find Minimum in Rotated Sorted Array II                 | [Java][#154 java]                             | 2020-09-18 12:13 |
 | [175][p175]                           | 175     | Combine Two Tables                                      | [MySQL][#175 mysql]                           | 2020-09-06 18:58 |
 | [176][p176]                           | 176     | Second Highest Salary                                   | [MySQL][#176 mysql]                           | 2020-09-06 18:58 |
 | [178][p178]                           | 178     | Rank Scores                                             | [MySQL][#178 mysql]                           | 2020-09-06 18:58 |
@@ -51,11 +54,15 @@
 | [191][p191]                           | 191     | Number of 1 Bits                                        | [Java][#191 java]                             | 2020-09-06 18:42 |
 | [192][p192]                           | 192     | Word Frequency                                          | [Bash][#192 bash]                             | 2020-09-06 18:58 |
 | [198][p198]                           | 198     | House Robber                                            | [Java][#198 java]                             | 2020-09-17 00:00 |
+| [204][p204]                           | 204     | Count Primes                                            | [Java][#204 java]                             | 2020-09-18 16:20 |
+| [205][p205]                           | 205     | Isomorphic Strings                                      | [Java][#205 java]                             | 2020-09-18 16:49 |
+| [206][p206]                           | 206     | Reverse Linked List                                     | [Java][#206 java]                             | 2020-09-18 17:07 |
 | [216][p216]                           | 216     | Combination Sum III                                     | [Java][#216 java]                             | 2020-09-13 22:18 |
 | [217][p217]                           | 217     | Contains Duplicate                                      | [Java][#217 java]                             | 2020-09-14 00:27 |
 | [226][p226]                           | 226     | Invert Binary Tree                                      | [Java][#226 java]                             | 2020-09-16 01:59 |
 | [260][p260]                           | 260     | Single Number III                                       | [Java][#260 java]                             | 2020-09-10 02:03 |
 | [268][p268]                           | 268     | Missing Number                                          | [Java][#268 java]                             | 2020-09-06 18:42 |
+| [300][p300]                           | 300     | Longest Increasing Subsequence                          | [Java][#300 java]                             | 2020-09-18 13:45 |
 | [349][p349]                           | 349     | Intersection of Two Arrays                              | [Java][#349 java]                             | 2020-09-11 15:03 |
 | [350][p350]                           | 350     | Intersection of Two Arrays II                           | [Java][#350 java]                             | 2020-09-11 15:13 |
 | [371][p371]                           | 371     | Sum of Two Integers                                     | [Kotlin][#371 kotlin]                         | 2020-09-06 18:42 |
@@ -66,9 +73,11 @@
 | [704][p704]                           | 792     | Binary Search                                           | [Java][#792 java]                             | 2020-09-18 01:05 |
 | [807][p807]                           | 825     | Max Increase to Keep City Skyline                       | [Java][#825 java]                             | 2020-09-16 23:45 |
 | [811][p811]                           | 829     | Subdomain Visit Count                                   | [Java][#829 java]                             | 2020-09-11 18:12 |
+| [852][p852]                           | 882     | Peak Index in a Mountain Array                          | [Java][#882 java]                             | 2020-09-18 15:12 |
 | [867][p867]                           | 898     | Transpose Matrix                                        | [Java][#898 java]                             | 2020-09-10 22:34 |
 | [986][p986]                           | 1028    | Interval List Intersections                             | [Kotlin][#1028 kotlin]                        | 2020-09-11 17:54 |
 | [1002][p1002]                         | 1044    | Find Common Characters                                  | [Java][#1044 java]                            | 2020-09-11 17:54 |
+| [1095][p1095]                         | 1185    | Find in Mountain Array                                  | [Java][#1185 java]                            | 2020-09-18 15:32 |
 | [1114][p1114]                         | 1203    | Print in Order                                          | [Java][#1203 java]                            | 2020-09-06 18:42 |
 | [1108][p1108]                         | 1205    | Defanging an IP Address                                 | [Java][#1205 java]                            | 2020-09-16 23:16 |
 | [1431][p1431]                         | 1528    | Kids With the Greatest Number of Candies                | [Java][#1528 java]                            | 2020-09-16 18:36 |
@@ -116,10 +125,13 @@
 [p67]: https://leetcode-cn.com/problems/add-binary/
 [p77]: https://leetcode-cn.com/problems/combinations/
 [p79]: https://leetcode-cn.com/problems/word-search/
+[p81]: https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/
 [p94]: https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
 [p122]: https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
 [p136]: https://leetcode-cn.com/problems/single-number/
 [p137]: https://leetcode-cn.com/problems/single-number-ii/
+[p153]: https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
+[p154]: https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/
 [p175]: https://leetcode-cn.com/problems/combine-two-tables/
 [p176]: https://leetcode-cn.com/problems/second-highest-salary/
 [p178]: https://leetcode-cn.com/problems/rank-scores/
@@ -129,11 +141,15 @@
 [p191]: https://leetcode-cn.com/problems/number-of-1-bits/
 [p192]: https://leetcode-cn.com/problems/word-frequency/
 [p198]: https://leetcode-cn.com/problems/house-robber/
+[p204]: https://leetcode-cn.com/problems/count-primes/
+[p205]: https://leetcode-cn.com/problems/isomorphic-strings/
+[p206]: https://leetcode-cn.com/problems/reverse-linked-list/
 [p216]: https://leetcode-cn.com/problems/combination-sum-iii/
 [p217]: https://leetcode-cn.com/problems/contains-duplicate/
 [p226]: https://leetcode-cn.com/problems/invert-binary-tree/
 [p260]: https://leetcode-cn.com/problems/single-number-iii/
 [p268]: https://leetcode-cn.com/problems/missing-number/
+[p300]: https://leetcode-cn.com/problems/longest-increasing-subsequence/
 [p349]: https://leetcode-cn.com/problems/intersection-of-two-arrays/
 [p350]: https://leetcode-cn.com/problems/intersection-of-two-arrays-ii/
 [p371]: https://leetcode-cn.com/problems/sum-of-two-integers/
@@ -144,9 +160,11 @@
 [p704]: https://leetcode-cn.com/problems/binary-search/
 [p807]: https://leetcode-cn.com/problems/max-increase-to-keep-city-skyline/
 [p811]: https://leetcode-cn.com/problems/subdomain-visit-count/
+[p852]: https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
 [p867]: https://leetcode-cn.com/problems/transpose-matrix/
 [p986]: https://leetcode-cn.com/problems/interval-list-intersections/
 [p1002]: https://leetcode-cn.com/problems/find-common-characters/
+[p1095]: https://leetcode-cn.com/problems/find-in-mountain-array/
 [p1114]: https://leetcode-cn.com/problems/print-in-order/
 [p1108]: https://leetcode-cn.com/problems/defanging-an-ip-address/
 [p1431]: https://leetcode-cn.com/problems/kids-with-the-greatest-number-of-candies/
@@ -198,18 +216,25 @@
 [#67 java]: solution/%2367%20Add%20Binary/Solution.java
 [#77 java]: solution/%2377%20Combinations/Solution.java
 [#79 java]: solution/%2379%20Word%20Search/Solution.java
+[#81 java]: solution/%2381%20Search%20in%20Rotated%20Sorted%20Array%20II/Solution.java
 [#94 java]: solution/%2394%20Binary%20Tree%20Inorder%20Traversal/Solution.java
 [#136 java]: solution/%23136%20Single%20Number/Solution.java
 [#137 java]: solution/%23137%20Single%20Number%20II/Solution.java
+[#153 java]: solution/%23153%20Find%20Minimum%20in%20Rotated%20Sorted%20Array/Solution.java
+[#154 java]: solution/%23154%20Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II/Solution.java
 [#189 java]: solution/%23189%20Rotate%20Array/Solution.java
 [#190 java]: solution/%23190%20Reverse%20Bits/Solution.java
 [#191 java]: solution/%23191%20Number%20of%201%20Bits/Solution.java
 [#198 java]: solution/%23198%20House%20Robber/Solution.java
+[#204 java]: solution/%23204%20Count%20Primes/Solution.java
+[#205 java]: solution/%23205%20Isomorphic%20Strings/Solution.java
+[#206 java]: solution/%23206%20Reverse%20Linked%20List/Solution.java
 [#216 java]: solution/%23216%20Combination%20Sum%20III/Solution.java
 [#217 java]: solution/%23217%20Contains%20Duplicate/Solution.java
 [#226 java]: solution/%23226%20Invert%20Binary%20Tree/Solution.java
 [#260 java]: solution/%23260%20Single%20Number%20III/Solution.java
 [#268 java]: solution/%23268%20Missing%20Number/Solution.java
+[#300 java]: solution/%23300%20Longest%20Increasing%20Subsequence/Solution.java
 [#349 java]: solution/%23349%20Intersection%20of%20Two%20Arrays/Solution.java
 [#350 java]: solution/%23350%20Intersection%20of%20Two%20Arrays%20II/Solution.java
 [#381 java]: solution/%23381%20Insert%20Delete%20GetRandom%20O%281%29%20-%20Duplicates%20allowed/Solution.java
@@ -219,8 +244,10 @@
 [#792 java]: solution/%23792%20Binary%20Search/Solution.java
 [#825 java]: solution/%23825%20Max%20Increase%20to%20Keep%20City%20Skyline/Solution.java
 [#829 java]: solution/%23829%20Subdomain%20Visit%20Count/Solution.java
+[#882 java]: solution/%23882%20Peak%20Index%20in%20a%20Mountain%20Array/Solution.java
 [#898 java]: solution/%23898%20Transpose%20Matrix/Solution.java
 [#1044 java]: solution/%231044%20Find%20Common%20Characters/Solution.java
+[#1185 java]: solution/%231185%20Find%20in%20Mountain%20Array/Solution.java
 [#1203 java]: solution/%231203%20Print%20in%20Order/Solution.java
 [#1205 java]: solution/%231205%20Defanging%20an%20IP%20Address/Solution.java
 [#1528 java]: solution/%231528%20Kids%20With%20the%20Greatest%20Number%20of%20Candies/Solution.java
