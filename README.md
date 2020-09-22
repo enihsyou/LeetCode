@@ -90,6 +90,9 @@
 | [1486][p1486]                         | 1610    | XOR Operation in an Array                               | [Java][#1610 java]                            | 2020-09-17 13:41 |
 | [1512][p1512]                         | 1635    | Number of Good Pairs                                    | [Java][#1635 java]<br/>[Python][#1635 python] | 2020-09-16 17:23 |
 | [1572][p1572]                         | 1677    | Matrix Diagonal Sum                                     | [Java][#1677 java]                            | 2020-09-16 23:11 |
+| [面试题 01.01][p面试题 01.01]               | 100158  | Is Unique LCCI                                          | [Java][#100158 java]                          | 2020-09-22 13:53 |
+| [面试题 01.02][p面试题 01.02]               | 100159  | Check Permutation LCCI                                  | [Java][#100159 java]                          | 2020-09-22 13:58 |
+| [面试题 01.03][p面试题 01.03]               | 100160  | String to URL LCCI                                      | [Java][#100160 java]                          | 2020-09-22 14:17 |
 | [面试题 02.03][p面试题 02.03]               | 100187  | Delete Middle Node LCCI                                 | [Java][#100187 java]                          | 2020-09-16 23:03 |
 | [面试题 16.01][p面试题 16.01]               | 100258  | Swap Numbers LCCI                                       | [Java][#100258 java]                          | 2020-09-16 23:05 |
 | [剑指 Offer 58 - II][p剑指 Offer 58 - II] | 100330  | 左旋转字符串 LCOF                                             | [Java][#100330 java]                          | 2020-09-16 21:59 |
@@ -180,6 +183,9 @@
 [p1486]: https://leetcode-cn.com/problems/xor-operation-in-an-array/
 [p1512]: https://leetcode-cn.com/problems/number-of-good-pairs/
 [p1572]: https://leetcode-cn.com/problems/matrix-diagonal-sum/
+[p面试题 01.01]: https://leetcode-cn.com/problems/is-unique-lcci/
+[p面试题 01.02]: https://leetcode-cn.com/problems/check-permutation-lcci/
+[p面试题 01.03]: https://leetcode-cn.com/problems/string-to-url-lcci/
 [p面试题 02.03]: https://leetcode-cn.com/problems/delete-middle-node-lcci/
 [p面试题 16.01]: https://leetcode-cn.com/problems/swap-numbers-lcci/
 [p剑指 Offer 58 - II]: https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/
@@ -266,6 +272,9 @@
 [#1610 java]: solution/%231610%20XOR%20Operation%20in%20an%20Array/Solution.java
 [#1635 java]: solution/%231635%20Number%20of%20Good%20Pairs/Solution.java
 [#1677 java]: solution/%231677%20Matrix%20Diagonal%20Sum/Solution.java
+[#100158 java]: solution/%23100158%20Is%20Unique%20LCCI/Solution.java
+[#100159 java]: solution/%23100159%20Check%20Permutation%20LCCI/Solution.java
+[#100160 java]: solution/%23100160%20String%20to%20URL%20LCCI/Solution.java
 [#100187 java]: solution/%23100187%20Delete%20Middle%20Node%20LCCI/Solution.java
 [#100258 java]: solution/%23100258%20Swap%20Numbers%20LCCI/Solution.java
 [#100330 java]: solution/%23100330%20%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2%20LCOF/Solution.java
