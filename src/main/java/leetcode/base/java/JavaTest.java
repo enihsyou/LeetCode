@@ -170,4 +170,15 @@ public abstract class JavaTest<S> {
         }
         return root;
     }
+
+    protected static ListNode linklistLoop(int head, int... values) {
+        ListNode root = new ListNode(head);
+        ListNode node = root;
+        for (int value : values) {
+            node.next = new ListNode(value);
+            node = node.next;
+        }
+        node.next = root;
+        return root;
+    }
 }
