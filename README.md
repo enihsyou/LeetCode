@@ -16,7 +16,7 @@
 | [13][p13]                             | 13      | Roman to Integer                                        | [Java][#13 java]                              | 2020-09-06 18:40 |
 | [15][p15]                             | 15      | 3Sum                                                    | [Kotlin][#15 kotlin]                          | 2020-09-06 18:42 |
 | [17][p17]                             | 17      | Letter Combinations of a Phone Number                   | [Java][#17 java]                              | 2020-09-06 18:42 |
-| [18][p18]                             | 18      | 4Sum                                                    | [Java][#18 java]                              | 2020-09-17 15:32 |
+| [18][p18]                             | 18      | 4Sum                                                    | [Java][#18 java]                              | 2020-10-10 17:02 |
 | [20][p20]                             | 20      | Valid Parentheses                                       | [Java][#20 java]                              | 2020-09-06 18:42 |
 | [21][p21]                             | 21      | Merge Two Sorted Lists                                  | [Java][#21 java]                              | 2020-09-17 15:51 |
 | [22][p22]                             | 22      | Generate Parentheses                                    | [Java][#22 java]                              | 2020-09-06 01:23 |
@@ -27,30 +27,32 @@
 | [34][p34]                             | 34      | Find First and Last Position of Element in Sorted Array | [Java][#34 java]                              | 2020-09-18 01:54 |
 | [35][p35]                             | 35      | Search Insert Position                                  | [Java][#35 java]                              | 2020-09-17 22:26 |
 | [36][p36]                             | 36      | Valid Sudoku                                            | [Java][#36 java]                              | 2020-09-14 01:01 |
-| [37][p37]                             | 37      | Sudoku Solver                                           | [Java][#37 java]                              | 2020-09-16 01:45 |
-| [39][p39]                             | 39      | Combination Sum                                         | [Java][#39 java]                              | 2020-09-12 16:10 |
-| [40][p40]                             | 40      | Combination Sum II                                      | [Java][#40 java]                              | 2020-09-13 02:15 |
-| [48][p48]                             | 48      | Rotate Image                                            | [Java][#48 java]                              | 2020-09-14 22:34 |
+| [37][p37]                             | 37      | Sudoku Solver                                           | [Java][#37 java]                              | 2020-10-10 17:02 |
+| [39][p39]                             | 39      | Combination Sum                                         | [Java][#39 java]                              | 2020-10-10 17:02 |
+| [40][p40]                             | 40      | Combination Sum II                                      | [Java][#40 java]                              | 2020-10-10 17:02 |
+| [48][p48]                             | 48      | Rotate Image                                            | [Java][#48 java]                              | 2020-10-10 17:02 |
 | [53][p53]                             | 53      | Maximum Subarray                                        | [Java][#53 java]                              | 2020-09-06 18:42 |
 | [56][p56]                             | 56      | Merge Intervals                                         | [Kotlin][#56 kotlin]                          | 2020-09-06 18:42 |
 | [65][p65]                             | 65      | Valid Number                                            | [Kotlin][#65 kotlin]                          | 2020-09-06 18:42 |
 | [66][p66]                             | 66      | Plus One                                                | [Java][#66 java]                              | 2020-09-09 21:21 |
 | [67][p67]                             | 67      | Add Binary                                              | [Java][#67 java]                              | 2020-09-10 00:47 |
-| [77][p77]                             | 77      | Combinations                                            | [Java][#77 java]                              | 2020-09-12 02:19 |
+| [77][p77]                             | 77      | Combinations                                            | [Java][#77 java]                              | 2020-10-10 17:02 |
 | [79][p79]                             | 79      | Word Search                                             | [Java][#79 java]                              | 2020-09-13 17:59 |
 | [81][p81]                             | 81      | Search in Rotated Sorted Array II                       | [Java][#81 java]                              | 2020-09-18 11:21 |
-| [88][p88]                             | 88      | Merge Sorted Array                                      | [Java][#88 java]                              | 2020-09-19 01:00 |
+| [88][p88]                             | 88      | Merge Sorted Array                                      | [Java][#88 java]                              | 2020-10-10 17:02 |
 | [94][p94]                             | 94      | Binary Tree Inorder Traversal                           | [Java][#94 java]                              | 2020-09-16 01:59 |
 | [122][p122]                           | 122     | Best Time to Buy and Sell Stock II                      | [Kotlin][#122 kotlin]                         | 2020-09-06 18:42 |
 | [136][p136]                           | 136     | Single Number                                           | [Java][#136 java]                             | 2020-09-10 00:55 |
 | [137][p137]                           | 137     | Single Number II                                        | [Java][#137 java]                             | 2020-09-10 01:52 |
+| [141][p141]                           | 141     | Linked List Cycle                                       | [Java][#141 java]                             | 2020-10-10 15:03 |
+| [142][p142]                           | 142     | Linked List Cycle II                                    | [Java][#142 java]                             | 2020-10-10 16:51 |
 | [153][p153]                           | 153     | Find Minimum in Rotated Sorted Array                    | [Java][#153 java]                             | 2020-09-18 12:02 |
 | [154][p154]                           | 154     | Find Minimum in Rotated Sorted Array II                 | [Java][#154 java]                             | 2020-09-18 12:13 |
 | [175][p175]                           | 175     | Combine Two Tables                                      | [MySQL][#175 mysql]                           | 2020-09-06 18:58 |
 | [176][p176]                           | 176     | Second Highest Salary                                   | [MySQL][#176 mysql]                           | 2020-09-06 18:58 |
 | [178][p178]                           | 178     | Rank Scores                                             | [MySQL][#178 mysql]                           | 2020-09-06 18:58 |
 | [182][p182]                           | 182     | Duplicate Emails                                        | [MySQL][#182 mysql]                           | 2020-09-06 18:58 |
-| [189][p189]                           | 189     | Rotate Array                                            | [Java][#189 java]                             | 2020-09-13 22:25 |
+| [189][p189]                           | 189     | Rotate Array                                            | [Java][#189 java]                             | 2020-10-10 17:02 |
 | [190][p190]                           | 190     | Reverse Bits                                            | [Java][#190 java]                             | 2020-09-13 23:12 |
 | [191][p191]                           | 191     | Number of 1 Bits                                        | [Java][#191 java]                             | 2020-09-06 18:42 |
 | [192][p192]                           | 192     | Word Frequency                                          | [Bash][#192 bash]                             | 2020-09-06 18:58 |
@@ -65,8 +67,8 @@
 | [260][p260]                           | 260     | Single Number III                                       | [Java][#260 java]                             | 2020-09-10 02:03 |
 | [268][p268]                           | 268     | Missing Number                                          | [Java][#268 java]                             | 2020-09-06 18:42 |
 | [300][p300]                           | 300     | Longest Increasing Subsequence                          | [Java][#300 java]                             | 2020-09-18 13:45 |
-| [349][p349]                           | 349     | Intersection of Two Arrays                              | [Java][#349 java]                             | 2020-09-11 15:03 |
-| [350][p350]                           | 350     | Intersection of Two Arrays II                           | [Java][#350 java]                             | 2020-09-11 15:13 |
+| [349][p349]                           | 349     | Intersection of Two Arrays                              | [Java][#349 java]                             | 2020-10-10 17:02 |
+| [350][p350]                           | 350     | Intersection of Two Arrays II                           | [Java][#350 java]                             | 2020-10-10 17:02 |
 | [371][p371]                           | 371     | Sum of Two Integers                                     | [Kotlin][#371 kotlin]                         | 2020-09-06 18:42 |
 | [381][p381]                           | 381     | Insert Delete GetRandom O(1) - Duplicates allowed       | [Java][#381 java]                             | 2020-09-06 18:42 |
 | [401][p401]                           | 401     | Binary Watch                                            | [Java][#401 java]                             | 2020-09-06 18:42 |
@@ -75,7 +77,7 @@
 | [535][p535]                           | 535     | Encode and Decode TinyURL                               | [Java][#535 java]                             | 2020-09-16 23:30 |
 | [704][p704]                           | 792     | Binary Search                                           | [Java][#792 java]                             | 2020-09-18 01:05 |
 | [807][p807]                           | 825     | Max Increase to Keep City Skyline                       | [Java][#825 java]                             | 2020-09-16 23:45 |
-| [811][p811]                           | 829     | Subdomain Visit Count                                   | [Java][#829 java]                             | 2020-09-11 18:12 |
+| [811][p811]                           | 829     | Subdomain Visit Count                                   | [Java][#829 java]                             | 2020-10-10 17:02 |
 | [852][p852]                           | 882     | Peak Index in a Mountain Array                          | [Java][#882 java]                             | 2020-09-18 15:12 |
 | [867][p867]                           | 898     | Transpose Matrix                                        | [Java][#898 java]                             | 2020-09-10 22:34 |
 | [986][p986]                           | 1028    | Interval List Intersections                             | [Kotlin][#1028 kotlin]                        | 2020-09-11 17:54 |
@@ -97,7 +99,7 @@
 | [面试题 16.01][p面试题 16.01]               | 100258  | Swap Numbers LCCI                                       | [Java][#100258 java]                          | 2020-09-16 23:05 |
 | [剑指 Offer 58 - II][p剑指 Offer 58 - II] | 100330  | 左旋转字符串 LCOF                                             | [Java][#100330 java]                          | 2020-09-16 21:59 |
 | [剑指 Offer 64][p剑指 Offer 64]           | 100345  | 求1+2+…+n LCOF                                           | [Java][#100345 java]                          | 2020-09-16 22:27 |
-| [面试题 10.01][p面试题 10.01]               | 1000012 | Sorted Merge LCCI                                       | [Java][#1000012 java]                         | 2020-09-17 22:12 |
+| [面试题 10.01][p面试题 10.01]               | 1000012 | Sorted Merge LCCI                                       | [Java][#1000012 java]                         | 2020-10-10 17:02 |
 | [LCP 17][pLCP 17]                     | 1000139 | 速算机器人                                                   | [Java][#1000139 java]                         | 2020-09-16 02:14 |
 
 [p1]: https://leetcode-cn.com/problems/two-sum/
@@ -137,6 +139,8 @@
 [p122]: https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/
 [p136]: https://leetcode-cn.com/problems/single-number/
 [p137]: https://leetcode-cn.com/problems/single-number-ii/
+[p141]: https://leetcode-cn.com/problems/linked-list-cycle/
+[p142]: https://leetcode-cn.com/problems/linked-list-cycle-ii/
 [p153]: https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/
 [p154]: https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/
 [p175]: https://leetcode-cn.com/problems/combine-two-tables/
@@ -233,6 +237,8 @@
 [#94 java]: solution/%2394%20Binary%20Tree%20Inorder%20Traversal/Solution.java
 [#136 java]: solution/%23136%20Single%20Number/Solution.java
 [#137 java]: solution/%23137%20Single%20Number%20II/Solution.java
+[#141 java]: solution/%23141%20Linked%20List%20Cycle/Solution.java
+[#142 java]: solution/%23142%20Linked%20List%20Cycle%20II/Solution.java
 [#153 java]: solution/%23153%20Find%20Minimum%20in%20Rotated%20Sorted%20Array/Solution.java
 [#154 java]: solution/%23154%20Find%20Minimum%20in%20Rotated%20Sorted%20Array%20II/Solution.java
 [#189 java]: solution/%23189%20Rotate%20Array/Solution.java
