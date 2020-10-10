@@ -19,11 +19,12 @@ class ExceptArgumentAssertMode implements AssertMode {
     }
 
     @Override
-    public Executable createExecutable(Method method, Object[] args, DiffMode diffMode) {
+    public Executable createExecutable(Method method, Object[] args, DiffMode diffMode,
+                                       ExecutionOption option) {
         if (args.length <= method.getParameterCount()) {
-            return () -> new PrintExecution(method, args, diffMode, true).executeTestCase();
+            return () -> new PrintExecution(method, args, diffMode, true, option).executeTestCase();
         } else {
-            return () -> new AssignableAssertExecution(method, args, diffMode,
+            return () -> new AssignableAssertExecution(method, args, diffMode, option,
                                                        outputResides).executeTestCase();
         }
     }

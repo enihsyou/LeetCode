@@ -14,8 +14,8 @@ class PrintExecution extends Execution {
     /** 执行完以后标注错误 */
     private final boolean abortAtLast;
 
-    PrintExecution(Method method, Object[] args, DiffMode diffMode, boolean abortAtLast) {
-        super(method, args, diffMode);
+    PrintExecution(Method method, Object[] args, DiffMode diffMode, boolean abortAtLast, ExecutionOption option) {
+        super(method, args, diffMode, option);
         this.abortAtLast = abortAtLast;
     }
 

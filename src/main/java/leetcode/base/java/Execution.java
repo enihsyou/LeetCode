@@ -19,10 +19,13 @@ abstract class Execution {
     protected final Object[] args;
     protected final DiffMode diffMode;
 
-    protected Execution(Method method, Object[] args, DiffMode diffMode) {
+    protected final ExecutionOption option;
+
+    protected Execution(Method method, Object[] args, DiffMode diffMode, ExecutionOption option) {
         this.method   = method;
         this.args     = args;
         this.diffMode = diffMode;
+        this.option   = option;
     }
 
     /** 调用AssertJ执行断言测试 */
@@ -94,12 +97,13 @@ abstract class Execution {
         Preconditions.checkState(returnsType != void.class,
                                  "函数返回void时推荐使用AssertMode.exceptArgumentMode");
         Object returnsObject = args[method.getParameterCount()];
-        Preconditions.checkState(returnsObject != null, "函数返回不应该为null");
-        assert returnsObject != null; // IDEA bug
-        Preconditions.checkState(isAssignableTo(returnsObject.getClass(), returnsType),
-                                 "函数返回的类型应该为%s而不是%s",
-                                 returnsObject.getClass().getSimpleName(),
-                                 returnsType.getSimpleName());
+        Preconditions.checkState(option.allowNullOutput() || returnsObject != null, "函数返回不应该为null");
+        if (returnsObject != null) {
+            Preconditions.checkState(isAssignableTo(returnsObject.getClass(), returnsType),
+                                     "函数返回的类型应该为%s而不是%s",
+                                     returnsObject.getClass().getSimpleName(),
+                                     returnsType.getSimpleName());
+        }
     }
 
     protected abstract void assertions(Object methodOutput);

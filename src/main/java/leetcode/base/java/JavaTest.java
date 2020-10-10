@@ -35,6 +35,8 @@ public abstract class JavaTest<S> {
     /** 子类中定义的public实例方法，作为需要测试的解题方法 */
     private final List<Method> solutionMethods;
 
+    private final ExecutionOption option = new ExecutionOption();
+
     protected JavaTest() {
         Class<S> solutionClass = getSolutionClassObject();
         solutionMethods = ReflectionUtils.findMethods(
@@ -53,6 +55,10 @@ public abstract class JavaTest<S> {
         return AssertMode.exceptOutputMode();
     }
 
+    protected void tweakExecutionOption(ExecutionOption option) {
+        // default no-op.
+    }
+
     @SuppressWarnings("WeakerAccess")
     protected DisplayNameGenerator displayNameGenerator() {
         return new DisplayNameGenerator.Default();
@@ -61,6 +67,7 @@ public abstract class JavaTest<S> {
     /** 动态创建测试用例 */
     @TestFactory
     Stream<? extends DynamicNode> dynamicTestsGenerator() {
+        tweakExecutionOption(option);
         return solutionMethods.stream()
             .map(method -> buildDynamicTest(method, provider()));
     }
@@ -86,7 +93,7 @@ public abstract class JavaTest<S> {
         return DynamicTest.dynamicTest(
             displayNameGenerator().nameForCase(method, args),
             URI.create(uriString),
-            assertMode().createExecutable(method, args, diffMode()));
+            assertMode().createExecutable(method, args, diffMode(), option));
     }
 
     /** 获得子类继承实现该抽象类时，设置在JavaTest.{@link S}上的类型 */

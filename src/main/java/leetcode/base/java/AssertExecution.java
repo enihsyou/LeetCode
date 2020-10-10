@@ -14,15 +14,17 @@ import org.assertj.core.api.ObjectArrayAssert;
  */
 class AssertExecution extends Execution {
 
-    AssertExecution(Method method, Object[] args, DiffMode diffMode) {
-        super(method, args, diffMode);
+    AssertExecution(Method method, Object[] args, DiffMode diffMode, ExecutionOption option) {
+        super(method, args, diffMode, option);
     }
 
     @Override
     public void assertions(Object methodOutput) {
         Object methodExcept = args[method.getParameterCount()];
 
-        if (methodExcept.getClass().isArray()) {
+        if (methodExcept == null) {
+            assertThat(methodOutput).isNull();
+        } else if (methodExcept.getClass().isArray()) {
             //noinspection ChainOfInstanceofChecks
             if (methodExcept.getClass().getComponentType() == int.class) {
                 diffMode.satisfies(InstanceOfAssertFactories.INT_ARRAY.createAssert(methodOutput),
