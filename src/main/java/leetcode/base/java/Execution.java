@@ -21,10 +21,10 @@ abstract class Execution {
 
     protected final ExecutionOption option;
 
-    protected Execution(Method method, Object[] args, DiffMode diffMode, ExecutionOption option) {
+    protected Execution(Method method, Object[] args, ExecutionOption option) {
         this.method   = method;
         this.args     = args;
-        this.diffMode = diffMode;
+        this.diffMode = option.diffMode();
         this.option   = option;
     }
 

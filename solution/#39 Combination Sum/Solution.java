@@ -1,6 +1,7 @@
 package leetcode.q39.java;
 
 import leetcode.base.java.DiffMode;
+import leetcode.base.java.ExecutionOption;
 import leetcode.base.java.JavaTest;
 import org.junit.jupiter.params.provider.Arguments;
 
@@ -61,8 +62,8 @@ class Solution {
     static class SolutionTest extends JavaTest<Solution> {
 
         @Override
-        protected DiffMode diffMode() {
-            return DiffMode.CONTAIN;
+        protected void tweakExecutionOption(ExecutionOption option) {
+            option.diffMode(DiffMode.CONTAIN);
         }
 
         @Override

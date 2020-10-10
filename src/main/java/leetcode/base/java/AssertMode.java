@@ -11,7 +11,7 @@ import org.junit.jupiter.api.function.Executable;
  */
 public interface AssertMode {
 
-    Executable createExecutable(Method method, Object[] args, DiffMode diffMode, ExecutionOption option);
+    Executable createExecutable(Method method, Object[] args, ExecutionOption option);
 
     static AssertMode exceptOutputMode() {
         return new ExceptOutputAssertMode();

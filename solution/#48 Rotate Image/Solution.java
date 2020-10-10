@@ -3,6 +3,7 @@ package leetcode.q48.java;
 import java.util.stream.Stream;
 
 import leetcode.base.java.AssertMode;
+import leetcode.base.java.ExecutionOption;
 import leetcode.base.java.JavaTest;
 import org.junit.jupiter.params.provider.Arguments;
 
@@ -37,8 +38,8 @@ class Solution {
     static class SolutionTest extends JavaTest<Solution> {
 
         @Override
-        protected AssertMode assertMode() {
-            return AssertMode.exceptArgumentMode(0);
+        protected void tweakExecutionOption(ExecutionOption option) {
+            option.assertMode(AssertMode.exceptArgumentMode(0));
         }
 
         @Override

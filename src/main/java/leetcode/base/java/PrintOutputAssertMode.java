@@ -12,8 +12,7 @@ import org.junit.jupiter.api.function.Executable;
 class PrintOutputAssertMode implements AssertMode {
 
     @Override
-    public Executable createExecutable(Method method, Object[] args, DiffMode diffMode,
-                                       ExecutionOption option) {
-        return () -> new PrintExecution(method, args, diffMode, false, option).executeTestCase();
+    public Executable createExecutable(Method method, Object[] args, ExecutionOption option) {
+        return () -> new PrintExecution(method, args, false, option).executeTestCase();
     }
 }

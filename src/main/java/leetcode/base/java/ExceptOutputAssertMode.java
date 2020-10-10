@@ -12,11 +12,11 @@ import org.junit.jupiter.api.function.Executable;
 class ExceptOutputAssertMode implements AssertMode {
 
     @Override
-    public Executable createExecutable(Method method, Object[] args, DiffMode diffMode, ExecutionOption option) {
+    public Executable createExecutable(Method method, Object[] args, ExecutionOption option) {
         if (args.length <= method.getParameterCount()) {
-            return () -> new PrintExecution(method, args, diffMode, true, option).executeTestCase();
+            return () -> new PrintExecution(method, args, true, option).executeTestCase();
         } else {
-            return () -> new AssertExecution(method, args, diffMode, option).executeTestCase();
+            return () -> new AssertExecution(method, args, option).executeTestCase();
         }
     }
 }

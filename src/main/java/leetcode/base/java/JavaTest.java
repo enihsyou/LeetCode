@@ -46,15 +46,6 @@ public abstract class JavaTest<S> {
     /** 提供输入到解题方法中到测试数据，每组的最后一个参数为期望输出 */
     protected abstract Stream<Arguments> provider();
 
-    /** 定义结果比较模式 */
-    protected DiffMode diffMode() {
-        return DiffMode.EXACTLY;
-    }
-
-    protected AssertMode assertMode() {
-        return AssertMode.exceptOutputMode();
-    }
-
     protected void tweakExecutionOption(ExecutionOption option) {
         // default no-op.
     }
@@ -93,7 +84,7 @@ public abstract class JavaTest<S> {
         return DynamicTest.dynamicTest(
             displayNameGenerator().nameForCase(method, args),
             URI.create(uriString),
-            assertMode().createExecutable(method, args, diffMode(), option));
+            option.assertMode().createExecutable(method, args, option));
     }
 
     /** 获得子类继承实现该抽象类时，设置在JavaTest.{@link S}上的类型 */

@@ -14,8 +14,8 @@ import org.assertj.core.api.ObjectArrayAssert;
  */
 class AssertExecution extends Execution {
 
-    AssertExecution(Method method, Object[] args, DiffMode diffMode, ExecutionOption option) {
-        super(method, args, diffMode, option);
+    AssertExecution(Method method, Object[] args, ExecutionOption option) {
+        super(method, args, option);
     }
 
     @Override

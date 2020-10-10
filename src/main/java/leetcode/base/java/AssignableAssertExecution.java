@@ -13,8 +13,8 @@ public class AssignableAssertExecution extends AssertExecution {
     /** 函数期望的输出值在args中的位置 */
     private final int outputResides;
 
-    AssignableAssertExecution(Method method, Object[] args, DiffMode diffMode, ExecutionOption option, int outputResides) {
-        super(method, args, diffMode, option);
+    AssignableAssertExecution(Method method, Object[] args, ExecutionOption option, int outputResides) {
+        super(method, args, option);
         this.outputResides = outputResides;
     }
 
